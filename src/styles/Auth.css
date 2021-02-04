@@ -1,0 +1,105 @@
+.auth-container {
+    display: flex;
+    min-height: 90vh;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    overflow-x: hidden;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.auth-card {
+    padding: 2rem;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+
+.MuiButtonBase-root {
+    width: 100%;
+    background: var(--text-color) !important;
+    border-radius: 20px !important;
+}
+
+.google-button svg {
+    margin-top: 5px;
+}
+
+.or {
+    display: block;
+    text-align: center;
+    font-size: 1.25rem;
+    margin: 1rem 45%;
+    font-weight: 500;
+    opacity: 0.6;
+    
+}
+
+.auth-card .logo {
+    width: 80%;
+    height: 7rem;
+    margin: 0 10%;
+}
+
+.auth-card .MuiInputLabel-outlined {
+    transform: translate(14px, 16px) scale(1); 
+}
+
+.auth-card .MuiFormControl-root {
+    display: block !important;
+    margin-bottom: 1rem;
+}
+
+.auth-card .MuiOutlinedInput-root {
+    border-radius: 20px;
+    height:3rem;
+    background-color: white;
+}
+
+.auth-input label {
+    margin-bottom: 1rem;
+}
+.auth-card .MuiInputBase-formControl {
+    margin-bottom: 1rem;
+}
+
+.auth-link-text {
+    text-decoration: none;
+    color: #666666;
+    display: block;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    transition: all ease 200ms;
+    font-weight: 600;
+    letter-spacing: 0.7pt;
+
+}
+
+.auth-link-text:hover {
+    color: #000000;
+}
+
+/* Large Screen */
+@media only screen and (min-width: 600px){
+    .auth-card {
+        width: 500px;
+    }
+
+    .auth-card .MuiInputBase-formControl {
+        width: 100%;
+    }
+}
+
+/* Small Screen */
+@media only screen and (max-width: 600px){
+    .auth-card {
+        width: 325px;
+    }
+
+    .auth-card .logo {
+        width: 100%;
+        margin: 0;
+    }
+}
