@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { UserContext } from './Interface';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
@@ -8,22 +8,32 @@ import NavItem from './NavItem';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-    //Variable Initialization
-    const { state, dispatch } = useContext(UserContext);
-    
     //State initialization
     const [menuOpen, setMenuopen] = useState(false);
+    
+    //UseEffect Implementation
+    useEffect(() => {
+        if(menuOpen){
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [menuOpen]);
+
+    //Variable Initialization
+    const { state, dispatch } = useContext(UserContext);
+    const sideBar = useRef();
 
     //Sub-Components
     const RenderListItems = () => {
         if(state){
             return (
                 <>
-                <NavItem to="/home" text="Home" />
+                <NavItem to="/home" text="HOME" />
                 <NavItem to="/login" onClick={() => {
                     localStorage.clear();
                     dispatch({type: "CLEAR"});
-                }} text="Logout" />        
+                }} text="LOGOUT" />        
                 </>
             );
         } else {
@@ -43,27 +53,33 @@ const Header = () => {
 
     return (
         <nav className="navbar">
-            <div onClick={() => setMenuopen(prev => !prev)} className="navbar__mobile-button">
+            <div onClick={() => setMenuopen(prev => !prev)}
+            className={menuOpen? "navbar__mobile-close" : "navbar__mobile-button"}>
                 <div className="line"></div>
                 <div className="line"></div>
                 <div className="line"></div>
             </div>
+            { menuOpen && <div className="backdrop" style={{
+                opacity: "0.4"   
+            }} onClick={()=>setMenuopen(false)}></div>}
             
-            <img className="navbar__logo" src="https://cdn.zeplin.io/6011b3b2928e7a26fe68d186/assets/14b215bb-211f-4169-ac7f-348760b45d3b.png" alt="Flipin Logo"/>
+            <Link to="/" onClick={()=>setMenuopen(false)}>
+                <img className="navbar__logo" src="https://cdn.zeplin.io/6011b3b2928e7a26fe68d186/assets/14b215bb-211f-4169-ac7f-348760b45d3b.png" alt="Flipin Logo"/>
+            </Link>
           
             <ul className="navbar__links"> 
                 <RenderListItems />
             </ul>
 
-            <div className="navbar__mobile-menu">
-                <ul>
+            <div ref={sideBar} className="navbar__mobile-menu" style={menuOpen? ({left: '0vw'}) : ({left: '-70vw'})}>
+                <ul onClick={() => setMenuopen(false)}>
                     <RenderListItems />
                 </ul>
             </div>
 
-            <Link className='navbar__mobile-login' to='/login'><AccountCircleIcon /></Link>
+            <Link className='navbar__mobile-login' onClick={()=>setMenuopen(false)} to='/login'><AccountCircleIcon /></Link>
         </nav>
     );
 }
 
-export default Header
+export default Header;

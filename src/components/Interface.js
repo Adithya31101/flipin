@@ -8,6 +8,7 @@ import { initialState, reducer } from '../reducers/userReducer';
 //Import components
 import Header from './Header';
 import Routing from './Routing';
+import Footer from './Footer';
 
 //Global Context 
 export const UserContext = createContext();
@@ -21,6 +22,7 @@ const Interface = () => {
                 <main>
                     <Routing />
                 </main>
+                <Footer />
             </BrowserRouter>
         </UserContext.Provider>
     );

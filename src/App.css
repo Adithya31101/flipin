@@ -13,6 +13,18 @@
     box-sizing: border-box;
 }
 
+
+.backdrop {
+    position: absolute;
+    background-color: #000;
+    opacity: 0;
+    height: 100vh;
+    width: 100vw;
+    top: 10vh;
+    left: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
 body {
     margin: 0;
     padding: 0;
