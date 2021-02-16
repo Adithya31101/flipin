@@ -26,3 +26,11 @@ export const footerInfo = [{
     }],
 }];
 
+export const categories = [
+    {
+        title: "Furniture",
+        src: "",
+        isActive: true,
+    }
+];
+

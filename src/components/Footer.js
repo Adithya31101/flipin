@@ -28,14 +28,19 @@ const Footer = () => {
 
 
     return (
-        <footer>
-            { footerInfo.map(section => <FooterSection section={section} />) }
-            <div className="footer__marketing">
-                <img src={footerLogo} alt="Flipin"/>
-                <div className="footer__marketing-social">
-                    <a target="_blank" rel="noreferrer" href="https://instagram.com"><Instagram /></a>
-                    <a target="_blank" rel="noreferrer" href="https://linkedin.com"><LinkedIn /></a>
-                    <a target="_blank" rel="noreferrer" href="https://twitter.com"><Twitter /></a>
+        <footer>  
+            <div className="footer__message">
+                <h1>Join Us as a Seller&nbsp;or Customer</h1>
+            </div>
+            <div className="footer">
+                { footerInfo.map(section => <FooterSection section={section} />) }
+                <div className="footer__marketing">
+                    <img src={footerLogo} alt="Flipin"/>
+                    <div className="footer__marketing-social">
+                        <a target="_blank" rel="noreferrer" href="https://instagram.com"><Instagram /></a>
+                        <a target="_blank" rel="noreferrer" href="https://linkedin.com"><LinkedIn /></a>
+                        <a target="_blank" rel="noreferrer" href="https://twitter.com"><Twitter /></a>
+                    </div>
                 </div>
             </div>
         </footer>

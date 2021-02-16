@@ -1,33 +1,20 @@
-import { useContext, useEffect, useState } from 'react';
-// import axios from 'axios';
-// import { useHistory, Link } from 'react-router-dom';
-// import { UserContext } from './Interface';
-//Import pages of the form
-// import validations from '../helperFunctions/validation';
+import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import validations from '../helperFunctions/validation';
+
+// Media Imports
+import { ReactComponent as Google } from '../images/google.svg';
+import { ReactComponent as Facebook } from '../images/facebook.svg';
 
 const SignUp = () => {
-    /*//Variable Initialisations
-    const history = useHistory();
-    const {state} = useContext(UserContext);
-
-    //On page load
-    useEffect(() => {
-        if(state){
-            history.push('/home')
-        }
-        return;
-    }, [state, history]);
-
-    //State 
     const [name, setName] = useState(""); 
-    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isPasswordHidden, setIsPasswordHidden] = useState(true);
     const [error, setError] = useState({
-        name: "", username: "", email: "", password: ""
+        name: "", email: "", password: "", retype: ""
     });
+    const retypePassword = useRef();
 
     // Handler Functions
     const handleName = (e) => {
@@ -35,11 +22,6 @@ const SignUp = () => {
         error.name = validations.validateName(e.target.value)
     }
     
-    const handleUsername = (e) => {
-        setUsername(e.target.value);
-        error.username = validations.validateUsername(e.target.value)
-    }
-
     const handleEmail = (e) => {
         setEmail(e.target.value);
         error.email = validations.validateEmail(e.target.value)
@@ -51,43 +33,46 @@ const SignUp = () => {
     }
      
     const handleSubmit = (e) => {
-        setIsSubmitting(true);
+        console.log(retypePassword.current.value);
         e.preventDefault();
-        if(validations.noError(error)){
-                const user = {
-                    name,
-                    username,
-                    email,
-                    password
-                } 
-                axios.post('/api/auth/signup', user)
-                .then(res => {
-                    history.push('/login');
-                })
-                .catch(err => {
-                    if(err.response.data){
-                        setError(err.response.data.error);
-                        setIsSubmitting(false);
-                    }
-                })
+        //Error: need to reset the password error string
+        if(validations.noError(error) && retypePassword.current.value === password){
+            console.log({name, email, password})
         } else {
-            setIsSubmitting(false);
+            error.retype = "Passwords don't match!";
+            console.log(error);
         }
        
     }
 
-    const toggleShowPassword = (e) => {
-        setIsPasswordHidden(prevState => {return !prevState});
-    }
+    // const toggleShowPassword = (e) => {
+    //     setIsPasswordHidden(prevState => {return !prevState});
+    // }
 
-    const responseGoogle = (response) => {
-        console.log(response);
+    // Sub Components
+    const ThirdParty = (props) => {
+        return (
+            <button className="auth__card-thirdparty">
+                {props.children}
+                <span>{props.text}</span>
+            </button>
+        );
     }
-    */
 
     return (
-        <div>
-            Signin
+        <div className="auth__container" style={{height: "120vh"}}>
+            <div className="auth__card">
+                <h1 className="auth__card-header">Sign Up</h1>
+                <ThirdParty text="Continue with Google"> <Google /> </ThirdParty>
+                <ThirdParty text="Continue with Facebook"> <Facebook /> </ThirdParty>
+                <div className="auth__card-or">OR</div>
+                <input type="text" placeholder="Name" value={name} onChange={handleName} />
+                <input type="email" placeholder="Email" value={email} onChange={handleEmail} />
+                <input type="password" placeholder="Password" value={password} onChange={handlePassword} />
+                <input ref={retypePassword} type="password" placeholder="Password" />
+                <button onClick={handleSubmit} className="auth__card-submit">Continue</button>
+                <p className="auth__card-nmy">Already a member? <Link to="/login">Log in</Link></p>
+            </div>
         </div>
     );
 }

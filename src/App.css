@@ -9,6 +9,11 @@
     --animation-speed: 500ms;
 }
 
+input:focus {
+    outline: none;
+    border: none;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -32,6 +37,13 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+.container {
+}
+
+.row {
+    display: flex;
+}
+
 body::-webkit-scrollbar {
     width: 0.25rem;
 }
@@ -45,7 +57,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .bold {
-    font-weight: 700;
+    font-weight: bolder;
+    letter-spacing: 1pt;
 }
 
 .border {
