@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 //Relative Imports
 import '../styles/Home.css';
+import Difference from './Difference';
 
 //Media Imports
 import heroImg from "../images/heroImg.png";
 import furniture_img from "../images/home_category1.png";
 import { ReactComponent as SearchIcon } from '../images/search.svg';
 import { ReactComponent as Arrow } from '../images/arrow.svg';
-import { ReactComponent as Tick } from '../images/tick.svg';
 
 
 
@@ -28,16 +28,6 @@ const Home = () => {
             <div className="category">
                 <img src={props.src} alt={props.title} />
                 <span className="category__title">{props.title}</span>
-            </div>
-        );
-    }
-
-    const Difference = (props) => {
-        return (
-            <div className="marketing__section">
-                <Tick />
-                <h4>{props.title}</h4>
-                <p>{props.children}</p>
             </div>
         );
     }

@@ -1,0 +1,98 @@
+.why__us {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.why__us-header {
+    font-size: 2.25em;
+    color: #663eaa;
+    font-weight: bold;
+}
+
+.why__us-reasons {
+    width: 40%;
+}
+
+.why__us img {
+    width: 50%;
+}
+
+.about_us {
+    margin: 15% 0;
+    font-weight: 900;
+    font-size: 4em;
+    color: #663eaa;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #663eaa;
+}
+
+.team__h2 {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.crown {
+    display: inline;
+    position: relative;
+}
+
+.crown img {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 0px;
+    top: -5px;
+    z-index: -1;
+    transform: rotate(20deg);
+}
+
+.team__h3 {
+    margin-top: 0;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.team__grid {
+    width: 50%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.team-member__placeholder {
+    width: 180px;
+    height: 180px;
+    border: solid 5px #ffb102;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.team-member h4 {
+    font-weight: bold;
+    font-size: 2.25em;
+    margin: 30px 0 0 0;
+}
+
+.team-member p {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+/* Small Screen */
+@media only screen and (max-width: 600px) {
+    .team__grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+}
