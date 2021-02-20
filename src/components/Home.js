@@ -16,10 +16,15 @@ import { ReactComponent as Arrow } from '../images/arrow.svg';
 const Home = () => {
     //State 
     const [search, setSearch] = useState("");
-    let categoryElements = [], x = 0;
-    const limitCategories = {left: 0, right: 4};
+    let categoryElements = [], x = 0, pixels = 120;
+    let limitCategories = {left: 0, right: 4};
     useEffect(() => {
         categoryElements = document.getElementsByClassName('category');
+        if(window.innerWidth < 500){
+            pixels = 100;
+            limitCategories.right = 1;
+            limitCategories.left = 0;
+        }
     }, [])
 
     //Complementary components
@@ -34,20 +39,20 @@ const Home = () => {
 
     //Handler Functions 
     const onArrowClick = (direction) => {
+        
         if(direction === 'left'){
             if(limitCategories.left > 0){
                 limitCategories.right--;
                 limitCategories.left--;
-                x += 120;
+                x += pixels;
             }
         } else {
             if(limitCategories.right < categoryElements.length){
                 limitCategories.right++;
                 limitCategories.left++;
-                x -= 120;
+                x -= pixels;
             }
         }
-        console.log(x);
         for(let i = 0; i < categoryElements.length; i++){
             categoryElements[i].style.transform = `translateX(${x}%)`;
         }
@@ -88,7 +93,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="row marketing">
-                <h2 className="marketing__header">What is different about<br /> us?</h2>
+                <h2 className="marketing__header">What is different about us?</h2>
                 <Difference title="Lorem Ipsum" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</Difference>
                 <Difference title="Lorem Ipsum" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</Difference>
                 <Difference title="Lorem Ipsum" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</Difference>

@@ -6,8 +6,6 @@
     flex-wrap: wrap-reverse;
 }
 
-
-
 .hero__txt {
     width: 40%;
 }
@@ -27,7 +25,7 @@
 }
 
 .hero__txt-search > input {
-    flex: 1;
+    width: 90%;
     padding: 5px 10px; 
     font-size: 1.5em;
     color: #663eaa;
@@ -118,7 +116,6 @@
 
 .left_arrow {
     left: 10%;
-    
 }
 
 .right_arrow {
@@ -179,4 +176,22 @@
     margin-top: 0;
     color: #ac9bcf;
     text-align: justify;
+}
+
+@media only screen and (max-width: 500px){
+    .hero img{
+        width:100%;
+    }
+
+    .hero__txt , .hero__txt-search{
+        width:100%;
+    }
+
+    .hero__txt-header{
+        width: 100%;
+        font-size: 40px;
+    } 
+    .marketing, .categories__container {
+        width: 80%;
+    }
 }
