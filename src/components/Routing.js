@@ -27,6 +27,7 @@ const Routing = () => {
         <Switch>
             {/* Public Routes */}
             <Route exact path="/"><Home /></Route>
+            <Route path="/flipin"><Home /></Route>
             <Route path="/shop"><Shop /></Route>
             <Route path="/about"><About /></Route>
             <Route path="/contact"><Contact /></Route>
