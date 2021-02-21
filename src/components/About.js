@@ -19,8 +19,8 @@ const About = () => {
     return (
         <div className="container">
             <div className="why__us">
-                <div className="why__us-reasons">
                     <h1 className="about_us">About Us</h1>
+                <div className="why__us-reasons">
                     <h3 className="why__us-header">Why us?</h3>
                     <Difference title="Lorem Ipsum" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</Difference>
                     <Difference title="Lorem Ipsum" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</Difference>

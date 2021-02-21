@@ -21,7 +21,7 @@ const Home = () => {
     useEffect(() => {
         categoryElements = document.getElementsByClassName('category');
         if(window.innerWidth < 500){
-            pixels = 100;
+            pixels = 111;
             limitCategories.right = 1;
             limitCategories.left = 0;
         }
@@ -39,7 +39,6 @@ const Home = () => {
 
     //Handler Functions 
     const onArrowClick = (direction) => {
-        
         if(direction === 'left'){
             if(limitCategories.left > 0){
                 limitCategories.right--;

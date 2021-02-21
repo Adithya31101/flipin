@@ -9,6 +9,7 @@ import Login from './Login';
 import SignUp from './SignUp';
 import Shop from './Shop';
 import Contact from './Contact';
+import NotFound from './NotFound';
 
 
 const Routing = () => {
@@ -31,6 +32,7 @@ const Routing = () => {
             <Route path="/contact"><Contact /></Route>
             <Route path="/login"><Login /></Route>
             <Route path="/signup"><SignUp /></Route>
+            <Route><NotFound /> </Route>
             {/* Private Routes */}
         </Switch>
     );

@@ -192,6 +192,9 @@
         font-size: 40px;
     } 
     .marketing, .categories__container {
-        width: 80%;
+        width: 75%;
+    }
+    .category {
+        margin: 1% 5%; 
     }
 }

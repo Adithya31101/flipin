@@ -21,7 +21,6 @@
 }
 
 .about_us {
-    margin: 15% 0;
     font-weight: 900;
     font-size: 4em;
     color: #663eaa;
@@ -95,4 +94,27 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
     }
+
+    .why__us {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .why__us-reasons {
+        width: 70%;
+    }
+
+    .team {
+        margin: 0 5%;
+    }
+
+    .team__h2 {
+        font-size: 3em;
+    }
+
+    .about_us {
+        font-size: 3em;
+    }
+
+    
 }

@@ -60,7 +60,7 @@ const Header = () => {
                 <div className="line"></div>
             </div>
             { menuOpen && <div className="backdrop" style={{
-                opacity: "0.4"   
+                opacity: "0.4", zIndex: 2,   
             }} onClick={()=>setMenuopen(false)}></div>}
             
             <Link to="/" onClick={()=>setMenuopen(false)}>
