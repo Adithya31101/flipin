@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/flipin/static/css/main.020d62b0.chunk.css",
-    "main.js": "/flipin/static/js/main.e6e60e2e.chunk.js",
-    "main.js.map": "/flipin/static/js/main.e6e60e2e.chunk.js.map",
+    "main.css": "/flipin/static/css/main.9659ef7c.chunk.css",
+    "main.js": "/flipin/static/js/main.20b58cd7.chunk.js",
+    "main.js.map": "/flipin/static/js/main.20b58cd7.chunk.js.map",
     "runtime-main.js": "/flipin/static/js/runtime-main.e7c41b9a.js",
     "runtime-main.js.map": "/flipin/static/js/runtime-main.e7c41b9a.js.map",
-    "static/js/2.3a6677e0.chunk.js": "/flipin/static/js/2.3a6677e0.chunk.js",
-    "static/js/2.3a6677e0.chunk.js.map": "/flipin/static/js/2.3a6677e0.chunk.js.map",
+    "static/js/2.6b5495ec.chunk.js": "/flipin/static/js/2.6b5495ec.chunk.js",
+    "static/js/2.6b5495ec.chunk.js.map": "/flipin/static/js/2.6b5495ec.chunk.js.map",
     "index.html": "/flipin/index.html",
-    "static/css/main.020d62b0.chunk.css.map": "/flipin/static/css/main.020d62b0.chunk.css.map",
-    "static/js/2.3a6677e0.chunk.js.LICENSE.txt": "/flipin/static/js/2.3a6677e0.chunk.js.LICENSE.txt",
+    "static/css/main.9659ef7c.chunk.css.map": "/flipin/static/css/main.9659ef7c.chunk.css.map",
+    "static/js/2.6b5495ec.chunk.js.LICENSE.txt": "/flipin/static/js/2.6b5495ec.chunk.js.LICENSE.txt",
     "static/media/arrow.e2d47850.svg": "/flipin/static/media/arrow.e2d47850.svg",
     "static/media/Auth.css": "/flipin/static/media/bg.e36e82b5.png",
     "static/media/crown.d28d860f.svg": "/flipin/static/media/crown.d28d860f.svg",
@@ -26,8 +26,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.e7c41b9a.js",
-    "static/js/2.3a6677e0.chunk.js",
-    "static/css/main.020d62b0.chunk.css",
-    "static/js/main.e6e60e2e.chunk.js"
+    "static/js/2.6b5495ec.chunk.js",
+    "static/css/main.9659ef7c.chunk.css",
+    "static/js/main.20b58cd7.chunk.js"
   ]
 }
