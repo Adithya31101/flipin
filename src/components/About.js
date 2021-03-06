@@ -12,7 +12,7 @@ const About = () => {
                 <h4>{props.name}</h4>
                 <p>{props.regno}</p>
             </div>
-        )
+        );
     }
 
 

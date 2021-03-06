@@ -21,7 +21,7 @@ const Home = () => {
     useEffect(() => {
         categoryElements = document.getElementsByClassName('category');
         if(window.innerWidth < 500){
-            pixels = 111;
+            pixels = 110;
             limitCategories.right = 1;
             limitCategories.left = 0;
         }
@@ -72,7 +72,7 @@ const Home = () => {
                         <Link to="/products/hat"><span className="hero__txt-category">Hat</span></Link>
                     </div>
                 </div>
-                <img src={heroImg} alt="Mobile shopping" />
+                <img className="hero__img" src={heroImg} alt="Mobile shopping" />
             </div>
             <div className="row categories">
                 <h2 className="categories__header">Our Popular Categories</h2>

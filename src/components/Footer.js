@@ -17,12 +17,12 @@ const Footer = () => {
     const FooterSection = (subProps) => {
         const {header, list} = subProps.section;
         return (
-            <section className="footer__section">
+            <>
                 <h4 className="bold">{header}</h4>
                 <ul>
-                { list.map(item => <li><Link to={item.to}>{item.name}</Link></li>) }
+                { list.map(item => <li key={item.id}><Link to={item.to}>{item.name}</Link></li>) }
                 </ul>
-            </section>
+            </>
         );
     }
 
@@ -33,8 +33,12 @@ const Footer = () => {
                 <h1>Join Us as a Seller&nbsp;or Customer</h1>
             </div>
             <div className="footer">
-                { footerInfo.map(section => <FooterSection section={section} />) }
-                <div className="footer__marketing">
+                { footerInfo.map(section => (
+                    <section key={section.id} className="footer__section">
+                        <FooterSection section={section} />
+                    </section> 
+                ))}
+                <div className="footer__marketing"> 
                     <img src={footerLogo} alt="Flipin"/>
                     <div className="footer__marketing-social">
                         <a target="_blank" rel="noreferrer" href="https://instagram.com"><Instagram /></a>

@@ -6,12 +6,16 @@
     flex-wrap: wrap-reverse;
 }
 
-.hero__txt {
+.hero__img {
     width: 40%;
 }
 
+.hero__txt {
+    width: 45%;
+}
+
 .hero__txt-header {
-    font-size: 49px;
+    font-size: 56px;
     line-height: 1.16;
     color: #663eaa;
 }
@@ -65,7 +69,7 @@
 .categories__container {
     display: flex;
     justify-content: flex-start;
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
     overflow: hidden;
 }
@@ -83,9 +87,9 @@
 }
 
 .category img {
+    width: 300px;
     position: relative;
     border-radius: 10px;
-    height: 100%;
 }
 
 .category__title {
@@ -196,5 +200,12 @@
     }
     .category {
         margin: 1% 5%; 
+    }
+    .categories__header { 
+        font-size: 30px;
+    }
+
+    .category img {
+        width: 230px;
     }
 }

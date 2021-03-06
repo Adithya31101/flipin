@@ -22,9 +22,6 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 
-.auth__card input:focus{
-    border: solid 0.5px #000000;
-}
 
 .auth__card-header {
     font-size: 32px;
@@ -46,7 +43,7 @@
 }
 
 .auth__card-thirdparty svg {
-    margin: 7px;
+    margin: auto 7px;
     position: absolute;
     width: 17px;
     height: 17px;
@@ -74,18 +71,92 @@
     height: 1px;
 }
 
-.auth__card input {
+.auth__card-input {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
     border-radius: 5px;
     border: solid 0.5px #787878;
+    margin: 7.5px auto;
+}
+
+.auth__card-input input {
+    border-radius: 5px;
+    border: none;
     font-size: 18px;
     padding: 10px;
-    width: 80%;
-    margin: 7.5px auto;
+    width: 800%;
     color: #000;
     font-family: 'Raleway';
 }
 
-.auth__card input::placeholder {
+.auth__switch {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    background: rgb(255, 165, 31);
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    transition: 0.5s;
+    height: 40px;
+    width: 40%;
+    margin: 20px auto;
+}
+
+.auth__switch:checked {
+    background: lightblue;
+}
+
+.auth__switch::after {
+    content: "SELLER";
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 800;
+    color: #fff;
+    font-size: 0.5em;
+}
+
+.auth__switch::before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    top: 0;
+    left: 0;
+    background: grey;
+    z-index: 2;
+    transition: 0.5s;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.auth__switch:checked::before {
+    left: 50%;
+}
+
+.auth__switch:checked::after {
+    content: "CUSTOMER";
+    position: absolute;
+    left: 7.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 800;
+    color: #fff;
+    font-size: 0.7em;
+    
+}
+
+
+.auth__card-input .MuiSvgIcon-root {
+    margin: 0 10px;
+    fill: #f00;
+}
+
+.auth__card-input input::placeholder {
     color: #9f9f9f;
     font-family: 'Raleway';
 }
@@ -130,7 +201,7 @@
 /* Large Screen */
 @media only screen and (min-width: 600px){
     .auth__card {
-        width: 25%;
+        width: max(20%, 380px);
     }
 }
 

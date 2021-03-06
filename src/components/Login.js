@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Tooltip } from '@material-ui/core';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 //Relative Imports
+import { UserContext } from './Interface';
 import validation from '../helperFunctions/validation';
 import '../styles/Auth.css';
 
@@ -16,6 +20,9 @@ const Login = () => {
     const [error, setError] = useState({email: '', password: '', creds: ''});
     const [isPasswordHidden, setIsPasswordHidden] = useState(true);
     
+    //Initialising variables 
+    const { state, dispatch } = useContext(UserContext);
+
     //Handler Functions
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -24,40 +31,44 @@ const Login = () => {
 
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        if(e.target.value === ''){
-            error.password = 'Password cannot be empty';
-        } else {
-            error.password = undefined;
-        }
+        error.password = validation.isEmpty(e.target.value);
     }
     
     const handleLogin = () => {
+        setError(prev => ({
+                ...prev, 
+                email: validation.validateEmail(email),
+                password: validation.isEmpty(password),
+            }
+        ));
         if(error.email === undefined && error.password === undefined){
-            console.log({email, password})
-        //     axios.post('/api/auth/login',{
-        //         email,
-        //         password
-        //     })
-        //     .then(res => {
-        //         console.log(res.data);
-        //         error.creds = undefined;
-        //         localStorage.setItem("jwt",res.data.token);
-        //         localStorage.setItem("user",JSON.stringify(res.data.user));
-        //         dispatch({type: "USER", payload: res.data.user });
-        //         history.push('/home');
-        //     })
-        //     .catch(err => {
-        //         setError({
-        //             ...error,
-        //             creds: err.response.data.error
-        //         });
-        //     });
-        } else console.log(error);
+            axios.post('https://flipin-store.herokuapp.com/loginv.php', {
+                email,
+                password,
+            })
+            .then(res => {
+                console.log(res.data);
+                // error.creds = undefined;
+                // localStorage.setItem("jwt",res.data.token);
+                // localStorage.setItem("user",JSON.stringify(res.data.user));
+                // dispatch({type: "USER", payload: res.data.user });
+                // history.push('/home');
+            })
+            .catch(err => {
+                // setError({
+                //     ...error,
+                //     creds: err.response.data.error
+                // });
+                console.log(error);
+            });
+        } else {
+            
+        }
     }
 
-    // const toggleShowPassword = (e) => {
-    //     setIsPasswordHidden(prevState => {return !prevState});
-    // }
+    const toggleShowPassword = (e) => {
+        setIsPasswordHidden(prevState => {return !prevState});
+    }
 
     //Sub-Components
     const ThirdParty = (props) => {
@@ -76,8 +87,14 @@ const Login = () => {
                 <ThirdParty text="Continue with Google"> <Google /> </ThirdParty>
                 <ThirdParty text="Continue with Facebook"> <Facebook /> </ThirdParty>
                 <div className="auth__card-or">OR</div>
-                <input type="email" placeholder="Email" value={email} onChange={handleEmail} />
-                <input type="password" placeholder="Password" value={password} onChange={handlePassword} />
+                <div className="auth__card-input">
+                    <input type="email" placeholder="Email" value={email} onChange={handleEmail} />
+                    {error.email && <Tooltip title={error.email} arrow placement="right"><ErrorOutlineIcon /></Tooltip> }
+                </div>
+                <div className="auth__card-input">
+                    <input type="password" placeholder="Password" value={password} onChange={handlePassword} />
+                    { error.password && <Tooltip title={error.password} arrow placement="right"><ErrorOutlineIcon /></Tooltip> }
+                </div>
                 <button onClick={handleLogin} className="auth__card-submit">Continue</button>
                 <Link className="auth__card-forgot" to="/forgot">Forgot Password?</Link>
                 <p className="auth__card-nmy">Not a member yet? <Link to="/signup">Join Now</Link></p>

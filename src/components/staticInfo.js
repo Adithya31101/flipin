@@ -1,36 +1,38 @@
 export const footerInfo = [{
+    id: 1,
     header: "Categories",
     list: [{
-        name: "Furniture", to: "/products"
+        id: 1, name: "Furniture", to: "/products"
     }, {
-        name: "Furniture", to: "/products"
+        id: 2, name: "Furniture", to: "/products"
     }, {
-        name: "Furniture", to: "/products"
+        id: 3, name: "Furniture", to: "/products"
     }, {
-        name: "Furniture", to: "/products"
+        id: 4, name: "Furniture", to: "/products"
     }, {
-        name: "Furniture", to: "/products"
+        id: 5, name: "Furniture", to: "/products"
     }],
 },{
+    id: 2,
     header: "Pages",
     list: [{
-        name: "About", to: "/about"
+        id: 1, name: "About", to: "/about",
     }, {
-        name: "Store", to: "/store"
+        id: 2, name: "Store", to: "/store"
     }, {
-        name: "Log In", to: "/login"
+        id: 3, name: "Log In", to: "/login"
     }, {
-        name: "Sign Up", to: "/signup"
+        id: 4, name: "Sign Up", to: "/signup"
     }, {
-        name: "Contact", to: "/contact"
+        id: 5, name: "Contact", to: "/contact"
     }],
 }];
 
-export const categories = [
-    {
-        title: "Furniture",
-        src: "",
-        isActive: true,
-    }
-];
+// export const categories = [
+//     {
+//         title: "Furniture",
+//         src: "",
+//         isActive: true,
+//     }
+// ];
 

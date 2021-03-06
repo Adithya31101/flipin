@@ -10,7 +10,7 @@ import SignUp from './SignUp';
 import Shop from './Shop';
 import Contact from './Contact';
 import NotFound from './NotFound';
-
+import SellerDashboard from './SellerDashboard';
 
 const Routing = () => {
     // eslint-disable-next-line
@@ -33,6 +33,7 @@ const Routing = () => {
             <Route path="/contact"><Contact /></Route>
             <Route path="/login"><Login /></Route>
             <Route path="/signup"><SignUp /></Route>
+            <Route path="/seller"><SellerDashboard /></Route>
             <Route><NotFound /> </Route>
             {/* Private Routes */}
         </Switch>

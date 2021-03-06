@@ -1,4 +1,11 @@
 const validation = {
+    isEmpty: (value) => {
+        if(value === ''){
+            return 'Password cannot be empty';
+        } else {
+            return undefined;
+        }
+    },
     validateEmail: (email) => {
         const emailRegEx = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         if(email === ''){
@@ -52,6 +59,16 @@ const validation = {
         }
     }
     ,
+    validatePhone: (phone) => {
+        const phoneRegEx = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/;
+        if(phone === ''){
+            return 'Phone number cannot be empty!';
+        } else if(!phoneRegEx.test(phone)){
+            return 'Invalid phone number!';
+        } else {
+            return undefined;
+        }
+    },
     noError: (errorObj) => {
         for (let error in errorObj) {
         if (errorObj[error] !== undefined || errorObj[error] === "")
