@@ -42,7 +42,7 @@ const Login = () => {
             }
         ));
         if(error.email === undefined && error.password === undefined){
-            axios.post('https://flipin-store.herokuapp.com/loginv.php', {
+            axios.post('loginv.php', {
                 email,
                 password,
             })
