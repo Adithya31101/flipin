@@ -18,7 +18,7 @@
     box-shadow: 0 0 16.2px 1.8px rgba(102, 62, 170, 0.34);
 }
 
-.auth__card button:hover{
+.auth__card button:hover {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 
@@ -39,7 +39,6 @@
     cursor: pointer;
     border-radius: 5px;
     margin-bottom: 15px;
-
 }
 
 .auth__card-thirdparty svg {
@@ -92,42 +91,42 @@
 }
 
 .auth__switch {
+    cursor: pointer;
     position: relative;
     appearance: none;
     -webkit-appearance: none;
-    background: rgb(255, 165, 31);
-    border-radius: 5px;
+    border-radius: 20px;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-    transition: 0.5s;
+    transition: all 0.5s;
     height: 40px;
-    width: 40%;
+    width: 75%;
     margin: 20px auto;
 }
 
-.auth__switch:checked {
-    background: lightblue;
-}
-
 .auth__switch::after {
-    content: "SELLER";
+    content: "CUSTOMER";
     position: absolute;
-    left: 20%;
+    right: 10%;
     top: 50%;
     transform: translateY(-50%);
-    font-weight: 800;
-    color: #fff;
-    font-size: 0.5em;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #663eaa;
 }
 
 .auth__switch::before {
-    content: "";
+    content: " | | | ";
     position: absolute;
-    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 20px;
+    color: #fff;
     top: 0;
     left: 0;
-    background: grey;
+    background: #663eaa;
     z-index: 2;
     transition: 0.5s;
     transform: scale(1.1);
@@ -139,15 +138,14 @@
 }
 
 .auth__switch:checked::after {
-    content: "CUSTOMER";
+    content: "SELLER";
     position: absolute;
-    left: 7.5%;
+    left: 15%;
     top: 50%;
     transform: translateY(-50%);
-    font-weight: 800;
-    color: #fff;
-    font-size: 0.7em;
-    
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #663eaa;
 }
 
 
@@ -209,6 +207,10 @@
 @media only screen and (max-width: 600px){
     .auth__card {
         width: 80%;
+    }
+
+    .auth__switch:checked::after, .auth__switch::after {
+        font-size: 1em;
     }
  
     .auth__card-thirdparty span{

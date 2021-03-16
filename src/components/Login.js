@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Tooltip } from '@material-ui/core';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
@@ -21,7 +21,8 @@ const Login = () => {
     const [isPasswordHidden, setIsPasswordHidden] = useState(true);
     
     //Initialising variables 
-    const { state, dispatch } = useContext(UserContext);
+    const { _, dispatch } = useContext(UserContext);
+    const history = useHistory();
 
     //Handler Functions
     const handleEmail = (e) => {
@@ -46,29 +47,32 @@ const Login = () => {
                 email,
                 password,
             })
-            .then(res => {
-                console.log(res.data);
-                // error.creds = undefined;
-                // localStorage.setItem("jwt",res.data.token);
-                // localStorage.setItem("user",JSON.stringify(res.data.user));
-                // dispatch({type: "USER", payload: res.data.user });
-                // history.push('/home');
+            .then(({data}) => {
+                if(data.responseCode === 200){
+                    //Show the user that login was successful
+                    error.creds = undefined;
+                    localStorage.setItem("jwt",data.jwt);
+                    localStorage.setItem("user",JSON.stringify(data.user));
+                    dispatch({type: "USER", payload: data.user });
+                    history.push('/dashboard');
+                } else if(data.responseCode === 422){
+                    setError({
+                        ...error,
+                        creds: data.error,
+                    });
+                }
             })
             .catch(err => {
-                // setError({
-                //     ...error,
-                //     creds: err.response.data.error
-                // });
-                console.log(error);
+                console.log(err);
             });
         } else {
             
         }
     }
 
-    const toggleShowPassword = (e) => {
-        setIsPasswordHidden(prevState => {return !prevState});
-    }
+    // const toggleShowPassword = (e) => {
+    //     setIsPasswordHidden(prevState => {return !prevState});
+    // }
 
     //Sub-Components
     const ThirdParty = (props) => {

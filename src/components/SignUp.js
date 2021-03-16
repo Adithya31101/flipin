@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@material-ui/core';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import axios from 'axios';
 
 import validations from '../helperFunctions/validation';
 
@@ -42,12 +43,23 @@ const SignUp = () => {
      
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({
-            name, 
-            email, 
-            password,
-            phone,
-        })
+        if(validations.noError(error)){
+            axios.post('https://flipin-store-api.herokuapp.com/signup.php',{
+                isSeller,
+                name, 
+                email, 
+                password,
+                phone,
+            })
+            .then(({data}) => {
+                if(data.responseCode === 201){
+                    //Show user that the registeration is successful and now you can login
+                } else {
+                    //show the user an error that occured in the registeration
+                }
+            })
+            .catch(error => console.log(error));
+        }
        
     }
 
@@ -72,7 +84,7 @@ const SignUp = () => {
                 <ThirdParty text="Continue with Google"> <Google /> </ThirdParty>
                 <ThirdParty text="Continue with Facebook"> <Facebook /> </ThirdParty>
                 <div className="auth__card-or">OR</div>
-                <input className="auth__switch" type="checkbox" />
+                <input className="auth__switch" type="checkbox" onChange={() => setIsSeller(prev => !prev)}/>
                 <div className="auth__card-input">
                     <input type="text" placeholder="Name" value={name} onChange={handleName} />
                     { error.name && <Tooltip title={error.name} arrow placement="right"><ErrorOutlineIcon /></Tooltip> }
