@@ -37,7 +37,12 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-.container {
+.loader {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .row {

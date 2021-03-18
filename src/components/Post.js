@@ -1,4 +1,7 @@
-import { ReactComponent as Pin } from '../images/pin.svg'
+import { memo } from 'react';
+
+import { ReactComponent as Pin } from '../images/pin.svg';
+
 
 const Post = (props) => {
    return (
@@ -11,10 +14,13 @@ const Post = (props) => {
                <span>Lowest Bid </span>
                <span className="product__lowbid">{`INR ${props.bid}`}</span>
             </div>
-            <span className="product__location">{props.location}</span>
+            <div className="product__location">
+               <Pin />
+               <span>{props.location}</span>
+            </div>
          </div>
       </>
    );
 };
 // Oldest Newest Category Bid Amount
-export default Post;
+export default memo(Post);

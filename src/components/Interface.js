@@ -22,7 +22,7 @@ const Interface = () => {
                 <main>
                     <Routing />
                 </main>
-                { true && <Footer /> }
+                <Footer isLoggedIn={state? true : false} />
             </HashRouter>
         </UserContext.Provider>
     );

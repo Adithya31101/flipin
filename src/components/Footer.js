@@ -12,7 +12,7 @@ import {ReactComponent as Twitter} from '../images/twitter.svg';
 
 
 
-const Footer = () => {
+const Footer = (props) => {
     //Sub Components: 
     const FooterSection = (subProps) => {
         const {header, list} = subProps.section;
@@ -29,9 +29,13 @@ const Footer = () => {
 
     return (
         <footer>  
-            <div className="footer__message">
-                <h1>Join Us as a Seller&nbsp;or Customer</h1>
-            </div>
+            {
+                !props.isLoggedIn 
+                &&            
+                <div className="footer__message">
+                   <h1>Join Us as a Seller&nbsp;or Customer</h1>
+                </div>
+            }
             <div className="footer">
                 { footerInfo.map(section => (
                     <section key={section.id} className="footer__section">

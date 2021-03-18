@@ -1,0 +1,179 @@
+.order__container {
+   width: 90%;
+   margin: 2rem auto;
+}
+
+.order__heading {
+   font-size: 3em;
+   color: #663eaa;
+   font-weight: bold;
+}
+
+.order__summary {
+   width: 100%;
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   padding: 20px;
+   border-radius: 5px;
+   border: solid 0.5px #787878;
+}
+
+.order__summary-item {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+   text-align: center;
+   font-weight: bold;
+}
+
+.order__summary-name {
+   color: #663eaa;
+   font-size: 1.5em;
+   margin: 10px 0;
+}
+
+.order__summary-number {
+   font-size: 2.4em;
+   color: #ffb102;
+   margin: 5px 0;
+}
+
+.active__details {
+   width: 100%;
+}
+
+.active__details-buttons {
+   margin: 30px 0px;
+}
+
+.active__details-buttons button {
+   border: none;
+   background: none;
+   font-size: 1.2em;
+   padding: 10px 20px;
+   border-radius: 1em;
+   font-weight: bold;
+   letter-spacing: 1.5px;
+   color: #663eaa;
+}
+
+.active__details-buttons button:focus {
+   outline: none;
+}
+
+.active {
+   background: #ffb102 !important;
+   color: #fff !important;
+}
+
+
+.bid-order__details {
+   width: 100%;
+}
+
+.bid__details {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+   border-top: solid 2px #663eaa;
+   padding: 25px 0;
+}
+
+.bid__img-name {
+   display: flex;
+   align-items: center;
+   margin-left: 40px;
+}
+
+.bid__img-name > .avatar {
+   width: 57px;
+   height: 57px;
+   border-radius: 50%;
+   background-color: #858585;
+}
+
+.bid__img-name > .bid__name {
+   font-weight: 800;
+   margin-left: 20px;
+   letter-spacing: 1.2px;
+}
+
+.bid__parttwo {
+   display: flex;
+   justify-content: space-between;
+   width: 65%;
+   align-items: center;
+}
+
+.bid__numbers {
+   display: flex;
+   justify-content: left;
+   align-items: center;
+   width: 75%;
+}
+
+.bid__head {
+   display: flex;
+   flex-direction: column;
+   align-items: left;
+   justify-content: left;
+   margin-right: 20%;
+}
+
+.bid__head-label {
+   color: #949494;
+   font-size: 14px;
+   font-weight: bold;
+}
+
+.bid__head-amount {
+   letter-spacing: 1.2px;
+   font-weight: bolder;
+   font-size: 1.2em;
+   margin-top: 10px;
+}
+
+.bid__status {
+   font-weight: 800;
+   letter-spacing: 1.2px;
+   font-size: 10px;
+   color: #fff;
+   padding: 4px 7.5px;
+   margin-top: 10px;
+   border-radius: 10px;
+}
+
+.bid__status.open {
+   background-color: #09ba3f;
+}
+
+.bid__status.closed {
+   background-color: #f82a2a;
+}
+
+.bid__viewlink, .bid__viewlink:visited, .bid__viewlink:active {
+   color: #ffb102;
+   text-decoration: none;
+   margin: 0 7.5% 0 10%;
+}
+
+
+
+
+@media only screen and (max-width: 900px) {
+   .order__summary-item:nth-child(1), .order__summary-item:nth-child(2) {
+      display: none;
+   }
+   .order__heading {
+      font-size: 2em;
+   }
+   .order__summary-name {
+      font-size: 1.2em;
+   }
+   .order__summary-number {
+      font-size: 1.5em;
+   }
+}

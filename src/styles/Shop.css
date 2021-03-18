@@ -161,6 +161,12 @@
    font-weight: bold;
 }
 
+.product__info svg {
+   width: 15px;
+   height: 15px;
+   margin-right: 10px;
+}
+
 .product__location {
    margin-top: 15px;
    font-size: 15px;

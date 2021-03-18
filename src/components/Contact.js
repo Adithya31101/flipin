@@ -20,10 +20,10 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("https://flipin-store-api.herokuapp.com/signup.php", {
+        axios.post("https://flipin-store-api.herokuapp.com/contact.php", {
           email,
           name,
-          query: queryRef.current.value,
+          message: queryRef.current.value,
         })
         .then(({ data }) => {
             if(data.responseCode === 201){
