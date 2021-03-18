@@ -1,21 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //Relative imports
 import { ReactComponent as Arrow } from '../images/arrow.svg';
+import Post from './Post';
 import '../styles/Shop.css';
+import { filterAndSort } from '../helperFunctions/filter';
+import { categories, sortType } from './staticInfo';
+import axios from 'axios';
 
 const Shop = () => {
     const [categoryOpen, setCategoryOpen] = useState(false);
-    const [filter, setFilter] = useState({
-        price: null,
-        category: null,
-    })
+    const [itemsArray, setItemsArray] = useState([]);
+    const [displayArray, setDisplayArray] = useState([]);
+    const [sortOpen, setSortOpen] = useState(false);
+    const [filterVar, setFilterVar] = useState({
+        sort: "Newest First",
+        categories: "All",
+    });
 
-    const staticData = {
-        img: "https://wakefit-co.s3.ap-south-1.amazonaws.com/img/wardrobes/tartan/3-door/drawer/0.1.jpg",
-        name: "Wardrobe",
-        lowestBid: "10000",
-        date: ""
+    useEffect(() => {
+        axios.get("https://flipin-store-api.herokuapp.com/shop.php")
+        .then(({data}) => {
+            setItemsArray(data);
+            setDisplayArray(data);
+        })
+        .catch(e => console.log(e));
+    }, []);
+
+    const handleCategoryChange = (type) => {
+        setFilterVar(prev => ({...prev, categories: type}));
+        // setDisplayArray(prev => filterAndSort(prev, true, type));
     }
 
     return (
@@ -27,12 +41,9 @@ const Shop = () => {
                 </div>
                 <div className={categoryOpen? "category__dropdown open" : "category__dropdown"}>
                     <ul>
-                        <li>Accessories</li>
-                        <li>Clothing</li>
-                        <li>Cosmetics</li>
-                        <li>Footwear</li>
-                        <li>Furniture</li>
-                        <li>Jewellery</li>
+                        {categories.map(item => (
+                            <li key={item.id} onClick={() => handleCategoryChange(item.type)}>{item.type}</li>
+                        ))}
                     </ul>
                 </div>
                 <span>Furniture</span>
@@ -43,11 +54,28 @@ const Shop = () => {
                 <h2>Shop</h2>
                 <div className="main__details">
                     <span>{`${20} new products`}</span>
-                    <div>
+                    <div className="main__details-sort">
                         <span>SORT BY: </span>
-                        <span>{"Hello"}</span>
+                        <span>{filterVar.sort}</span>
+                        <Arrow onClick={()=>setSortOpen(prev => !prev)} />
+                        <div className={sortOpen? "sort__dropdown open" : "sort__dropdown"}>
+                            <ul>
+                                {sortType.map(item => (
+                                    <li key={item.id} onClick={() => {setFilterVar(prev => ({...prev, sort: item.type}))}} >{item.type}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div className="listings">
+                {displayArray.map(post => {
+                    return (
+                    <div key={post.id} className="product">    
+                        <Post key img={post.img} name={post.name} bid={post.lowestBid} location={post.location} />
+                    </div>
+                )}
+                )}
             </div>
         </div>
     );

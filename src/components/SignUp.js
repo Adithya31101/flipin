@@ -1,16 +1,19 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Tooltip } from '@material-ui/core';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import axios from 'axios';
 
 import validations from '../helperFunctions/validation';
+import { UserContext } from './Interface';
 
 // Media Imports
 import { ReactComponent as Google } from '../images/google.svg';
 import { ReactComponent as Facebook } from '../images/facebook.svg';
 
 const SignUp = () => {
+    const {_, dispatch} = useContext(UserContext);
+    const history = useHistory();
     const [name, setName] = useState(""); 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -53,9 +56,14 @@ const SignUp = () => {
             })
             .then(({data}) => {
                 if(data.responseCode === 201){
-                    //Show user that the registeration is successful and now you can login
+                    //Show user that the registeration is successful and 
+                    localStorage.setItem("jwt",data.jwt);
+                    localStorage.setItem("user",JSON.stringify(data.user));
+                    dispatch({type: "USER", payload: data.user });
+                    history.push('/dashboard');
                 } else {
                     //show the user an error that occured in the registeration
+                    console.log(data.error);
                 }
             })
             .catch(error => console.log(error));
