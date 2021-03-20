@@ -148,8 +148,12 @@
     color: #663eaa;
 }
 
+.eyeIcon > .MuiSvgIcon-root {
+    margin: 0 10px;
+    fill: #777;
+}
 
-.auth__card-input .MuiSvgIcon-root {
+.auth__card-input > .MuiSvgIcon-root {
     margin: 0 10px;
     fill: #f00;
 }
@@ -194,6 +198,14 @@
 .auth__card-nmy a {
     color: #ffb102;
     text-decoration: none;
+}
+
+.dialog-box .MuiDialog-paperScrollPaper {
+    display: flex;
+    flex-direction: row;
+    padding: 5%;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 /* Large Screen */

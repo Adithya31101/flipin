@@ -1,11 +1,16 @@
+import { useEffect } from 'react';
+import axios from 'axios';
 //Relative imports
 import '../styles/SellerDashboard.css';
 import DashboardEntry from './DashboardEntry';
 import PhotoText from './PhotoText';
 import Order from './Order';
+import { authHeader } from './staticInfo';
 
 const SellerDashboard = () => {
-
+   useEffect(() => {
+      console.log(authHeader);
+   }, [])
    
    return (
       <div className="dashboard">

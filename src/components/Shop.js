@@ -33,13 +33,14 @@ const Shop = () => {
 
     const handleCategoryChange = (type) => {
         setFilterVar(prev => ({...prev, categories: type}));
-        setDisplayArray(filterAndSort(itemsArray, true, type || "all"));
+        setDisplayArray(prev => filterAndSort(prev, true, type || "all"));
         setCategoryOpen(false);
     }
 
     const handleSortChange = (type, id) => {
         setFilterVar((prev) => ({ ...prev, sort: type }));
-        setItemsArray(filterAndSort(itemsArray, false, id || 1));
+        setDisplayArray(prev => filterAndSort(prev, false, id || 1));
+        setSortOpen(false);
     }
 
     return (
@@ -97,27 +98,29 @@ const Shop = () => {
             </div>
           </div>
         </div>
-        <div className="listings">
           {isLoading ? (
             <div className="loader">
               <CircularProgress />
             </div>
           ) : (
-            displayArray.map((post) => {
-              return (
-                <div key={post.id} className="product">
-                  <Post
-                    key
-                    img={post.img}
-                    name={post.name}
-                    bid={post.lowestBid}
-                    location={post.location}
-                  />
-                </div>
-              );
-            })
+            <div className="listings">
+            {
+              displayArray.map((post) => {
+                return (
+                  <div key={post.id} className="product">
+                    <Post
+                      key
+                      img={post.img}
+                      name={post.name}
+                      bid={post.lowestBid}
+                      location={post.location}
+                    />
+                  </div>
+                );
+              })
+            }
+            </div>
           )}
-        </div>
       </div>
     );
 };

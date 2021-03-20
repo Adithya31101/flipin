@@ -10,7 +10,7 @@ import SignUp from "./SignUp";
 import Shop from "./Shop";
 import Contact from "./Contact";
 import NotFound from "./NotFound";
-import SellerDashboard from "./SellerDashboard";
+import Dashboard from "./Dashboard";
 import OrderPage from "./OrderPage";
 
 const Routing = () => {
@@ -48,10 +48,10 @@ const Routing = () => {
       <Route path="/signup">
         <SignUp />
       </Route>
-      <Route path="/seller">
-        <SellerDashboard />
+      <Route path="/dashboard">
+        <Dashboard />
       </Route>
-      <Route path="/order">
+      <Route path="/orders">
         <OrderPage />
       </Route>
       <Route>

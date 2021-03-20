@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import { Tooltip } from '@material-ui/core';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import { Dialog, Tooltip } from '@material-ui/core';
+import { CheckCircle, ErrorOutline, Visibility, VisibilityOff} from '@material-ui/icons';
 
 //Relative Imports
 import { UserContext } from './Interface';
@@ -16,6 +16,7 @@ import { ReactComponent as Facebook } from '../images/facebook.svg';
 const Login = () => {
     //State
     const [email, setEmail] = useState('');
+    const [dialogOpen, setDialogOpen] = useState(false);
     const [password, setPassword] = useState('');
     const [error, setError] = useState({email: '', password: '', creds: ''});
     const [isPasswordHidden, setIsPasswordHidden] = useState(true);
@@ -35,6 +36,11 @@ const Login = () => {
         error.password = validation.isEmpty(e.target.value);
     }
     
+    const handleClose = () => {
+      setDialogOpen(false);
+      history.push("/dashboard");
+    }
+
     const handleLogin = () => {
         setError(prev => ({
                 ...prev, 
@@ -54,7 +60,7 @@ const Login = () => {
                     localStorage.setItem("jwt",data.jwt);
                     localStorage.setItem("user",JSON.stringify(data.user));
                     dispatch({type: "USER", payload: data.user });
-                    history.push('/dashboard');
+                    setDialogOpen(true);
                 } else if(data.responseCode === 422){
                     setError({
                         ...error,
@@ -70,10 +76,6 @@ const Login = () => {
         }
     }
 
-    // const toggleShowPassword = (e) => {
-    //     setIsPasswordHidden(prevState => {return !prevState});
-    // }
-
     //Sub-Components
     const ThirdParty = (props) => {
         return (
@@ -85,25 +87,70 @@ const Login = () => {
     }
 
     return (
-        <div className="auth__container" style={{height: "90vh"}}>
-            <div className="auth__card">
-                <h1 className="auth__card-header">Log In</h1>
-                <ThirdParty text="Continue with Google"> <Google /> </ThirdParty>
-                <ThirdParty text="Continue with Facebook"> <Facebook /> </ThirdParty>
-                <div className="auth__card-or">OR</div>
-                <div className="auth__card-input">
-                    <input type="email" placeholder="Email" value={email} onChange={handleEmail} />
-                    {error.email && <Tooltip title={error.email} arrow placement="right"><ErrorOutlineIcon /></Tooltip> }
-                </div>
-                <div className="auth__card-input">
-                    <input type="password" placeholder="Password" value={password} onChange={handlePassword} />
-                    { error.password && <Tooltip title={error.password} arrow placement="right"><ErrorOutlineIcon /></Tooltip> }
-                </div>
-                <button onClick={handleLogin} className="auth__card-submit">Continue</button>
-                <Link className="auth__card-forgot" to="/forgot">Forgot Password?</Link>
-                <p className="auth__card-nmy">Not a member yet? <Link to="/signup">Join Now</Link></p>
-            </div>
+      <div className="auth__container" style={{ height: "90vh" }}>
+        <div className="auth__card">
+          <h1 className="auth__card-header">Log In</h1>
+          <ThirdParty text="Continue with Google">
+            <Google />
+          </ThirdParty>
+          <ThirdParty text="Continue with Facebook">
+            <Facebook />
+          </ThirdParty>
+          <div className="auth__card-or">OR</div>
+          <div className="auth__card-input">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleEmail}
+            />
+            {error.email && (
+              <Tooltip title={error.email} arrow placement="right">
+                <ErrorOutline />
+              </Tooltip>
+            )}
+          </div>
+          <div className="auth__card-input">
+            <input
+              type={isPasswordHidden ? "password" : "text"}
+              placeholder="Password"
+              value={password}
+              onChange={handlePassword}
+            />
+
+            {error.password ? (
+              <Tooltip title={error.password} arrow placement="right">
+                <ErrorOutline />
+              </Tooltip>
+            ) : (
+              <span
+                className="eyeIcon"
+                onClick={() => setIsPasswordHidden((prev) => !prev)}
+              >
+                {isPasswordHidden ? <Visibility /> : <VisibilityOff />}
+              </span>
+            )}
+          </div>
+          <button onClick={handleLogin} className="auth__card-submit">
+            Continue
+          </button>
+          <Link className="auth__card-forgot" to="/forgot">
+            Forgot Password?
+          </Link>
+          <p className="auth__card-nmy">
+            Not a member yet? <Link to="/signup">Join Now</Link>
+          </p>
         </div>
+        <Dialog
+          className="dialog-box"
+          onClose={handleClose}
+          aria-labelledby="simple-dialog-title"
+          open={dialogOpen}
+        >
+          <CheckCircle style={{ color: "#39b54a", fontSize: 60 }} />
+          <h5>Logged in successfully</h5>
+        </Dialog>
+      </div>
     );
 }
 

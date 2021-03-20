@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { UserContext } from './Interface';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
@@ -22,19 +22,27 @@ const Header = () => {
 
     //Variable Initialization
     const { state, dispatch } = useContext(UserContext);
-    const sideBar = useRef();
 
     //Sub-Components
     const RenderListItems = () => {
         if(state){
             return (
-                <>
-                <NavItem to="/home" text="HOME" />
-                <NavItem to="/login" onClick={() => {
+              <>
+                <NavItem to="/dashboard" text="DASHBOARD" />
+                <NavItem to="/browse" text="BROWSE POSTS" />
+                <NavItem to="/inbox" text="INBOX" />
+                <NavItem to="/orders" text="ORDERS" />
+                <NavItem to="/profile" text="PROFILE" />
+                <NavItem
+                  to="/login"
+                  className="highlight"
+                  onClick={() => {
                     localStorage.clear();
-                    dispatch({type: "CLEAR"});
-                }} text="LOGOUT" />        
-                </>
+                    dispatch({ type: "CLEAR" });
+                  }}
+                  text="LOGOUT"
+                />
+              </>
             );
         } else {
             return (
@@ -71,7 +79,7 @@ const Header = () => {
                 <RenderListItems />
             </ul>
 
-            <div ref={sideBar} className="navbar__mobile-menu" style={menuOpen? ({left: '0vw'}) : ({left: '-70vw'})}>
+            <div className="navbar__mobile-menu" style={menuOpen? ({left: '0vw'}) : ({left: '-70vw'})}>
                 <ul onClick={() => setMenuopen(false)}>
                     <RenderListItems />
                 </ul>

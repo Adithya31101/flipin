@@ -1,3 +1,5 @@
+import { sortBy } from 'lodash';
+
 export const filterAndSort = (array, isCategory, filterParam) => {
    if(isCategory) {
       if(filterParam === "All") return array;
@@ -6,26 +8,31 @@ export const filterAndSort = (array, isCategory, filterParam) => {
       let newArr;
       switch(filterParam){
          case 1: {
-            //Oldest first sort
-             newArr = array.sort((p1,p2) => {
-                  return new Date(p1.Date) - new Date(p2.Date);
-            });
+            newArr = array.map((item) => ({
+              ...item,
+              Date: new Date(item.Date),
+            }));
+            newArr = sortBy(newArr, "Date");
+            return newArr;
          }
 
          case 2: {
-            newArr = array.sort((p1, p2) => {
-              return new Date(p1) - new Date(p2);
-            });
+            newArr = array.map((item) => ({
+              ...item,
+              Date: new Date(item.Date),
+            }));
+            newArr = sortBy(newArr, "Date");
+            return newArr.reverse();
          }
 
          case 3: {
-            return array;
-
+            newArr = sortBy(array, "category");
+            return newArr;
          }
 
          case 4: {
-            return array;
-
+            newArr = sortBy(array, "lowestBid");
+            return newArr;
          }
 
          default: {

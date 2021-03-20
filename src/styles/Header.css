@@ -9,6 +9,11 @@
     font-weight: 600;
 }
 
+.navbar a, .navbar a:visited, .navbar a:active  {
+    color: #553985;
+    letter-spacing: 1.2px;
+
+}
 
 .navbar__logo {
     width: 130px;
@@ -17,7 +22,7 @@
 
 .navbar__links {
     list-style: none;
-    width: 55%;
+    width: 60%;
     color: #553985;
     display: flex;
     align-items: center;

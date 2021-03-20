@@ -45,3 +45,10 @@ export const sortType = [
     {id: 3, type: "Categories"}, 
     {id: 4, type: "Bid Amount"}, 
 ];
+
+export const authHeader = {
+  headers: {
+    'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+    'Content-type': "application/json"
+  },
+};
