@@ -33,7 +33,7 @@ const Shop = () => {
 
     const handleCategoryChange = (type) => {
         setFilterVar(prev => ({...prev, categories: type}));
-        setDisplayArray(prev => filterAndSort(prev, true, type || "all"));
+        setDisplayArray(prev => filterAndSort(itemsArray, true, type || "all"));
         setCategoryOpen(false);
     }
 
