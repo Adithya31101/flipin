@@ -109,7 +109,6 @@ const Shop = () => {
                 return (
                   <div key={post.id} className="product">
                     <Post
-                      key
                       img={post.img}
                       name={post.name}
                       bid={post.lowestBid}

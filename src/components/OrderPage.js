@@ -1,73 +1,85 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import BidDetails from './BidDetails';
+import { authHeader } from './staticInfo';
 
 //Style import
 import '../styles/OrderPage.css';
 
 const OrderPage = () => {
    const [isBidButtonActive, setBidButtonActive] = useState(true);
+   const [data, setData] = useState({});
 
-   const data = {
-     summary: {
-       toc: 24,
-       tb: 24,
-       ab: 24,
-       ao: 24,
-       te: 24,
-     },
-     bids: [
-       {
-         id: "P1",
-         src: "",
-         pName: "Belt",
-         lBid: "500",
-         yBid: "600",
-         status: true,
-       },
-       {
-         id: "P2",
-         src: "",
-         pName: "Lipstick",
-         lBid: "400",
-         yBid: "800",
-         status: false,
-       },
-       {
-         id: "P3",
-         src: "",
-         pName: "B",
-         lBid: "500",
-         yBid: "600",
-         status: true,
-       },
-     ],
-     order: [
-       {
-         id: "P1",
-         src: "",
-         pName: "Belt",
-         lBid: "500",
-         yBid: "600",
-         status: true,
-       },
-       {
-         id: "P2",
-         src: "",
-         pName: "Lipstick",
-         lBid: "400",
-         yBid: "800",
-         status: false,
-       },
-       {
-         id: "P3",
-         src: "",
-         pName: "B",
-         lBid: "500",
-         yBid: "600",
-         status: true,
-       },
-     ],
-   };
+   useEffect(() => {
+      axios.get("https://flipin-store-api.herokuapp.com/order.php", authHeader)
+      .then(res => {
+         setData(res.data);
+         console.log(res.data);  
+      })
+      .catch(e => console.log(e));
+   }, [])
+
+   // const data = {
+   //   summary: {
+   //     toc: 24,
+   //     tb: 24,
+   //     ab: 24,
+   //     ao: 24,
+   //     te: 24,
+   //   },
+   //   bids: [
+   //     {
+   //       id: "P1",
+   //       src: "",
+   //       pName: "Belt",
+   //       lBid: "500",
+   //       yBid: "600",
+   //       status: true,
+   //     },
+   //     {
+   //       id: "P2",
+   //       src: "",
+   //       pName: "Lipstick",
+   //       lBid: "400",
+   //       yBid: "800",
+   //       status: false,
+   //     },
+   //     {
+   //       id: "P3",
+   //       src: "",
+   //       pName: "B",
+   //       lBid: "500",
+   //       yBid: "600",
+   //       status: true,
+   //     },
+   //   ],
+   //   order: [
+   //     {
+   //       id: "P1",
+   //       src: "",
+   //       pName: "Belt",
+   //       lBid: "500",
+   //       yBid: "600",
+   //       status: true,
+   //     },
+   //     {
+   //       id: "P2",
+   //       src: "",
+   //       pName: "Lipstick",
+   //       lBid: "400",
+   //       yBid: "800",
+   //       status: false,
+   //     },
+   //     {
+   //       id: "P3",
+   //       src: "",
+   //       pName: "B",
+   //       lBid: "500",
+   //       yBid: "600",
+   //       status: true,
+   //     },
+   //   ],
+   // };
    //Sub component
    const SummaryItem = (props) => {
       return (

@@ -29,10 +29,15 @@ const Header = () => {
             return (
               <>
                 <NavItem to="/dashboard" text="DASHBOARD" />
-                <NavItem to="/browse" text="BROWSE POSTS" />
                 <NavItem to="/inbox" text="INBOX" />
                 <NavItem to="/orders" text="ORDERS" />
                 <NavItem to="/profile" text="PROFILE" />
+                {state.isSeller ? (
+                  <NavItem to="/browse" text="BROWSE LISTINGS" />
+                ) : (
+                  <NavItem to="/create" text="CREATE LISTINGS" />
+                )}
+
                 <NavItem
                   to="/login"
                   className="highlight"
