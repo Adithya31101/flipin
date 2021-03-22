@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import BidDetails from './BidDetails';
-import { authHeader } from './staticInfo';
+import { CircularProgress } from '@material-ui/core';
 
 //Style import
-import '../styles/OrderPage.css';
-import { CircularProgress } from '@material-ui/core';
+import BidDetails from './BidDetails';
+import { authHeader } from '../../staticInfo';
+import '../../../styles/OrderPage.css';
 
 const OrderPage = () => {
    const [isBidButtonActive, setBidButtonActive] = useState(true);
@@ -78,6 +78,7 @@ const OrderPage = () => {
                 <div key={bid.id} className="bid__details">
                   <BidDetails
                     id={bid.id}
+                    src={bid.src}
                     name={bid.pName}
                     lBid={bid.lBid}
                     bid={bid.yBid}

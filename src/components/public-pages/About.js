@@ -1,7 +1,7 @@
 import Difference from './Difference';
-import king from '../images/king.png';
-import '../styles/About.css';
-import crown from '../images/crown.svg';
+import king from '../../images/king.png';
+import '../../styles/About.css';
+import crown from '../../images/crown.svg';
 
 const About = () => {
     // SubComponents

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { ReactComponent as Pin } from '../images/pin.svg';
+import { ReactComponent as Pin } from '../../images/pin.svg';
 
 
 const Post = (props) => {

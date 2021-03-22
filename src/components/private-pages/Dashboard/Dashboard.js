@@ -1,15 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import axios from 'axios';
 //Relative imports
-import '../styles/SellerDashboard.css';
+import '../../../styles/Dashboard.css';
+import { UserContext } from '../../Interface';
 import DashboardEntry from './DashboardEntry';
 import PhotoText from './PhotoText';
-import Order from './Order';
-import { authHeader } from './staticInfo';
+import Order from '../Orders/Order';
+import { authHeader } from '../../staticInfo';
 
 const SellerDashboard = () => {
+   const {state} = useContext(UserContext);
+
    useEffect(() => {
-      console.log(authHeader);
+      console.log(authHeader, state);
    }, [])
    
    return (

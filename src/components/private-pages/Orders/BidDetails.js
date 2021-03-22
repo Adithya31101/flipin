@@ -22,16 +22,22 @@ const BidDetails = (props) => {
   return (
     <>
       <div class="bid__img-name">
-        <div className="avatar"></div>
+        {props.src ? (
+          <img className="avatar img" src={props.src} alt={props.name} />
+        ) : (
+          <div className="avatar"></div>
+        )}
         <div className="bid__name">{props.name}</div>
       </div>
       <div className="bid__parttwo">
-         <div className="bid__numbers">
-               <LabelAmount label="Lowest Bid" amount={props.lBid} />
-               <LabelAmount label="Your Bid" amount={props.bid} />
-               <LabelAmount label="Status" amount={props.status} isStatus={true} />
-         </div>
-         <Link className="bid__viewlink" to={`/product/${props.id}`}>View</Link>
+        <div className="bid__numbers">
+          <LabelAmount label="Lowest Bid" amount={props.lBid} />
+          <LabelAmount label="Your Bid" amount={props.bid} />
+          <LabelAmount label="Status" amount={props.status} isStatus={true} />
+        </div>
+        <Link className="bid__viewlink" to={`/product/${props.id}`}>
+          View
+        </Link>
       </div>
     </>
   );

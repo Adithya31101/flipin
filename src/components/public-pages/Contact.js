@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import axios from 'axios';
 
-import contact from '../images/contact.png';
-import '../styles/Contact.css';
+import contact from '../../images/contact.png';
+import '../../styles/Contact.css';
 
 const Contact = () => {
     const [name, setName] = useState("");

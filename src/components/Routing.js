@@ -3,15 +3,15 @@ import { Switch, Route } from "react-router-dom";
 import { UserContext } from "./Interface";
 
 // Import the different components
-import Home from "./Home";
-import About from "./About";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import Shop from "./Shop";
-import Contact from "./Contact";
-import NotFound from "./NotFound";
-import Dashboard from "./Dashboard";
-import OrderPage from "./OrderPage";
+import Home from "./public-pages/Home";
+import About from "./public-pages/About";
+import Login from "./public-pages/Login";
+import SignUp from "./public-pages/SignUp";
+import Shop from "./public-pages/Shop";
+import Contact from "./public-pages/Contact";
+import NotFound from "./public-pages/NotFound";
+import Dashboard from "./private-pages/Dashboard/Dashboard";
+import OrderPage from "./private-pages/Orders/OrderPage";
 
 const Routing = () => {
   // eslint-disable-next-line
@@ -48,6 +48,7 @@ const Routing = () => {
       <Route path="/signup">
         <SignUp />
       </Route>
+      {/* Private Routes */}
       <Route path="/dashboard">
         <Dashboard />
       </Route>
@@ -55,9 +56,8 @@ const Routing = () => {
         <OrderPage />
       </Route>
       <Route>
-        <NotFound />{" "}
+        <NotFound />
       </Route>
-      {/* Private Routes */}
     </Switch>
   );
 };

@@ -5,13 +5,13 @@ import { Dialog, Tooltip } from '@material-ui/core';
 import { CheckCircle, ErrorOutline, Visibility, VisibilityOff} from '@material-ui/icons';
 
 //Relative Imports
-import { UserContext } from './Interface';
-import validation from '../helperFunctions/validation';
-import '../styles/Auth.css';
+import { UserContext } from '../Interface';
+import validation from '../../helperFunctions/validation';
+import '../../styles/Auth.css';
 
 // Media Imports
-import { ReactComponent as Google } from '../images/google.svg';
-import { ReactComponent as Facebook } from '../images/facebook.svg';
+import { ReactComponent as Google } from '../../images/google.svg';
+import { ReactComponent as Facebook } from '../../images/facebook.svg';
 
 const Login = () => {
     //State

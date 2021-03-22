@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 
 //Relative imports
-import { footerInfo } from './staticInfo';
-import '../styles/Footer.css';
+import { footerInfo } from '../staticInfo';
+import '../../styles/Footer.css';
 
 //Media Imports
-import footerLogo from '../images/logo_footer.png';
-import {ReactComponent as Instagram} from '../images/insta.svg';
-import {ReactComponent as LinkedIn} from '../images/linkedIn.svg';
-import {ReactComponent as Twitter} from '../images/twitter.svg';
+import footerLogo from '../../images/logo_footer.png';
+import {ReactComponent as Instagram} from '../../images/insta.svg';
+import {ReactComponent as LinkedIn} from '../../images/linkedIn.svg';
+import {ReactComponent as Twitter} from '../../images/twitter.svg';
 
 
 

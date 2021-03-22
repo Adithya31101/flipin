@@ -1,4 +1,4 @@
-import { ReactComponent as Tick } from '../images/tick.svg';
+import { ReactComponent as Tick } from '../../images/tick.svg';
 
 const Difference = (props) => {
     return (

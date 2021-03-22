@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 //Relative Imports
-import '../styles/Home.css';
+import '../../styles/Home.css';
 import Difference from './Difference';
 
 //Media Imports
-import heroImg from "../images/heroImg.png";
-import furniture_img from "../images/home_category1.png";
-import { ReactComponent as SearchIcon } from '../images/search.svg';
-import { ReactComponent as Arrow } from '../images/arrow.svg';
+import heroImg from "../../images/heroImg.png";
+import furniture_img from "../../images/home_category1.png";
+import { ReactComponent as SearchIcon } from '../../images/search.svg';
+import { ReactComponent as Arrow } from '../../images/arrow.svg';
 
 
 

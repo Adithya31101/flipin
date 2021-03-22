@@ -6,9 +6,9 @@ import { HashRouter } from 'react-router-dom';
 import { initialState, reducer } from '../reducers/userReducer';
 
 //Import components
-import Header from './Header';
+import Header from './public-pages/Header';
 import Routing from './Routing';
-import Footer from './Footer';
+import Footer from './public-pages/Footer';
 
 //Global Context 
 export const UserContext = createContext();

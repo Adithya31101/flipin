@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from 'react';
-import { UserContext } from './Interface';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 //relative file imports
-import '../styles/Header.css';
+import { UserContext } from '../Interface';
+import '../../styles/Header.css';
 import NavItem from './NavItem';
 import { Link } from 'react-router-dom';
 

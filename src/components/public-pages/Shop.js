@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 //Relative imports
-import { ReactComponent as Arrow } from '../images/arrow.svg';
+import { ReactComponent as Arrow } from '../../images/arrow.svg';
 import Post from './Post';
-import '../styles/Shop.css';
-import { filterAndSort } from '../helperFunctions/filter';
-import { categories, sortType } from './staticInfo';
+import '../../styles/Shop.css';
+import { filterAndSort } from '../../helperFunctions/filter';
+import { categories, sortType } from '../staticInfo';
 import axios from 'axios';
 import { CircularProgress } from '@material-ui/core';
 import { TrendingUpRounded } from '@material-ui/icons';
