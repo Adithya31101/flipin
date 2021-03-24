@@ -2,7 +2,7 @@
    display: flex;
    justify-content: space-evenly;
    min-height: 90vh;
-   width: 98%;
+   width: 100%;
    margin: 0 auto;
 }
 
@@ -78,12 +78,18 @@
    font-size: 18px;
 }
 
-.photo-text > .avatar, .order > .avatar {
+.photo-text > .avatar, .bid  .avatar {
    margin: 0 25px;
    width: 57px;
    height: 57px;
    border-radius: 50%;
-   background-color: #858585;
+   display: grid;
+   place-items: center;
+   background-color: #606060;
+   color: #fff;
+   font-size: 18px;
+   font-weight: bold;
+   letter-spacing: 1.5px;
 }
 
 .photo-text > .text  {
@@ -100,62 +106,97 @@
    color: #606060;
 }
 
-/* Orders */
+/* bids */
 
-.dashboard__orders {
+.dashboard__bids {
    width: 68%;
+   overflow-y: scroll;
+   height: 87vh;
 }
 
-.dashboard__orders-active {
+.dashboard__bids-active {
    display: flex;
    flex-direction: column;
    margin: 1.5rem;
    height: 80vh;
 }
 
-.dashboard__orders-active h1 {
+.dashboard__bids::-webkit-scrollbar {
+    width: 0.5rem;
+   }
+   
+   .dashboard__bids::-webkit-scrollbar-track {
+      background-color: #fff;
+   }
+   
+   .dashboard__bids::-webkit-scrollbar-thumb {
+      background-color: #553985;
+      border-radius: 20px;
+}
+
+.dashboard__bids-active h1 {
+   border: solid 0.5px #787878;
+   outline: solid #fff 25px;
+   border-radius: 5px;
    margin: 0;
    font-size: 20px;
    padding: 2rem;
    width: 100%;
+   position: sticky;
+   background-color: #fff;
+   top: 25px;
+   left: 0;
 }
 
-.order {
+.bid {
    display: flex;
    align-items: center;
    border: 0.5px solid #787878;
    padding: 20px;
    margin: 30px 0;
+   width: 100%;
 }
 
-.order > .details {
+.prod__info {
+   display: flex;
+   justify-content: space-between;
+   margin-right: auto;
+}
+
+.bid .details {
   display: flex;
-  justify-content: center;
-  width: 70%;
+  justify-content: left;
+  width: 80%;
   align-items: center;
 }
 
-.order__price, .order__status {
+.bid__price, .bid__status {
    display: flex;
    flex-direction: column;
    align-items: center;
+   justify-content: left;
    margin: 0 10%;
 }
 
-.order__price-price {
+.bid__price-price {
    font-size: 18px;
    font-weight: 600;
    margin-top: 5px;
 }
 
+.bid__status {
+   margin-top: 0px;
+}
+
 .caption {
    color: #949494;
    font-weight: 500;
+   font-size: 14px !important;
 }
 
-.order .badge {
+.bid .badge {
    display: inline-block;
-   padding: 5px 10px;
+   padding: 4px 10px;
    border-radius: 12px;
    background-color: #787878;
    margin-top: 5px;
@@ -165,15 +206,15 @@
    color: #ffffff;
 }
 
-.order .view {
+.bid .view {
    font-weight: bold;
-   justify-self: flex-end;
    text-decoration: none;
    color: #ffb102;
    margin-right: 5%;
+   margin-left: auto;
 }
 
-.shipped {
+.open {
    background-color: #ffb102 !important;
 }
 
@@ -181,7 +222,7 @@
 @media (max-width: 1200px ){
    .dashboard__summary {display: none;}
 
-   .dashboard__orders {
+   .dashboard__bids {
       width: 100%;
    }
 }

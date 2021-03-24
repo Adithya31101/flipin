@@ -137,6 +137,11 @@
     left: 50%;
 }
 
+.auth__cred-error {
+    color: #f82a2a;
+    margin-bottom: 10px;
+}
+
 .auth__switch:checked::after {
     content: "SELLER";
     position: absolute;

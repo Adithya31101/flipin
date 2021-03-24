@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import { UserContext } from "./Interface";
 
 // Import the different components
@@ -12,25 +12,24 @@ import Contact from "./public-pages/Contact";
 import NotFound from "./public-pages/NotFound";
 import Dashboard from "./private-pages/Dashboard/Dashboard";
 import OrderPage from "./private-pages/Orders/OrderPage";
+import Profile from "./private-pages/Profile/Profile";
 
 const Routing = () => {
   // eslint-disable-next-line
   const { state, dispatch } = useContext(UserContext);
+  const history = useHistory();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       dispatch({ type: "USER", payload: user });
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <Switch>
       {/* Public Routes */}
       <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/flipin">
         <Home />
       </Route>
       <Route path="/shop">
@@ -42,19 +41,47 @@ const Routing = () => {
       <Route path="/contact">
         <Contact />
       </Route>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/signup">
-        <SignUp />
-      </Route>
-      {/* Private Routes */}
-      <Route path="/dashboard">
-        <Dashboard />
-      </Route>
-      <Route path="/orders">
-        <OrderPage />
-      </Route>
+      {state ? (
+        //Private Pages
+        <>
+          {!state.hasAddress?
+            <Route>
+              {history.push('/profile')}
+              <Profile />
+            </Route>
+            :
+            <>
+              <Route exact path="/dashboard">
+                <Dashboard />
+              </Route>
+              <Route path="/home">
+                <Home />
+              </Route>
+              <Route path="/orders">
+                <OrderPage />
+              </Route>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+            </>
+          }
+        </>
+      ) : (
+        // Also Public pages that are unaccessible when logged in to avoid jwt override
+        <>
+          <Route exact path="/flipin">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+        </>
+      )}
+
+      {/* Default Page || 404 page */}
       <Route>
         <NotFound />
       </Route>

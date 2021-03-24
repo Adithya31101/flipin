@@ -1,8 +1,8 @@
-const DashboardEntry = (props) => {
+const DashboardEntry = ({details}) => {
    return (
       <div className="entry">
-         <span className="bold">{props.item}</span>
-         <span>{props.value}</span>
+         <span className="bold">{details.key}</span>
+         <span>{details.value}</span>
       </div>
    );
 }

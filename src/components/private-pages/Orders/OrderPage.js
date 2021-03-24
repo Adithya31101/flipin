@@ -59,7 +59,7 @@ const OrderPage = () => {
               }
               onClick={() => setBidButtonActive(true)}
             >
-              BIDS
+              ACTIVE ORDERS
             </button>
             <button
               className={
@@ -69,7 +69,7 @@ const OrderPage = () => {
               }
               onClick={() => setBidButtonActive(false)}
             >
-              ORDERS
+              CURRENT ORDERS
             </button>
           </div>
           <div className="bid-order__details">
@@ -95,3 +95,6 @@ const OrderPage = () => {
 };
 
 export default OrderPage
+
+
+// Bid, bid specific values

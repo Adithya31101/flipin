@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import { Dialog, Tooltip } from '@material-ui/core';
-import { CheckCircle, ErrorOutline, Visibility, VisibilityOff} from '@material-ui/icons';
+import { CircularProgress, Tooltip } from '@material-ui/core';
+import { ErrorOutline, Visibility, VisibilityOff} from '@material-ui/icons';
 
 //Relative Imports
 import { UserContext } from '../Interface';
@@ -16,10 +16,10 @@ import { ReactComponent as Facebook } from '../../images/facebook.svg';
 const Login = () => {
     //State
     const [email, setEmail] = useState('');
-    const [dialogOpen, setDialogOpen] = useState(false);
     const [password, setPassword] = useState('');
     const [error, setError] = useState({email: '', password: '', creds: ''});
     const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+    const [isLoading, setLoading] = useState(false);
     
     //Initialising variables 
     const { _, dispatch } = useContext(UserContext);
@@ -35,11 +35,6 @@ const Login = () => {
         setPassword(e.target.value);
         error.password = validation.isEmpty(e.target.value);
     }
-    
-    const handleClose = () => {
-      setDialogOpen(false);
-      history.push("/dashboard");
-    }
 
     const handleLogin = () => {
         setError(prev => ({
@@ -49,30 +44,34 @@ const Login = () => {
             }
         ));
         if(error.email === undefined && error.password === undefined){
+            setLoading(true);
             axios.post('https://flipin-store-api.herokuapp.com/login.php', {
-                email,
-                password,
+              email,
+              password,
             })
             .then(({data}) => {
-                if(data.responseCode === 200){
+                if(data.responseCode === 200) {
                     //Show the user that login was successful
                     error.creds = undefined;
                     localStorage.setItem("jwt",data.jwt);
                     localStorage.setItem("user",JSON.stringify(data.user));
+                    data.user.hasAddress? 
+                      history.push("/dashboard")
+                      :
+                      history.push("/profile")
                     dispatch({type: "USER", payload: data.user });
-                    setDialogOpen(true);
-                } else if(data.responseCode === 422){
+                } else if(data.responseCode === 422) {
                     setError({
                         ...error,
                         creds: data.error,
                     });
+                    setLoading(false);
                 }
             })
             .catch(err => {
                 console.log(err);
+                setLoading(false);
             });
-        } else {
-            
         }
     }
 
@@ -97,6 +96,7 @@ const Login = () => {
             <Facebook />
           </ThirdParty>
           <div className="auth__card-or">OR</div>
+            <span className="auth__cred-error">{error.creds}</span>
           <div className="auth__card-input">
             <input
               type="email"
@@ -131,9 +131,14 @@ const Login = () => {
               </span>
             )}
           </div>
-          <button onClick={handleLogin} className="auth__card-submit">
-            Continue
-          </button>
+          {
+            isLoading?
+           <CircularProgress style={{color: "#39b54a", margin: "10px 0 20px"}}/>
+            :
+              <button onClick={handleLogin} className="auth__card-submit">
+                Continue
+              </button>
+          }
           <Link className="auth__card-forgot" to="/forgot">
             Forgot Password?
           </Link>
@@ -141,15 +146,6 @@ const Login = () => {
             Not a member yet? <Link to="/signup">Join Now</Link>
           </p>
         </div>
-        <Dialog
-          className="dialog-box"
-          onClose={handleClose}
-          aria-labelledby="simple-dialog-title"
-          open={dialogOpen}
-        >
-          <CheckCircle style={{ color: "#39b54a", fontSize: 60 }} />
-          <h5>Logged in successfully</h5>
-        </Dialog>
       </div>
     );
 }

@@ -6,22 +6,22 @@ const BidDetails = (props) => {
     return (
       <div className="bid__head">
         <span className="bid__head-label">{props.label}</span>
-        { 
-         props.isStatus? 
-            props.amount? 
-               <span className=" bid__status open">OPEN</span> 
-               :
-               <span className=" bid__status closed">CLOSED</span>  
-            : 
-            <span className="bid__head-amount">{'INR ' + props.amount}</span>
-        }
+        {props.isStatus ? (
+          props.amount ? (
+            <span className=" bid__status open">OPEN</span>
+          ) : (
+            <span className=" bid__status closed">CLOSED</span>
+          )
+        ) : (
+          <span className="bid__head-amount number">{"₹ " + props.amount}</span>
+        )}
       </div>
     );
   };
 
   return (
     <>
-      <div class="bid__img-name">
+      <div className="bid__img-name">
         {props.src ? (
           <img className="avatar img" src={props.src} alt={props.name} />
         ) : (
