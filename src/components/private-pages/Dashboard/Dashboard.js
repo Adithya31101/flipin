@@ -7,7 +7,6 @@ import DashboardEntry from './DashboardEntry';
 import PhotoText from './PhotoText';
 import BidDetails from './BidDetails';
 import { authHeader } from '../../staticInfo';
-import { getAvatar } from "../../../helperFunctions/misc";
 import { CircularProgress } from '@material-ui/core';
 
 const SellerDashboard = () => {
@@ -21,18 +20,19 @@ const SellerDashboard = () => {
       .then((res) => {
          if (res.data.responseCode === 200) {
            setData(res.data);
+           console.log(res.data);
            setLoading(false);
          }
       })
       .catch(e => console.log(e));
-   }, [])
+   }, []);
    
    return (
      <div className="dashboard">
        <div className="dashboard__summary">
          <section className="dashboard__summary-profile border">
            {isLoading ? (
-             <div className="loader">
+             <div className="loader" style={{ height: "30vh" }}>
                <CircularProgress />
              </div>
            ) : (
@@ -68,52 +68,47 @@ const SellerDashboard = () => {
            <PhotoText name="Customer name" />
          </section>
        </div>
-       {
-         isLoading?
-          <div className="loader">
-            <CircularProgress />
-          </div>
-         :
-          <>
-          <div className="dashboard__bids">
-            <div className="dashboard__bids-active">
-              <h1>
-                {state.isSeller ? "Bids" : "Product Listings"}
-              </h1>
-              <div className="dashboard__bids-list">
-                {/* Use the data.bids to loop through all the different  */}
-                {data.itemsArray.map((item) =>
-                  state.isSeller ? (
-                    <div key={item.id} className="bid">
-                      <BidDetails
-                          src={item.src}
-                          name={item.pName}
-                          status={item.status.toLowerCase()}
-                          ybid={item.yBid}
-                          lbid={item.lBid}
-                          pid={item.id}
-                      />
-                    </div>
-                  ) : (
-                    <div className="bid">
-                      <BidDetails
-                        src="https://staticimg.titan.co.in/Titan/Catalog/TB184LM1R2_1.jpg"
-                        name="Belt"
-                        price="500"
-                        status="shipped"
-                        ybid="200"
-                        lbid="100"
-                        bid="1"
-                        pid="P2"
-                      />
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-       </>
-      }
+       {isLoading ? (
+         <div className="loader" style={{ height: "80vh" }}>
+           <CircularProgress />
+         </div>
+       ) : (
+         <>
+           <div className="dashboard__bids">
+             <div className="dashboard__bids-active">
+               <h1>{state.isSeller ? "Bids" : "Product Listings"}</h1>
+               <div className="dashboard__bids-list">
+                 {/* Use the data.bids to loop through all the different  */}
+                 {data.itemsArray.map((item) =>
+                   state.isSeller ? (
+                     <div key={item.id} className="bid">
+                       <BidDetails
+                         src={item.src}
+                         name={item.pName}
+                         status={item.status}
+                         ybid={item.yBid}
+                         lbid={item.lBid}
+                         pid={item.id}
+                       />
+                     </div>
+                   ) : (
+                     <div className="bid">
+                       <BidDetails
+                         src={item.src}
+                         name={item.pName}
+                         pViews={item.pViews}
+                         pid={item.id}
+                         tbid={item.tBids}
+                         lbid={item.lBid}
+                       />
+                     </div>
+                   )
+                 )}
+               </div>
+             </div>
+           </div>
+         </>
+       )}
      </div>
    );
 }

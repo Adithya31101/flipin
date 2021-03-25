@@ -31,7 +31,11 @@ export const filterAndSort = (array, isCategory, filterParam) => {
          }
 
          case 4: {
-            newArr = sortBy(array, "lowestBid");
+            newArr = array.map((item) => ({
+              ...item,
+              lowestBid: parseInt(item.lowestBid, 10),
+            }));
+            newArr = sortBy(newArr, "lowestBid");
             return newArr;
          }
 
