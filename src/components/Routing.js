@@ -13,6 +13,7 @@ import NotFound from "./public-pages/NotFound";
 import Dashboard from "./private-pages/Dashboard/Dashboard";
 import OrderPage from "./private-pages/Orders/OrderPage";
 import Profile from "./private-pages/Profile/Profile";
+import CreateListings from "./private-pages/Create/CreateListings";
 
 const Routing = () => {
   // eslint-disable-next-line
@@ -62,6 +63,9 @@ const Routing = () => {
               </Route>
               <Route path="/profile">
                 <Profile />
+              </Route>
+              <Route path="/create">
+                <CreateListings />
               </Route>
             </>
           }

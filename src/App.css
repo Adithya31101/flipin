@@ -95,6 +95,16 @@ body::-webkit-scrollbar-thumb {
     animation: popup 300ms ease-in-out;
 }
 
+.hide {
+    display: none !important;
+}
+
+button:focus {
+    outline: none;
+    cursor: pointer;
+}
+
+
 @keyframes popup {
     0% {
         transform: scale(0)

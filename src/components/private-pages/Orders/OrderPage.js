@@ -94,7 +94,7 @@ const OrderPage = () => {
    }
 };
 
-export default OrderPage
+export default OrderPage;
 
 
 // Bid, bid specific values

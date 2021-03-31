@@ -1,0 +1,171 @@
+.create__body {
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+   background-image: url("../images/bg.png");
+}
+
+.create__card {
+   display: flex;
+   flex-direction: column;
+   max-width: 60%;
+   width: 30%;
+   background-color: #fff;
+   border-radius: 15px;
+   box-shadow: 0 0 16.2px 1.8px rgba(102, 62, 170, 0.34);
+   padding: 2rem;
+   margin: 3rem;
+}
+
+.create__card-title { color:  #ffb102;}
+
+.create__card-title > h1 {
+   font-size: 24px;
+   margin: 0;
+}
+
+.create__card-title > h4 {
+   font-size: 1rem;
+   margin: 10px 0;
+}
+
+.create__form-name-category {
+   display: flex;
+   margin: 20px 0;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   width: 100%;
+}
+
+.create__form-input {
+   display: flex;
+   flex-direction: column;
+}
+
+.create__form-input  .MuiSvgIcon-root {
+    margin: 0 10px;
+    fill: #f00;
+}
+
+.create__input-warning {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   align-items: center;
+   border-radius: 5px;
+   border: solid 0.5px #787878;
+   
+}
+
+.create__input-warning input {
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    padding: 7.5px;
+    width: 90%;
+    color: #000;
+    font-family: 'Raleway';
+}
+
+.create__form-upload .MuiSvgIcon-root {
+   display: inline-block;
+   fill: red;
+   margin: 0px 0px -2px 5px; 
+}
+
+.create__form-input label, .image__preview > span {
+   font-size: 18px;
+   color:#553985;
+   margin: 7.5px 0;
+}
+
+.create__form-input > select {
+  width: 100%;
+  padding: 7.5px; 
+  border-radius: 5px;
+  border: solid 0.5px #787878;
+  font-size: 1rem;
+  font-family: Raleway;
+  background-color: #fff;
+}
+
+.create__form-input textarea {
+   font-size: 18px;
+   font-family: Raleway;
+   padding: 7.5px;
+}
+
+.create__form-desc {
+   position: relative;
+}
+
+.create__form-desc .MuiSvgIcon-root {
+   position: absolute;
+   bottom: 10px;
+   right: 10px;
+   fill: #f00;
+   margin: 0;
+}
+
+.upload-button {
+   display: inline-block;
+   border-radius: 2px;
+   border: solid 1px #b8b8b8;
+   padding: 2px 10px;
+   font-size: 20px;
+   color: #ffb102;
+   cursor: pointer;
+   margin: 1rem 0;
+}
+
+.upload-button span {
+   font-size: 25px;
+}
+
+.create__form-submit > button {
+   color: #fff;
+   font-size: 18px;
+   background-color: #ffb102;
+   padding: 5px 15px;
+   border-radius: 15px;
+   border: none;
+   text-transform: uppercase;
+   margin: 1rem 0;
+}
+
+.create__form-image {
+   padding: 1rem;
+   width: 100%;
+   margin: 7.5px 0;
+   border-radius: 5px;
+  border: solid 0.5px #787878;
+}
+
+.create__form-image > img{
+   display: block;
+   width: 50%;
+   margin: 0 auto;
+}
+
+.image__preview {
+   margin-top: 15px;
+   position: relative;
+}
+
+.edit__btn {
+   position: absolute;
+   height: 40px;
+   width: 40px;
+   border-radius: 50%;
+   bottom: 20px;
+   right: 20px;
+   display: grid;
+   place-items: center;
+   background-color: #663eaa;
+   cursor: pointer;
+}
+
+.edit__btn .MuiSvgIcon-root {
+fill: #fff;
+}

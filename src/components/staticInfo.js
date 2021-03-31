@@ -46,6 +46,15 @@ export const sortType = [
     {id: 4, type: "Bid Amount"}, 
 ];
 
+export const category = [
+  { id: 1, type: "Accessories" },
+  { id: 2, type: "Clothing" },
+  { id: 3, type: "Cosmetics" },
+  { id: 4, type: "Footwear" },
+  { id: 5, type: "Furniture" },
+  { id: 6, type: "Jewellery" },
+];
+
 export const authHeader = {
   headers: {
     'Authorization': `Bearer ${localStorage.getItem("jwt")}`,

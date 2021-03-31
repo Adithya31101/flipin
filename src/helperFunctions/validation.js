@@ -69,9 +69,40 @@ const validation = {
             return undefined;
         }
     },
+    validateGeneral:(value, field) =>{
+        if(value === ''){
+            return field + ' cannot be empty!';
+        } else if (value.length < 2){
+            return field + " must be greater than 2 or more characters";
+        } else {
+            return undefined;
+        }   
+    },
+
+    validatePin: (pin) => {
+        const pinRegEx = /^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/;
+        if (pin === "") {
+          return "Pincode cannot be empty!";
+        } else if (!pinRegEx.test(pin)) {
+          return "Invalid Pincode!";
+        } else {
+          return undefined;
+        }
+    },
+
+    validateDescription: (desc) => {
+         if (desc === "") {
+           return "Description cannot be empty!";
+         } else if (desc.length < 10) {
+           return "Description must be greater than 10 or more characters";
+         } else {
+           return undefined;
+         } 
+    },
+
     noError: (errorObj) => {
         for (let error in errorObj) {
-        if (errorObj[error] !== undefined || errorObj[error] === "")
+        if (errorObj[error] !== undefined || errorObj[error] === "" || errorObj[error] === true)
             return false;
         }
         return true;
