@@ -13,7 +13,9 @@ import NotFound from "./public-pages/NotFound";
 import Dashboard from "./private-pages/Dashboard/Dashboard";
 import OrderPage from "./private-pages/Orders/OrderPage";
 import Profile from "./private-pages/Profile/Profile";
-import CreateListings from "./private-pages/Create/CreateListings";
+import CreateListings from "./private-pages/Listings/CreateListings";
+import BrowseListings from "./private-pages/Listings/BrowseListings";
+import Product from "./private-pages/Product/Product";
 
 const Routing = () => {
   // eslint-disable-next-line
@@ -45,15 +47,18 @@ const Routing = () => {
       {state ? (
         //Private Pages
         <>
-          {!state.hasAddress?
+          {!state.hasAddress ? (
             <Route>
-              {history.push('/profile')}
+              {history.push("/profile")}
               <Profile />
             </Route>
-            :
+          ) : (
             <>
               <Route exact path="/dashboard">
                 <Dashboard />
+              </Route>
+              <Route path="/product/:id">
+                <Product />
               </Route>
               <Route path="/home">
                 <Home />
@@ -67,8 +72,11 @@ const Routing = () => {
               <Route path="/create">
                 <CreateListings />
               </Route>
+              <Route path="/browse">
+                <BrowseListings />
+              </Route>
             </>
-          }
+          )}
         </>
       ) : (
         // Also Public pages that are unaccessible when logged in to avoid jwt override

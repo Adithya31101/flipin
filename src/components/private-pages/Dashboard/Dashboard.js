@@ -20,7 +20,6 @@ const SellerDashboard = () => {
       .then((res) => {
          if (res.data.responseCode === 200) {
            setData(res.data);
-           console.log(res.data);
            setLoading(false);
          }
       })
@@ -37,7 +36,7 @@ const SellerDashboard = () => {
              </div>
            ) : (
              <>
-               <PhotoText name={state.name} src={state.src} />
+               <PhotoText name={state.name} src={data.src} />
                <div className="divider"></div>
                <DashboardEntry details={data.summary.s1} />
                <DashboardEntry details={data.summary.s2} />

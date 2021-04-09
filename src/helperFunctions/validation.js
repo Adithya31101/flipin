@@ -102,7 +102,7 @@ const validation = {
 
     noError: (errorObj) => {
         for (let error in errorObj) {
-        if (errorObj[error] !== undefined || errorObj[error] === "" || errorObj[error] === true)
+        if (errorObj[error] !== undefined && errorObj[error] !== "")
             return false;
         }
         return true;

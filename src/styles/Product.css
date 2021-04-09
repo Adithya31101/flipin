@@ -1,0 +1,322 @@
+.product__page {
+   width: 96vw;
+   margin: 0 2vw;
+}
+
+.product-page__info {
+   width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   place-items: center;   
+}
+
+.product-page__info > img {
+   padding: 2rem;
+   width: 80%;
+}
+
+.product-page__info-text-container {
+   width: 80%;
+   justify-self: left;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+}
+
+.product-page__info-text-container > h1 {
+   font-size: 2rem;
+   margin-bottom: 20px;
+}
+
+.product-page__info-loc {
+   display: flex;
+   align-items: center;
+}
+
+.product-page__info-loc > svg {
+   margin-bottom: 20px;
+   height: 20px;
+}
+
+.product-page__info-loc > h3 {
+   font-size: 22px;
+   margin-top: 0px;
+   font-weight: normal;
+}
+
+.p__status {
+   display: inline-block;
+   padding: 3px 15px;
+   font-weight: 900;
+   letter-spacing: 1px;
+   width: min-content;
+   border-radius: 20px;
+   color: #fff;
+}
+
+.p__status.live { background-color: #23c82f; }
+.p__status.inactive { background-color: #ff1c1c; }
+
+.product-page__info-lb > h2 {
+   margin-bottom: 10px;
+}
+
+.product-page__info-lb > span {
+   display: inline-block;
+   padding: 7.5px 20px;
+   border-radius: 20px;
+   background-color: #ffb102;
+   margin-bottom: 2rem;
+   margin-top: 10px;
+   font-weight: 900;
+   letter-spacing: 1px;
+   color: #fff;
+}
+
+.product-page__info-desc > span{
+   font-weight: 600;
+   color: #ffb102;
+   letter-spacing: 1px;
+   font-size: 20px;
+}
+
+.product-page__info-desc > p {
+   font-size: 17px;
+   width: 80%;
+   text-align: justify;
+}
+
+.product-page__info-buttons {
+   margin-top: 2rem;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+.product-page__info-buttons > button {
+   border: none;
+   background-color: #ffb102;
+   padding: 0.5rem 2rem;
+   border-radius: 40px;
+   margin-right: 20px;
+   display: inline-flex;
+   flex-direction: row;
+   font-size: 18px;
+   font-weight: 800;
+   color: #fff;
+   cursor: pointer;
+}
+
+.product-page__info-buttons > button:hover {
+   transform: scale(1.009);
+}
+
+.product-page__info-buttons span {
+   line-height: 0.5;
+   font-size: 1.9em;
+   margin-right: 10px;
+   font-weight: 600;
+}
+
+.product-page__info-buttons > button:first-child:disabled {
+   background-color: #787878a2;
+}
+
+.bid__input {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   width: 40vh;
+}
+
+.bid__input > h2 {
+   font-size: 1.5em;
+   margin: 10px 0 5px 0;
+   color: #ffb102;
+}
+
+.bid__input label {
+   color: #553985;
+   font-size: 18px;
+   margin: 20px 0 10px 0;
+   display: block;
+}
+
+.bid__input-price {
+   display: flex;
+   align-items: center;
+   border-radius: 5px;
+   border: solid 0.5px #787878;
+   width: 100%;
+   padding: 7px;
+}
+
+.bid__input-price .rupee {
+   width: 15px;
+   height: 15px;
+   margin-bottom: 3px;
+}
+
+.bid__input-price .MuiSvgIcon-root {
+   fill: #f00;
+}
+
+.bid__input-price input {
+   border: none;
+   padding: 3px;
+   font-size: 1.1rem;
+   width: 87%;
+}
+
+.textAreaError {
+   position: relative;
+}
+
+.textAreaError > textarea {
+   width: 100%;
+   padding: 7.5px;
+   font-size: 16px;
+   font-family: Raleway;
+}
+
+.textAreaError > svg {
+   fill: #f00;
+   bottom: 15px;
+   position: absolute;
+   right: 10px;
+}
+
+.bid__input-buttons {
+   display: flex;
+   justify-content: center;
+}
+
+.bid__input-buttons > button, .dropdown__options > button { 
+  padding: 7.5px 15px;
+  border-radius: 17.5px;
+  background-color: #ffb102;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 1rem 1rem 0 1rem;
+  transition: transform ease-in-out 100ms;
+}
+
+.bid__input-buttons button:hover {
+   transform: scale(1.01);
+}
+
+/* Bid Items */
+
+.product__sections {
+   width: 98%;
+   margin: 0 2%;
+}
+.bid__item {
+   position: relative;
+   transition: all 100ms ease-in-out;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   width: 98%;
+   margin: 2rem 0;
+   padding: 1rem 3rem;
+   border-radius: 10px;
+   box-shadow: 0 0 16.2px 1.8px rgba(102, 62, 170, 0.34);
+}
+
+.bid__item > .avatar {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   display: grid;
+   place-items: center;
+   background-color: #ff2d2d;
+   color: #fff;
+   font-size: 18px;
+   font-weight: bold;
+   letter-spacing: 1.5px;
+}
+
+.product__sections > h2 {
+   color: #ffb102;
+   margin: 4rem 0 2rem;
+   font-size: 2.5rem;
+   font-weight: bold;
+}
+
+.bid__item > h3 {
+   width : 12%;
+}
+
+.bid__item > p {
+   width: 40%;
+}
+
+.bid__item.per_seller > h2 {
+   width: 10%;
+}
+
+.bid__item.per_seller > .edit {
+   position: absolute;
+   right: 50px;
+}
+
+.bid__dropdown {
+   display: flex;
+   width: 15%;
+}
+
+.bid__dropdown .dropdown__button {
+   width: 30px;
+   height: 30px;
+   background-color: #663eaa;
+   border-radius: 50%;
+   display: grid;
+   place-items: center;
+   cursor: pointer;
+   
+}
+
+.bid__amt-btn {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   align-items: center;
+   width: 100%;
+}
+
+.bid__dropdown .dropdown__button > svg {
+   width: 15px;
+   height: 15px;
+   fill: #fff;
+   transition: transform 200ms ease-in-out;
+}
+
+.bid__dropdown.open {
+   flex-direction: column;
+}
+
+.bid__dropdown.open svg {
+   
+   transform: rotate(180deg);
+}
+
+.bid__dropdown.closed {
+   flex-direction: row;
+}
+
+.bid__dropdown.closed svg {
+   transform: rotate(0deg);
+}
+
+.dropdown__options > button:first-child {
+   width: max-content;
+}
+
+.dropdown__options > button:last-child {
+   width: 90%;
+}

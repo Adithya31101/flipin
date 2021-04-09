@@ -8,10 +8,9 @@ import { filterAndSort } from '../../helperFunctions/filter';
 import { categories, sortType } from '../staticInfo';
 import axios from 'axios';
 import { CircularProgress } from '@material-ui/core';
-import { TrendingUpRounded } from '@material-ui/icons';
 
 const Shop = () => {
-    const [isLoading, setisLoading] = useState(TrendingUpRounded)
+    const [isLoading, setisLoading] = useState(true);
     const [categoryOpen, setCategoryOpen] = useState(false);
     const [itemsArray, setItemsArray] = useState([]);
     const [displayArray, setDisplayArray] = useState([]);

@@ -1,10 +1,9 @@
 const Popup = (props) => {
    return (
-      <div className="popup" style={{display: props.open? "flex" : "none"}} onClick={props.handleClose}>
-        <div className="popup__message">
-           {props.children}
-        </div>
-      </div>
+     <div className="popup" style={{ display: props.open ? "flex" : "none" }}>
+       <div className="popup__message">{props.children}</div>
+       <div className="popup__bg" onClick={() => props.handleClose()}></div>
+     </div>
    );
 }
 

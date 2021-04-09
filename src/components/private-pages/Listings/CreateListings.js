@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { LinearProgress, Snackbar, Tooltip } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
@@ -12,8 +12,9 @@ import { authHeader, category } from '../../staticInfo';
 import "../../../styles/CreateListings.css";
 import validation from '../../../helperFunctions/validation';
 
-const CreateListings = () => {
-   //init variables
+const CreateListings = (props) => {
+  const {state: stateFromPush} = useLocation();
+  //init variables
    const history = useHistory();
    const { state } = useContext(UserContext);
    const desc = useRef();
@@ -31,11 +32,18 @@ const CreateListings = () => {
    const [error, setError] = useState({
       name: undefined, desc: undefined, image: undefined
    });
+   const [loading, setLoading] = useState(false);
 
    //Use Effects
    useEffect(()=> {
       if(state.isSeller){
          history.push('/browse');
+      }
+      if(stateFromPush && stateFromPush.edit){
+        setName(stateFromPush.name);
+        desc.current.value = stateFromPush.desc;
+        setSrc(stateFromPush.src);
+        setCat(stateFromPush.category);
       }
    }, []);
 
@@ -54,6 +62,7 @@ const CreateListings = () => {
        return;
      }
      setToast(prev => ({...prev, open: false}));
+     history.push("/dashboard");
    };
 
    
@@ -86,6 +95,7 @@ const CreateListings = () => {
       image: image? undefined :  true,
     }));
     if (validation.noError(error)) {
+      setLoading(true)
       const data = new FormData();
       data.append("file", image);
       data.append("upload_preset", "flipinStore");
@@ -104,28 +114,37 @@ const CreateListings = () => {
       axios.post("https://api.cloudinary.com/v1_1/flipin/image/upload", data, options)
         .then(({ data: {secure_url: url} }) => {
           const post = {
-            productName: name,
-            cat,
+            name,
             description: desc.current.value,
-            url,
+            category: cat,
+            mediaUrl: url,
           };
-          axios.post('https://flipin-store-api.herokuapp.com/newpost.php', post, authHeader)
-          .then(res => {
-            if(res.data.responseCode === 201){
-              console.log(res.data);
-              setToast({
-                open: true,
-                severity: "success",
-                text: "Post created successfully!",
-              });
-            } else {
-              setToast({
-                open: true,
-                severity: "error",
-                text: "Error occured! Please try again.",
-              });
-            }
-          })
+          axios
+            .post(
+              "https://flipin-store-api.herokuapp.com/productpost.php",
+              post,
+              authHeader
+            )
+            .then((res) => {
+              if (res.data.responseCode === 201) {
+                setName("");
+                desc.current.value = "";
+                setImage("");
+                setLoading(false);
+                
+                setToast({
+                  open: true,
+                  severity: "success",
+                  text: "Post created successfully!",
+                });
+              } else {
+                setToast({
+                  open: true,
+                  severity: "error",
+                  text: "Error occured! Please try again.",
+                });
+              }
+            });
         })
         .catch((e) => console.log(e));
     } else {
@@ -189,7 +208,7 @@ const CreateListings = () => {
              )}
            </div>
            <div className="create__form-upload">
-             <label htmlFor="create-upload" className={image ? "hide" : null}>
+             <label htmlFor="create-upload" className={image || src ? "hide" : null}>
                <div className="upload-button">
                  <span>+</span> Upload File
                </div>
@@ -207,7 +226,7 @@ const CreateListings = () => {
                hidden
              />
            </div>
-           <div className={image ? "image__preview" : "hide"}>
+           <div className={(image || src) ? "image__preview" : "hide"}>
              <span>Image Preview</span>
              <div className="create__form-image">
                <img src={src} alt={name} />
@@ -233,7 +252,7 @@ const CreateListings = () => {
            )}
 
            <div className="create__form-submit">
-             <button onClick={handleSubmit}>Submit</button>
+             {!loading && <button onClick={handleSubmit}>Submit</button>}
            </div>
          </form>
        </div>

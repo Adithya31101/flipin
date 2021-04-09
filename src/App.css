@@ -75,24 +75,31 @@ body::-webkit-scrollbar-thumb {
     background: none !important;
 }
 
-.popup {
-    height: 90vh;
+.popup__bg {
+    height: 100vh;
     z-index: 1;
     background-color: #474a4d6b;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 10vh;
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 100vw;
 }
 
+
 .popup__message {
+    position: fixed;
+    left: 40%;
+    top: 27%;
+    transition: transform ease-in-out 300ms;
     background-color: #fff;
-    padding: 2em 5em;
+    padding: 2em 2em;
     color: #121212;
-    border-radius: 20px;
+    border-radius: 10px;
     animation: popup 300ms ease-in-out;
+    z-index: 2;
 }
 
 .hide {
@@ -104,6 +111,17 @@ button:focus {
     cursor: pointer;
 }
 
+.flex-center {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 @keyframes popup {
     0% {
