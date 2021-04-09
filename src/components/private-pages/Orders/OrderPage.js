@@ -26,8 +26,8 @@ const OrderPage = () => {
    const SummaryItem = (props) => {
       return (
          <div className="order__summary-item">
-            <h3 className="order__summary-name">{props.name}</h3>
-            <h2 className="order__summary-number">{props.number}</h2>
+            <h3 className="order__summary-name">{props.details.key}</h3>
+            <h2 className="order__summary-number">{props.details.value}</h2>
          </div>
       );
    }
@@ -43,13 +43,13 @@ const OrderPage = () => {
       <div className="order__container">
         <h1 className="order__heading">Orders</h1>
         <div className="order__summary">
-          <SummaryItem name="Total Orders Completed" number={data.summary.toc} />
-          <SummaryItem name="Total Bids" number={data.summary.tb} />
-          <SummaryItem name="Active Bids" number={data.summary.ab} />
-          <SummaryItem name="Active Orders" number={data.summary.ao} />
-          <SummaryItem name="Total Earning" number={data.summary.te} />
+          <SummaryItem details={data.summary.s1} />
+          <SummaryItem details={data.summary.s2} />
+          <SummaryItem details={data.summary.s3} />
+          <SummaryItem details={data.summary.s4} />
+          <SummaryItem details={data.summary.s5} />
         </div>
-        <div className="active__details">
+        <div className="active__details" style={{marginTop: "4rem"}}>
           <div className="active__details-buttons">
             <button
               className={
@@ -73,15 +73,15 @@ const OrderPage = () => {
             </button>
           </div>
           <div className="bid-order__details">
-            {data.bid.map((bid) => {
+            {data.orders.map((bid) => {
               return (
-                <div key={bid.id} className="bid__details">
+                <div key={bid.oid} className="bid__details">
                   <BidDetails
-                    id={bid.id}
+                    id={bid.oid}
                     src={bid.src}
-                    name={bid.pName}
-                    lBid={bid.lBid}
-                    bid={bid.yBid}
+                    name={bid.name}
+                    productName={bid.productName}
+                    price={bid.price}
                     status={bid.status}
                   />
                 </div>

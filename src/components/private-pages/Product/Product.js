@@ -41,7 +41,8 @@ const Product = () => {
             if(data.responseCode === 200){
                setProductInfo(data);
                setBidPlaced(data.bids.findIndex(bid => bid.sellerId === state.id));
-               setIsLoading(false)
+               setIsLoading(false);
+               console.log(data);
             }
          })
          .catch(e => console.log(e));
@@ -81,7 +82,6 @@ const Product = () => {
             bids: newBids,
          }))
       } else {
-         const a = [];
          let updatedBids = productInfo.bids;
          updatedBids.push({
             sellerId: state.id,
@@ -191,8 +191,10 @@ const Product = () => {
          </section>
 
          {/* Section 2 - Other seller bids */}
-         { state.isSeller || state.id === productInfo.customerId? 
+
+         { (state.isSeller || state.id === productInfo.customerId) ? 
             <>
+            {console.log(state.id, productInfo.customerId)}
             <section className="product__sections">
                <h2>Other Seller Bids</h2>
                <div className="product__bids">
@@ -212,6 +214,7 @@ const Product = () => {
          
 
          {/* Section 3 - Suggested bids */}
+         { state.isSeller && 
          <section className="product__sections">
             <h2>Suggested Products to bid</h2>
             <hr/>
@@ -235,6 +238,7 @@ const Product = () => {
             </div>
             <hr style={{marginBottom: "4rem"}}/>
          </section>
+         }
          </>
          :
          <></>

@@ -300,7 +300,7 @@
    flex-direction: column;
 }
 
-.bid__dropdown.open svg {
+.bid__dropdown.open .dropdown__button svg {
    
    transform: rotate(180deg);
 }
@@ -309,7 +309,7 @@
    flex-direction: row;
 }
 
-.bid__dropdown.closed svg {
+.bid__dropdown.closed .dropdown__button svg {
    transform: rotate(0deg);
 }
 

@@ -55,10 +55,9 @@ const Login = () => {
                     error.creds = undefined;
                     localStorage.setItem("jwt",data.jwt);
                     localStorage.setItem("user",JSON.stringify(data.user));
-                    data.user.hasAddress? 
-                      history.push("/dashboard")
-                      :
-                      history.push("/profile")
+                    data.user.hasAddress
+                      ? window.location = "/dashboard"
+                      : window.location = "/profile"
                     dispatch({type: "USER", payload: data.user });
                 } else if(data.responseCode === 422) {
                     setError({

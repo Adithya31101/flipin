@@ -141,6 +141,7 @@ const Profile = () => {
               if (res.data.responseCode === 204) {
                 console.log(res.data);
                 dispatch({ type: "ADDRESS", payload: {...state, hasAddress: true}});
+                localStorage.setItem("user", JSON.stringify(state));
                 setLoading(false);
               }
             })
@@ -171,6 +172,7 @@ const Profile = () => {
                type: "ADDRESS",
                payload: { ...state, hasAddress: true },
              });
+             localStorage.setItem("user", JSON.stringify(state));
              setLoading(false);
            }
          })
@@ -188,6 +190,7 @@ const Profile = () => {
                 type: "ADDRESS",
                 payload: { ...state, hasAddress: true },
               });
+              localStorage.setItem("user", JSON.stringify(state));
             }
           })
           .catch((e) => console.log(e));
