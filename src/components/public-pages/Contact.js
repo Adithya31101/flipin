@@ -54,7 +54,7 @@ const Contact = () => {
             <label className="name" htmlFor="textarea">
               Query
             </label>
-            <textarea ref={queryRef} className="textarea" rows="3"></textarea>
+            <textarea res ref={queryRef} className="textarea" rows="3"></textarea>
             <button className="form-submit" onClick={handleSubmit}>
               Submit
             </button>

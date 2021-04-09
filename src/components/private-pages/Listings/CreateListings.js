@@ -95,7 +95,7 @@ const CreateListings = (props) => {
       image: image? undefined :  true,
     }));
     if (validation.noError(error)) {
-      setLoading(true)
+      setLoading(true);
       const data = new FormData();
       data.append("file", image);
       data.append("upload_preset", "flipinStore");
@@ -119,12 +119,7 @@ const CreateListings = (props) => {
             category: cat,
             mediaUrl: url,
           };
-          axios
-            .post(
-              "https://flipin-store-api.herokuapp.com/productpost.php",
-              post,
-              authHeader
-            )
+          axios.post("https://flipin-store-api.herokuapp.com/productpost.php", post, authHeader)
             .then((res) => {
               if (res.data.responseCode === 201) {
                 setName("");

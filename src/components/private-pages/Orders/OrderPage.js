@@ -8,7 +8,8 @@ import { authHeader } from '../../staticInfo';
 import '../../../styles/OrderPage.css';
 
 const OrderPage = () => {
-   const [isBidButtonActive, setBidButtonActive] = useState(true);
+   const [isActiveOrders, setIsActiveOrders] = useState(true);
+   const [orders, setOrders] = useState([]); 
    const [isLoading, setIsLoading] = useState(true);
    const [data, setData] = useState({});
 
@@ -16,11 +17,21 @@ const OrderPage = () => {
       axios.get("https://flipin-store-api.herokuapp.com/order.php", authHeader)
       .then(res => {
          setData(res.data);
-         console.log(res.data);
+         setOrders(res.data.orders.filter(o => o.status !== "COMPLETE"));
          setIsLoading(false);
       })
       .catch(e => console.log(e));
    }, []);
+
+   //Handlers
+   const handleTabChange = (active) => {
+     setIsActiveOrders(active);
+     if(active){
+        setOrders(data.orders.filter(o => o.status !== "COMPLETE"));
+     } else {
+       setOrders(data.orders);
+     }
+   }
 
    //Sub component
    const SummaryItem = (props) => {
@@ -49,31 +60,31 @@ const OrderPage = () => {
           <SummaryItem details={data.summary.s4} />
           <SummaryItem details={data.summary.s5} />
         </div>
-        <div className="active__details" style={{marginTop: "4rem"}}>
+        <div className="active__details" style={{ marginTop: "4rem" }}>
           <div className="active__details-buttons">
             <button
               className={
-                !isBidButtonActive
+                !isActiveOrders
                   ? "active__details-bid"
                   : "active__details-bid active"
               }
-              onClick={() => setBidButtonActive(true)}
+              onClick={() => handleTabChange(true)}
             >
               ACTIVE ORDERS
             </button>
             <button
               className={
-                isBidButtonActive
+                isActiveOrders
                   ? "active__details-order"
                   : "active__details-order active"
               }
-              onClick={() => setBidButtonActive(false)}
+              onClick={() => handleTabChange(false)}
             >
-              CURRENT ORDERS
+              ALL ORDERS
             </button>
           </div>
           <div className="bid-order__details">
-            {data.orders.map((bid) => {
+            {orders.map((bid) => {
               return (
                 <div key={bid.oid} className="bid__details">
                   <BidDetails
@@ -97,4 +108,3 @@ const OrderPage = () => {
 export default OrderPage;
 
 
-// Bid, bid specific values

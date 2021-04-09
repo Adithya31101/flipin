@@ -55,8 +55,7 @@ const Profile = () => {
       axios.get("https://flipin-store-api.herokuapp.com/getprofile.php", authHeader)
         .then(({ data: {user},data }) => {
           if (data.responseCode === 200) {
-            console.log(data);
-            setUser(data);
+            setUser(data.user);
             setName(user.name);
             setEmail(user.email);
             setPhone(user.phoneNumber);
@@ -163,6 +162,7 @@ const Profile = () => {
          country,
          pincode,
        };
+       console.log(user);
        if(user.logo === src){
          axios.post("https://flipin-store-api.herokuapp.com/setprofile.php", userFromInput, authHeader)
          .then((res) => {

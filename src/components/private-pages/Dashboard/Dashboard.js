@@ -9,7 +9,7 @@ import BidDetails from './BidDetails';
 import { authHeader } from '../../staticInfo';
 import { CircularProgress } from '@material-ui/core';
 
-const SellerDashboard = () => {
+const Dashboard = () => {
    const {state} = useContext(UserContext);
 
    const [isLoading, setLoading] = useState(true);
@@ -112,4 +112,4 @@ const SellerDashboard = () => {
    );
 }
 
-export default SellerDashboard;
+export default Dashboard;

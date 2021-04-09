@@ -40,7 +40,7 @@ const Shop = () => {
         <h2>Browse Listings</h2>
         <div className="main__details">
           <span>{`${20} new products`}</span>
-          <div className="main__details-sort">
+          <div className="main__details-sort browse__listings">
             <span>SORT BY: </span>
             <span>{filterVar.sort}</span>
             <Arrow onClick={() => setSortOpen((prev) => !prev)} />
@@ -48,14 +48,18 @@ const Shop = () => {
               className={sortOpen ? "sort__dropdown open" : "sort__dropdown"}
             >
               <ul>
-                {sortType.map((item) => (
-                  item.type === "Categories"?
-                  <></>
-                  :
-                  <li key={item.id} onClick={() => handleSortChange(item.type, item.id)} >
-                     {item.type}
-                  </li>
-                ))}
+                {sortType.map((item) =>
+                  item.type === "Categories" ? (
+                    <></>
+                  ) : (
+                    <li
+                      key={item.id}
+                      onClick={() => handleSortChange(item.type, item.id)}
+                    >
+                      {item.type}
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
@@ -70,12 +74,12 @@ const Shop = () => {
           {displayArray.map((post) => {
             return (
               <div key={post.id} className="product">
-                 <Link to={`/product/${post.id}`}>
+                <Link to={`/product/${post.id}`}>
                   <Post
-                     img={post.img}
-                     name={post.name}
-                     bid={post.lowestBid}
-                     location={post.location}
+                    img={post.img}
+                    name={post.name}
+                    bid={post.lowestBid}
+                    location={post.location}
                   />
                 </Link>
               </div>

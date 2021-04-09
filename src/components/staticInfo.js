@@ -2,29 +2,29 @@ export const footerInfo = [{
     id: 1,
     header: "Categories",
     list: [{
-        id: 1, name: "Furniture", to: "/products"
+        id: 1, name: "Accessories", to: "/shop"
     }, {
-        id: 2, name: "Furniture", to: "/products"
+        id: 2, name: "Jewellery", to: "/shop"
     }, {
-        id: 3, name: "Furniture", to: "/products"
+        id: 3, name: "Cosmetics", to: "/shop"
     }, {
-        id: 4, name: "Furniture", to: "/products"
+        id: 4, name: "Clothing", to: "/shop"
     }, {
-        id: 5, name: "Furniture", to: "/products"
+        id: 5, name: "Furniture", to: "/shop"
     }],
 },{
     id: 2,
     header: "pages",
     list: [{
-        id: 1, name: "about", to: "/about",
+        id: 1, name: "About", to: "/about",
     }, {
-        id: 2, name: "store", to: "/store"
+        id: 2, name: "Shop", to: "/shop"
     }, {
-        id: 3, name: "log in", to: "/login"
+        id: 3, name: "Log in", to: "/login"
     }, {
-        id: 4, name: "sign up", to: "/signup"
+        id: 4, name: "Sign Up", to: "/signup"
     }, {
-        id: 5, name: "contact", to: "/contact"
+        id: 5, name: "Contact", to: "/contact"
     }],
 }];
 

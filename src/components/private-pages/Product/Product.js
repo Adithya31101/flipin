@@ -90,7 +90,7 @@ const Product = () => {
             amount: update.price,
             description: update.desc
          });
-         console.log(updatedBids);
+         setBidPlaced(updatedBids.length - 1);
          setProductInfo(prev => ({
             ...prev,
             bids: updatedBids,

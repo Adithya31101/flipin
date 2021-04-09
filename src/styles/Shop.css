@@ -83,6 +83,11 @@
    visibility: visible;   
 }
 
+.browse__listings .sort__dropdown.open {
+   height: 120px;
+   visibility: visible;   
+}
+
 .main > h2 {
    color: #63468d;
    margin: 3rem 0 2rem 3rem;
