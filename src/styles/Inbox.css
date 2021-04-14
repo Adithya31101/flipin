@@ -165,13 +165,33 @@
 .chat__message {
    padding: 10px;
    border-radius: 20px;
-   color: #fff;
-   background-color: #663eaa;
+   color: #000;
+   background-color: #b7b7b7;
    display: flex;
    width: max-content;
    flex-direction: column;
    margin: 20px;
    max-width: 40%;
+}
+
+.chat__message.from-me {
+   color: #fff;
+   margin-left: auto;
+   background-color: #663eaa;
+}
+
+.message__text {
+   margin: 15px 20px 0px;
+}
+
+.chat__message  h4 {
+   margin:  0;
+}
+
+.chat__message  p{
+   font-size: 10px;
+   margin: 10px auto;
+   font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 /* Chat Input */

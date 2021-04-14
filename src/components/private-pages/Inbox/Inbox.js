@@ -1,5 +1,5 @@
 import db from '../../../services/firebase';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { UserContext } from '../../Interface';
 import "../../../styles/Inbox.css";
@@ -8,18 +8,16 @@ import Chat from "./Chat";
 import Message from "./Message";
 import { AttachFileOutlined, SendRounded } from "@material-ui/icons";
 import { CircularProgress } from "@material-ui/core";
+import sortBy from 'lodash.sortby';
 
 const Inbox = () => {
    //Variables
    const {state} = useLocation();
    const {state: currentUser} = useContext(UserContext);
+   const chatWindowRef = useRef();
 
    //State
-   const [chats, setChats] = useState([
-      {name: "Ayush", id: "C1"},
-      {name: "Adithya", id: "C3"},
-      {name: "Shikha", id: "C4"},
-   ]);
+   const [chats, setChats] = useState([]);
    const [loading, setLoading] = useState(false);
    const [chatDetails, setChatDetails] = useState(null);
    const [searchString, setSearchString] = useState("");
@@ -68,7 +66,6 @@ const Inbox = () => {
 
    useEffect(() => {
       if(chatDetails){
-         console.time('query')
          db.collection('chat').where('chatroomID', '==', chatDetails.id).onSnapshot(messagesData => {
             const a = messagesData.docs.map(message => {
                const data = message.data();
@@ -78,8 +75,8 @@ const Inbox = () => {
                   postedAt: new Date(data.postedAt.toDate()),
                });
             });
-            setMessages(a);
-            console.timeEnd('query');
+            setMessages(sortBy(a,'postedAt'));
+            chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
          });
       }
    }, [chatDetails])
@@ -144,13 +141,13 @@ const Inbox = () => {
                   <div className="chat__name">
                      <h2>{chatDetails.name}</h2>
                   </div>
-                  <div className="chat__window">
+                  <div ref={chatWindowRef} className="chat__window">
                      {
                         messages.map(message => (
                            <div className={`chat__message ${message.from === currentUser.id? "from-me" : ""}`}>
                               <Message time={message.postedAt} media={message.mediaURL}>{message.message}</Message>
                            </div>
-                        ))   
+                        )) 
                      }
                   </div>
                   <div className="chat__input">
