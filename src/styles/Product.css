@@ -278,7 +278,6 @@
    display: grid;
    place-items: center;
    cursor: pointer;
-   
 }
 
 .bid__amt-btn {
@@ -318,5 +317,13 @@
 }
 
 .dropdown__options > button:last-child {
+   width: 90%;
+}
+
+.product__sections .product__image {
+   width: 100%;
+}
+
+.product__sections .listings {
    width: 90%;
 }

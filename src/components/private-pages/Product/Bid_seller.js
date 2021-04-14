@@ -16,9 +16,7 @@ const Bid = (props) => {
        <p>{props.desc}</p>
        <h2 className="amount">{`₹ ${props.amount}`}</h2>
        {props.sellerId === state.id && (
-         <div
-         className="edit"
-           onClick={() =>
+         <div className="edit" onClick={() =>
              props.setBidInput({
                open: true,
                edit: true,

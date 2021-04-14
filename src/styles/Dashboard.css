@@ -40,7 +40,7 @@
 }
 
 .dashboard__summary-inbox::-webkit-scrollbar-track {
-    background-color: #fff;
+    background-color: transparent;
 }
 
 .dashboard__summary-inbox::-webkit-scrollbar-thumb {

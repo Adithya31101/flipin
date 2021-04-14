@@ -11,18 +11,29 @@
   color: #663eaa;
   margin-bottom: 20px;
 }
-.input {
+
+.input__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 400px;
-  font-size: 20px;
   border-radius: 5px;
   border: solid 1px #b7b7b7;
   margin-bottom: 20px;
-  padding: 7px 2px;
-  font-family: Raleway;
 }
 
-.input:focus {
-   border: solid 1px #b7b7b7;
+.input__container  .MuiSvgIcon-root {
+  fill: #f00;
+  margin: 0 10px 0 0;
+}
+
+.input {
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  width: 90%;
+  padding: 7px 3px;
+  font-family: Raleway;
 }
 
 .flex {
@@ -54,6 +65,10 @@
   margin-top: 72px;
 }
 
+.textarea:focus {
+  outline: none;
+}
+
 .textarea {
   width: 400px;
   border-radius: 5px;
@@ -62,6 +77,7 @@
   padding: 10px 2px;
   font-family: Raleway;
   resize: none;
+  border: none;
 }
 
 .form-submit {

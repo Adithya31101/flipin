@@ -18,7 +18,6 @@ const CreateListings = (props) => {
    const history = useHistory();
    const { state } = useContext(UserContext);
    const desc = useRef();
-   const reader = new FileReader();
 
    //State
    const [percentage, setPercentage] = useState(0);
@@ -92,7 +91,7 @@ const CreateListings = (props) => {
       ...prev,
       name: validation.validateGeneral(name, "Product Name"),
       desc: validation.validateDescription(desc.current.value),
-      image: image? undefined :  true,
+      image: image || src? undefined :  true,
     }));
     if (validation.noError(error)) {
       setLoading(true);
@@ -110,38 +109,68 @@ const CreateListings = (props) => {
           }
         },
       };
-
-      axios.post("https://api.cloudinary.com/v1_1/flipin/image/upload", data, options)
-        .then(({ data: {secure_url: url} }) => {
-          const post = {
-            name,
-            description: desc.current.value,
-            category: cat,
-            mediaUrl: url,
-          };
-          axios.post("https://flipin-store-api.herokuapp.com/productpost.php", post, authHeader)
-            .then((res) => {
-              if (res.data.responseCode === 201) {
-                setName("");
-                desc.current.value = "";
-                setImage("");
-                setLoading(false);
-                
-                setToast({
-                  open: true,
-                  severity: "success",
-                  text: "Post created successfully!",
-                });
-              } else {
-                setToast({
-                  open: true,
-                  severity: "error",
-                  text: "Error occured! Please try again.",
-                });
-              }
-            });
+      if(stateFromPush && stateFromPush.src === src){
+        const post = {
+          pid: stateFromPush.pId,
+          name,
+          description: desc.current.value,
+          category: cat,
+          mediaUrl: src,
+        };
+        console.log(stateFromPush);
+        axios.post("https://flipin-store-api.herokuapp.com/editproduct.php", post, authHeader)
+          .then((res) => {
+            if (res.data.responseCode === 204) {
+              setLoading(false);
+              setToast({
+                open: true,
+                severity: "success",
+                text: "Post Edited successfully!",
+              });
+            } else {
+              setToast({
+                open: true,
+                severity: "error",
+                text: "Error occured! Please try again.",
+              });
+            }
+          })
+          .catch(e => console.log(e));
+        
+      } else {
+          axios.post("https://api.cloudinary.com/v1_1/flipin/image/upload", data, options)
+          .then(({ data: {secure_url: url} }) => {
+            const post = {
+              name,
+              description: desc.current.value,
+              category: cat,
+              mediaUrl: url,
+            };
+            axios.post("https://flipin-store-api.herokuapp.com/productpost.php", post, authHeader)
+              .then((res) => {
+                if (res.data.responseCode === 201) {
+                  setName("");
+                  desc.current.value = "";
+                  setImage("");
+                  setLoading(false);
+                  
+                  setToast({
+                    open: true,
+                    severity: "success",
+                    text: "Post created successfully!",
+                  });
+                } else {
+                  setToast({
+                    open: true,
+                    severity: "error",
+                    text: "Error occured! Please try again.",
+                  });
+                }
+              });
         })
         .catch((e) => console.log(e));
+      }
+      
     } else {
       console.log(error);
     }
@@ -247,7 +276,7 @@ const CreateListings = (props) => {
            )}
 
            <div className="create__form-submit">
-             {!loading && <button onClick={handleSubmit}>Submit</button>}
+             {loading && <button onClick={handleSubmit}>Submit</button>}
            </div>
          </form>
        </div>
@@ -255,4 +284,4 @@ const CreateListings = (props) => {
    );
 }
 
-export default CreateListings
+export default CreateListings;

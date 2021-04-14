@@ -123,6 +123,10 @@ a {
     color: inherit;
 }
 
+input:focus {
+    outline: none;
+}
+
 @keyframes popup {
     0% {
         transform: scale(0)

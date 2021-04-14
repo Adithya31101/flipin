@@ -148,10 +148,19 @@
 
 /*Marketing*/
 
+.marketing__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap-reverse;
+    padding: 5% 10%;
+}
+
 .marketing {
+    justify-self: flex-start;
+    display: flex;
     flex-direction: column;
     width: 35%;
-    margin: 5% 10%;
     color: #663eaa;
 }
 
@@ -207,5 +216,9 @@
 
     .category img {
         width: 230px;
+    }
+    .marketing__container > img {
+        width: 100%;
+        margin: 2em;
     }
 }

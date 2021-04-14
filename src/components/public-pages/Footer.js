@@ -9,6 +9,7 @@ import footerLogo from '../../images/logo_footer.png';
 import {ReactComponent as Instagram} from '../../images/insta.svg';
 import {ReactComponent as LinkedIn} from '../../images/linkedIn.svg';
 import {ReactComponent as Twitter} from '../../images/twitter.svg';
+import {ReactComponent as Join} from '../../images/join-us.svg';
 
 
 
@@ -28,30 +29,37 @@ const Footer = (props) => {
 
 
     return (
-        <footer>  
-            {
-                !props.isLoggedIn 
-                &&            
-                <div className="footer__message">
-                   <h1>Join Us as a Seller&nbsp;or Customer</h1>
-                </div>
-            }
-            <div className="footer">
-                { footerInfo.map(section => (
-                    <section key={section.id} className="footer__section">
-                        <FooterSection section={section} />
-                    </section> 
-                ))}
-                <div className="footer__marketing"> 
-                    <img src={footerLogo} alt="Flipin"/>
-                    <div className="footer__marketing-social">
-                        <a target="_blank" rel="noreferrer" href="https://instagram.com"><Instagram /></a>
-                        <a target="_blank" rel="noreferrer" href="https://linkedin.com"><LinkedIn /></a>
-                        <a target="_blank" rel="noreferrer" href="https://twitter.com"><Twitter /></a>
-                    </div>
-                </div>
+      <footer>
+        {!props.isLoggedIn && (
+          <Link to="/login">
+            <div className="footer__message">
+              <h1>Join Us as a Seller&nbsp;or Customer</h1>
+              <Join className="joinus__icon" />
             </div>
-        </footer>
+          </Link>
+        )}
+        <div className="footer">
+          {footerInfo.map((section) => (
+            <section key={section.id} className="footer__section">
+              <FooterSection section={section} />
+            </section>
+          ))}
+          <div className="footer__marketing">
+            <img src={footerLogo} alt="Flipin" />
+            <div className="footer__marketing-social">
+              <a target="_blank" rel="noreferrer" href="https://instagram.com">
+                <Instagram />
+              </a>
+              <a target="_blank" rel="noreferrer" href="https://linkedin.com">
+                <LinkedIn />
+              </a>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com">
+                <Twitter />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     );
 };
 

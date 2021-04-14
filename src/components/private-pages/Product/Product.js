@@ -1,7 +1,5 @@
-// import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-// import { authHeader } from '../../staticInfo';
 import { ReactComponent as PinIcon } from '../../../images/pin.svg';
 import { ReactComponent as ChatIcon } from '../../../images/chat.svg';
 import Bid_seller from './Bid_seller';
@@ -25,14 +23,14 @@ const Product = () => {
    //State
    const [isLoading, setIsLoading] = useState(true);
    const [bidPlaced, setBidPlaced] = useState(null);
-      const [isBidPopOpen, setIsBidPopOpen] = useState({
+   const [isBidPopOpen, setIsBidPopOpen] = useState({
          open: false,
          edit: false,
          content: {
             price: "", desc: ""
          }
       });
-      const [productInfo, setProductInfo] = useState({});
+   const [productInfo, setProductInfo] = useState({});
 
    useEffect(() => {
       setIsLoading(true);
@@ -42,7 +40,6 @@ const Product = () => {
                setProductInfo(data);
                setBidPlaced(data.bids.findIndex(bid => bid.sellerId === state.id));
                setIsLoading(false);
-               console.log(data);
             }
          })
          .catch(e => console.log(e));
@@ -120,7 +117,17 @@ const Product = () => {
          category: productInfo.category,
          desc: productInfo.description,
          src: productInfo.image
-      })
+      });
+   }
+
+   const handleChatWithCustomer = () => {
+      history.push(`/inbox/`, {
+        customer: productInfo.customerId,
+        customerName: productInfo.customerName,
+        seller: state.id,
+        sellerName: state.name,
+        sellerLogo: state.logo? state.logo : null
+      });
    }
 
    return (
@@ -153,6 +160,7 @@ const Product = () => {
                   <span>Product Description</span>
                   <p>{productInfo.description}</p>
                </div>
+               <span>{`Posted By: ${productInfo.customerName}`}</span>
                
                   {
                      state.isSeller?
@@ -161,7 +169,7 @@ const Product = () => {
                         <span>+</span> 
                         PLACE BID
                      </button>
-                     <button>
+                     <button onClick={handleChatWithCustomer}>
                         <ChatIcon style={{fill: "#fff", width: '20px', marginRight: "10px"}} />
                         CHAT WITH CUSTOMER
                      </button>
@@ -194,7 +202,6 @@ const Product = () => {
 
          { (state.isSeller || state.id === productInfo.customerId) ? 
             <>
-            {console.log(state.id, productInfo.customerId)}
             <section className="product__sections">
                <h2>Other Seller Bids</h2>
                <div className="product__bids">

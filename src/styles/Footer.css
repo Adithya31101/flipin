@@ -1,7 +1,11 @@
 .footer__message {
     width: 80%;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    justify-content: space-between;
     margin: 5% auto;
-    padding: 50px;
+    padding: 10px 5rem;
     border-radius: 20px;
     box-shadow: 0 0 13.1px 4.9px rgba(102, 62, 170, 0.38);
 }
@@ -9,8 +13,12 @@
 .footer__message h1 {
     font-size: 56px;
     color: #663eaa;
-    display: inline-block;
     width: 37.2%;
+}
+
+.joinus__icon {
+    width: 250px;
+    height: 250px;
 }
 
 

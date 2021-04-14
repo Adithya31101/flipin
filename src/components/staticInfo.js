@@ -14,7 +14,7 @@ export const footerInfo = [{
     }],
 },{
     id: 2,
-    header: "pages",
+    header: "Pages",
     list: [{
         id: 1, name: "About", to: "/about",
     }, {

@@ -18,14 +18,17 @@ const validation = {
     }
     ,
     validateName: (name) => {
-        if(name === ''){
-            return 'Name cannot be empty!';
-        } else if (name.length < 6){
-            return 'Name must be greater than 6 letters';
-        } else if (name.length > 14){
-            return 'Name must be lesser than 14 letters';
+        const nameRegex = /^[A-Za-z]+$/;
+        if (name === "") {
+          return "Name cannot be empty!";
+        } else if (!nameRegex.test(name)) {
+          return "Name can only contain alphabets";
+        } else if (name.length < 2) {
+          return "Name must be greater than 6 letters";
+        } else if (name.length >= 19) {
+          return "Name must be lesser than 14 letters";
         } else {
-            return undefined;
+          return undefined;
         }   
     }
     ,
