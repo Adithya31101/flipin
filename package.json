@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && echo '/* /index.html 200' | cat > /opt/build/repo/build/_redirects",
+    "build": "react-scripts build",
     "deploy": "gh-pages -d build",
     "predeploy": "npm rum build",
     "test": "react-scripts test",
