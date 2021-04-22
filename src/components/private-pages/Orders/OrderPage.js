@@ -45,7 +45,7 @@ const OrderPage = () => {
 
    if(isLoading){
      return (
-       <div className="loader">
+       <div className="loader" style={{height: "90vh"}}>
           <CircularProgress />
         </div>
      );

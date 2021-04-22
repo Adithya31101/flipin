@@ -36,7 +36,7 @@ const BidDetails = (props) => {
           <LabelAmount label="Price" amount={`₹ ${props.price}`} />
           <LabelAmount label="Status" amount={props.status} isStatus={true} />
         </div>
-        <Link className="bid__viewlink" to={`/order/${props.oid}`}>
+        <Link className="bid__viewlink" to={`/orders/${props.id}`}>
           View
         </Link>
       </div>

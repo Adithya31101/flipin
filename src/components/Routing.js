@@ -17,6 +17,8 @@ import CreateListings from "./private-pages/Listings/CreateListings";
 import BrowseListings from "./private-pages/Listings/BrowseListings";
 import Product from "./private-pages/Product/Product";
 import Inbox from "./private-pages/Inbox/Inbox";
+import OrderDetails from "./private-pages/Orders/OrderDetails";
+import Invoice from "./private-pages/Invoice/Invoice";
 
 const Routing = () => {
   // eslint-disable-next-line
@@ -64,11 +66,17 @@ const Routing = () => {
               <Route path="/inbox">
                 <Inbox />
               </Route>
+              <Route path="/invoice/:id">
+                <Invoice />
+              </Route>
               <Route path="/home">
                 <Home />
               </Route>
-              <Route path="/orders">
+              <Route exact path="/orders">
                 <OrderPage />
+              </Route>
+              <Route path="/orders/:id">
+                <OrderDetails />
               </Route>
               <Route path="/profile">
                 <Profile />

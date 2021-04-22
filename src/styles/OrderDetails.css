@@ -1,0 +1,138 @@
+.sellerorder{
+   margin: 0 1.5em;
+}
+
+.product-page__information {
+   width: 100%;
+   display: flex;
+}
+
+.information-image-container {
+   width: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.information-image-container > img {
+   padding: 2rem;
+   width: 60%;
+}
+
+.information-text-container {
+   width: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.information-text-container .information-location,
+.information-text-container  .information-price,
+.informatiion-text-container  .information-status,
+.information-text-container  .information-name,
+.information-text-container  .information-lb,
+.information-text-container  .information-desc{
+   margin-top: 2rem;
+   margin-bottom: 2rem;
+   color: #000000
+}
+.information-text-container  .information-price p,
+.information-text-container  .information-status p,
+.information-text-container  .information-name p{
+   color: #ffb102;
+   font-weight: 800;
+   font-size: 1.3rem;
+   margin-top: 0;
+   margin-bottom: 0.2rem;
+}
+
+.information-text-container  .information-price p span,
+.information-text-container  .information-status p span,
+.information-text-container  .information-name p span{
+   color: #000;
+   margin-left: 1rem;
+   font-weight: 500;
+}
+
+.information-text-container > h1 {
+   margin-bottom: 20px;
+}
+
+.information-text-container div h1 {
+   font-size: 2.5rem;
+}
+
+.information-location {
+   display: flex;
+   align-items: center;
+   margin: 0!important;;
+}
+
+.information-location > svg {
+   margin-right: 10px;
+   height: 20px;
+}
+
+.information-location > h3 {
+   font-size: 22px;
+   margin-top: 0px;
+   margin-bottom: 0px;
+   font-weight: normal;
+}
+
+.status {
+   padding: 10px 15px;
+   font-size: 1rem;
+   font-weight: 600!important;
+   border-radius: 20px;
+   color: #fff!important;
+}
+
+.status.live { background-color: #23c82f; }
+.status.inactive { background-color: #ff1c1c; }
+
+.information-lb > h2 {
+   margin-bottom: 10px;
+}
+
+.information-lb > button{
+   padding: 12px 25px;
+   font-size: 1rem;
+   border-radius: 20px;
+   background-color: #ffb102;
+   margin-bottom: 1rem;
+   margin-top: 10px;
+   margin-right: 2rem;
+   font-weight: 600;
+   letter-spacing: 1px;
+   color: #fff;
+   border: none;
+   cursor: pointer;
+}
+.information-lb svg{
+   fill: #fff;
+    width: 20px;
+     margin-right: 10px;
+     margin-bottom: -5px;
+     height: 20px;
+
+}
+
+.information-lb > span:first-child {
+   margin: 0;
+}
+
+.information-desc h4{
+   font-weight: 600;
+   color: #ffb102;
+   letter-spacing: 1px;
+   font-size: 20px;
+   margin-top: 1rem;
+   margin-bottom: 1.5rem;
+}
+
+.information-desc > p {
+   font-size: 17px;
+   width: 80%;
+   text-align: justify;
+}

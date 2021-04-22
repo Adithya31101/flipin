@@ -10,7 +10,7 @@
    min-width: 20%;
    display: flex;
    flex-direction: column;
-   justify-content: center;
+   justify-content: space-between;
    align-items: center;
 }
 .dashboard__summary-profile {
@@ -26,7 +26,7 @@
 .dashboard__summary-inbox {
    overflow-y: scroll;
    position: relative;
-   max-height: 46vh;
+   height: 46vh;
 }
 
 .dashboard__summary-inbox h2 {

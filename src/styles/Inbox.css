@@ -154,7 +154,7 @@
 /* Chat Window */
 
 .chat__window {
-   height: 76%;
+   height: 75%;
    position: absolute;
    bottom: 13%;
    left: 0;
@@ -194,7 +194,12 @@
    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
+.message__img {
+   width: 200px;
+}
+
 /* Chat Input */
+
 .chat__input {
    position: absolute;
    width: 100%;

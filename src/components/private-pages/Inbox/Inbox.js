@@ -1,4 +1,4 @@
-import db from '../../../services/firebase';
+import { db, storage }  from '../../../services/firebase';
 import { useState, useContext, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { UserContext } from '../../Interface';
@@ -9,6 +9,7 @@ import Message from "./Message";
 import { AttachFileOutlined, SendRounded } from "@material-ui/icons";
 import { CircularProgress } from "@material-ui/core";
 import sortBy from 'lodash.sortby';
+
 
 const Inbox = () => {
    //Variables
@@ -24,6 +25,8 @@ const Inbox = () => {
    const [chatText, setChatText] = useState("");
    const [sendDisabled, setSendDisabled] = useState(true);
    const [messages, setMessages] = useState([]);
+   const [image, setImage] = useState(null);
+   const [src, setSrc] = useState("");
 
    useEffect(() => {
       let user = currentUser.isSeller ? "seller" : "customer";
@@ -86,6 +89,19 @@ const Inbox = () => {
       setSearchString(e.target.value);
    }
 
+   const handleImageChange = (e) => {
+     if(e.target.files[0]){
+       setImage(e.target.files[0]);
+       const reader = new FileReader();
+       reader.onload = () => {
+         if(reader.readyState === 2){
+           setSrc(reader.result);
+         }
+       }
+       reader.readAsDataURL(e.target.files[0]);
+     }
+   }
+
    const handleChatTextChange = (e) => {
       setChatText(e.target.value);
       if(e.target.value.trim() === ""){
@@ -95,17 +111,49 @@ const Inbox = () => {
       }
    }
 
-   const handleSend = () => {
-      db.collection('chat').add({
-         message: chatText,
-         chatroomID: chatDetails.id,
-         from: currentUser.id,
-         mediaURL: null,
-         postedAt: new Date()
-      }).then(res => {
-         console.log("Message sent successfully!");
-      })
-      setChatText("");
+   const handleSend = (e) => {
+      e.preventDefault();
+      if(image){
+         const uploadTask = storage.ref(`/images/${image.name}`).put(image);
+         uploadTask.on('state_changed', 
+            console.log,
+            console.error,
+            () => {
+               storage.ref('images').child(image.name).getDownloadURL()
+               .then(url => {
+                  db.collection("chat")
+                    .add({
+                      message: chatText,
+                      chatroomID: chatDetails.id,
+                      from: currentUser.id,
+                      mediaURL: url,
+                      postedAt: new Date(),
+                    })
+                    .then((res) => {
+                      console.log("Message sent successfully!");
+                    });
+                  setChatText("");
+                  setSrc("");
+                  setImage(null);
+               })
+               .catch(e => console.error(e));
+            }
+         );
+      } else {
+         db.collection("chat")
+           .add({
+             message: chatText,
+             chatroomID: chatDetails.id,
+             from: currentUser.id,
+             mediaURL: null,
+             postedAt: new Date(),
+           })
+           .then((res) => {
+             console.log("Message sent successfully!");
+           });
+         setChatText("");
+      }
+      
    }
 
    return (
@@ -151,7 +199,19 @@ const Inbox = () => {
                      }
                   </div>
                   <div className="chat__input">
-                     <AttachFileOutlined />
+                     {
+                        src && (
+                           <>
+                           <img src={src} alt="Image" style={{width: "50px"}}/>
+                           <span style={{cursor: "pointer", color: "red"}} onClick={()=>{
+                              setImage(null);
+                              setSrc("");
+                           }}>X</span>
+                           </>
+                        )
+                     }
+                     <label htmlFor="addImage"><AttachFileOutlined /></label>
+                     <input name="addImage" id="addImage" type="file" accept="image/*" hidden onChange={handleImageChange}/>
                      <input type="text" value={chatText} onChange={handleChatTextChange} />
                      <button disabled={sendDisabled} onClick={handleSend}>
                         <SendRounded />

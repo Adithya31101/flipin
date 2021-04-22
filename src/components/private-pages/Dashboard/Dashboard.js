@@ -8,21 +8,39 @@ import PhotoText from './PhotoText';
 import BidDetails from './BidDetails';
 import { authHeader } from '../../staticInfo';
 import { CircularProgress } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { db } from '../../../services/firebase';
 
 const Dashboard = () => {
    const {state} = useContext(UserContext);
 
-   const [isLoading, setLoading] = useState(true);
+   const [isLoading, setLoading] = useState("summary");
    const [data, setData] = useState({});
+   const [chats, setChats] = useState([]);
    
    useEffect(() => {
       axios.get("https://flipin-store-api.herokuapp.com/dashboard.php", authHeader)
       .then((res) => {
          if (res.data.responseCode === 200) {
            setData(res.data);
-           setLoading(false);
-         }
-      })
+           setLoading("inbox");
+           let user = state.isSeller ? "seller" : "customer";
+           db.collection("chatroom")
+              .where(user, "==", state.id)
+              .onSnapshot(({ docs }) => {
+                const a = docs.map((doc) => {
+                  const data = doc.data();
+                  return ({
+                    name: state.isSeller? data.customerName : data.sellerName,
+                    id: doc.id,
+                    logo: state.isSeller? null : data.sellerLogo,
+                  });
+                });
+                setChats(a);
+                setLoading(false);
+              });
+        }
+    })
       .catch(e => console.log(e));
    }, []);
    
@@ -30,7 +48,7 @@ const Dashboard = () => {
      <div className="dashboard">
        <div className="dashboard__summary">
          <section className="dashboard__summary-profile border">
-           {isLoading ? (
+           {isLoading === "summary" ? (
              <div className="loader" style={{ height: "30vh" }}>
                <CircularProgress />
              </div>
@@ -59,15 +77,19 @@ const Dashboard = () => {
              <h2 className="inbox-header">Inbox</h2>
              <div className="divider"></div>
            </div>
-           <PhotoText name="Customer name" />
-           <PhotoText name="Customer name" />
-           <PhotoText name="Customer name" />
-           <PhotoText name="Customer name" />
-           <PhotoText name="Customer name" />
-           <PhotoText name="Customer name" />
+           {isLoading === "inbox" || isLoading === "summary"? 
+            <div className="loader" style={{height: "46vh"}}>
+              <CircularProgress />
+            </div>
+            :
+            chats.map((chat) => (
+             <Link to="/inbox" key={chat.id} >
+               <PhotoText name={chat.name} src={chat.logo} />
+             </Link>
+           ))}
          </section>
        </div>
-       {isLoading ? (
+       {isLoading === "summary" ? (
          <div className="loader" style={{ height: "80vh" }}>
            <CircularProgress />
          </div>

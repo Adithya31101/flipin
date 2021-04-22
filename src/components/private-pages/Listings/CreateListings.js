@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { LinearProgress, Snackbar, Tooltip } from '@material-ui/core';
+import { CircularProgress, LinearProgress, Snackbar, Tooltip } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
@@ -78,6 +78,17 @@ const CreateListings = (props) => {
        }
        reader.readAsDataURL(e.target.files[0]);
      }
+   }
+
+   const handleSendRequest = (e) => {
+     e.preventDefault();
+     axios
+       .post("http://localhost:5000/classify", {
+         Link:
+           "https://www.byrdie.com/thmb/E6bUS3-TU2v8wmY_Ps2tbZiWVLU=/fit-in/2000x2000/filters:no_upscale():max_bytes(150000):strip_icc()/CharlotteTilbury1-5c2faa98c9e77c0001d727c7.jpg",
+       })
+       .then((res) => console.log(res.data))
+       .catch((e) => console.error(e));
    }
 
    const handleName = (e) => {
@@ -261,6 +272,7 @@ const CreateListings = (props) => {
                </label>
              </div>
            </div>
+           <button onClick={handleSendRequest}>Send Request</button>
            <Snackbar
              open={Toast.open}
              autoHideDuration={5000}
@@ -276,7 +288,12 @@ const CreateListings = (props) => {
            )}
 
            <div className="create__form-submit">
-             {loading && <button onClick={handleSubmit}>Submit</button>}
+             {loading? 
+             <div className="loader">
+               <CircularProgress />
+             </div>
+             :
+             <button onClick={handleSubmit}>Submit</button>}
            </div>
          </form>
        </div>

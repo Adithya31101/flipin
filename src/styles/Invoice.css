@@ -1,0 +1,94 @@
+.bill_container {
+   padding: 2rem 12rem;
+   width: 80%;
+   margin: 0 auto;
+}
+
+.bill_print {
+   border: none;
+   background-color: #553985;
+   padding: 20px 40px;
+   margin: 3rem 0;
+   color: #fff;
+   border-radius: 1.8rem;
+   font-size: 20px;
+   letter-spacing: 1px;
+}
+
+.bill_details {
+   padding: 7rem;
+   padding-bottom: 20px;
+   border-radius: 10px;
+   box-shadow: 0 0 16.2px 1.8px rgba(102, 62, 170, 0.34);
+}
+
+.bill_date-logo {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.bill_date-logo > img {
+   width: 150px;
+   margin-right: 4rem;
+}
+.bill_date-logo > span {
+   font-size: 20px;
+   font-weight: bold;
+}
+
+.bill_info {
+   margin: 3rem 0;
+   display: flex;
+   align-items: center;
+}
+.bill_info .address {
+   width: 100%;
+}
+.bill_info .address > h4 {
+   font-size: 1.5rem;
+   font-weight: bolder;
+}
+.bill_info .address > div {
+   display: flex;
+   flex-direction: column;
+   font-size: 1.4rem;
+}
+
+.bill_particulars {
+   margin: 5rem 0;
+   width: 100%;   
+}
+.particulars_row {
+   margin: 0.8rem;
+   font-size: 1.3rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   
+}
+
+.particulars_row > span:nth-child(1) {
+   width: 30%;
+   text-align: left;
+}
+
+.particulars_row > span:nth-child(2) {
+   width: 15%;
+   text-align: center;
+}
+
+.particulars_row > span:nth-child(3) {
+   width: 25%;
+   text-align: center;
+}
+
+.particulars_row > span:nth-child(4) {
+   width: 25%;
+   text-align: right;
+}
+
+.bill_footer {
+   width: 100%;
+   margin-top: 9rem;
+   text-align: right;
+}
