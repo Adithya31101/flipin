@@ -20,7 +20,7 @@ const Shop = () => {
   });
 
   useEffect(() => {
-    axios.get("https://flipin-store-api.herokuapp.com/shop.php", authHeader)
+    axios.get("https://flipin-store-api.herokuapp.com/listings.php", authHeader)
       .then(({ data }) => {
         setDisplayArray(data);
         setisLoading(false);
