@@ -22,8 +22,10 @@ const Shop = () => {
   useEffect(() => {
     axios.get("https://flipin-store-api.herokuapp.com/listings.php", authHeader)
       .then(({ data }) => {
-        setDisplayArray(data);
-        setisLoading(false);
+        if(data.responseCode === 200){
+          setDisplayArray(data.products);
+          setisLoading(false);
+        }
       })
       .catch((e) => console.log(e));
   }, []);
@@ -39,23 +41,18 @@ const Shop = () => {
       <div className="main">
         <h2>Browse Listings</h2>
         <div className="main__details">
-          <span>{`${20} new products`}</span>
+          <span>{`${displayArray.length } new products`}</span>
           <div className="main__details-sort browse__listings">
             <span>SORT BY: </span>
             <span>{filterVar.sort}</span>
             <Arrow onClick={() => setSortOpen((prev) => !prev)} />
-            <div
-              className={sortOpen ? "sort__dropdown open" : "sort__dropdown"}
-            >
+            <div className={sortOpen ? "sort__dropdown open" : "sort__dropdown"}>
               <ul>
                 {sortType.map((item) =>
                   item.type === "Categories" ? (
                     <></>
                   ) : (
-                    <li
-                      key={item.id}
-                      onClick={() => handleSortChange(item.type, item.id)}
-                    >
+                    <li key={item.id} onClick={() => handleSortChange(item.type, item.id)}>
                       {item.type}
                     </li>
                   )
@@ -66,7 +63,7 @@ const Shop = () => {
         </div>
       </div>
       {isLoading ? (
-        <div className="loader">
+        <div className="loader" style={{height: '40vh'}}>
           <CircularProgress />
         </div>
       ) : (

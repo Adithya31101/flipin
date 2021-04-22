@@ -10,11 +10,13 @@ import validations from "../../../helperFunctions/validation";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import MuiAlert from "@material-ui/lab/Alert";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import { useLocation } from "react-router";
 
 
 const Profile = () => {
    //Init Variables
    const {state, dispatch} = useContext(UserContext);
+   const { state: stateFromPush } = useLocation();
    
    //State
    const [user, setUser] = useState({});
@@ -49,6 +51,9 @@ const Profile = () => {
 
    //Use Effects
    useEffect(()=>{
+      if (stateFromPush && stateFromPush.needsRefresh) {
+        window.location.reload();
+      }
       if(!state.hasAddress){
          setPopupOpen(true);
       }
@@ -140,7 +145,10 @@ const Profile = () => {
               if (res.data.responseCode === 204) {
                 console.log(res.data);
                 dispatch({ type: "ADDRESS", payload: {...state, hasAddress: true}});
-                localStorage.setItem("user", JSON.stringify(state));
+                localStorage.setItem(
+                  "user",
+                  JSON.stringify({ ...state, hasAddress: true })
+                );
                 setLoading(false);
               }
             })
@@ -172,7 +180,10 @@ const Profile = () => {
                type: "ADDRESS",
                payload: { ...state, hasAddress: true },
              });
-             localStorage.setItem("user", JSON.stringify(state));
+             localStorage.setItem(
+               "user",
+               JSON.stringify({ ...state, hasAddress: true })
+             );
              setLoading(false);
            }
          })
@@ -190,7 +201,10 @@ const Profile = () => {
                 type: "ADDRESS",
                 payload: { ...state, hasAddress: true },
               });
-              localStorage.setItem("user", JSON.stringify(state));
+              localStorage.setItem(
+                "user",
+                JSON.stringify({ ...state, hasAddress: true })
+              );
             }
           })
           .catch((e) => console.log(e));

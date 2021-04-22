@@ -74,11 +74,10 @@
 
 .seller__button-submit {
   border-radius: 20px;
-  padding: 15px 50px;
+  padding: 10px 50px;
   background-color: #663eaa;
   font-size: 24px;
   font-weight: 800;
-  line-height: 0.63;
   color: #fefefe;
   text-transform: uppercase;
   border: none;
@@ -92,9 +91,9 @@
 .seller__submit-container {
   margin-top: 2rem;
     display: flex;
-    align-items: center;
     justify-content: center;
     grid-column: 1 / -1;
+    margin-right: -5rem;
 }
 
 .seller__head {
@@ -157,10 +156,10 @@
   background-color: #553985;
   color: #fefefe;
   border-radius: 23.5px;
-  padding: 5px 10px;
+  padding: 10px 15px;
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   margin-bottom: 4rem;
   margin-left: 10rem;
@@ -177,8 +176,10 @@
   color: #ffffff;
   border-radius: 15px;
   text-transform: uppercase;
-  padding: 2px 10px;
-  font-size: 0.8em;
+  padding: 5px 10px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .seller__premium {

@@ -56,8 +56,18 @@ const Login = () => {
                     localStorage.setItem("jwt",data.jwt);
                     localStorage.setItem("user",JSON.stringify(data.user));
                     data.user.hasAddress
-                      ? window.location = "/dashboard"
-                      : window.location = "/profile"
+                      ? history.push({
+                          pathname: "/dashboard",
+                          state: {
+                            needsRefresh: true,
+                          },
+                        })
+                      : history.push({
+                          pathname: "/profile",
+                          state: {
+                            needsRefresh: true,
+                          },
+                        });
                     dispatch({type: "USER", payload: data.user });
                 } else if(data.responseCode === 422) {
                     setError({

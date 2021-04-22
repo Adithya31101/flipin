@@ -110,13 +110,16 @@ const Product = () => {
    }
    
    const handleEditListing = () => {
-      history.push('/create', {
+      history.push({
+         pathname: '/create',
+         state: {
          edit: true,
          pId: id,
          name: productInfo.name,
          category: productInfo.category,
          desc: productInfo.description,
          src: productInfo.image
+         }
       });
    }
 

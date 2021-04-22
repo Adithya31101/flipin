@@ -8,17 +8,20 @@ import PhotoText from './PhotoText';
 import BidDetails from './BidDetails';
 import { authHeader } from '../../staticInfo';
 import { CircularProgress } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { db } from '../../../services/firebase';
 
 const Dashboard = () => {
    const {state} = useContext(UserContext);
-
+   const {state: stateFromPush} = useLocation();
    const [isLoading, setLoading] = useState("summary");
    const [data, setData] = useState({});
    const [chats, setChats] = useState([]);
    
    useEffect(() => {
+      if(stateFromPush && stateFromPush.needsRefresh){
+        window.location.reload();
+      }
       axios.get("https://flipin-store-api.herokuapp.com/dashboard.php", authHeader)
       .then((res) => {
          if (res.data.responseCode === 200) {
