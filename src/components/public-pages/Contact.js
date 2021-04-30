@@ -34,7 +34,7 @@ const Contact = () => {
         e.preventDefault();
         if(validation.noError(error)){
           setLoading(true);
-          axios.post("https://flipin-store-api.herokuapp.com/contact.php", {
+          axios.post("https://flipin-store.herokuapp.com/contact.php", {
             email,
             name,
             message: queryRef.current.value,

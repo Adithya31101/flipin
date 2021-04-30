@@ -118,8 +118,9 @@
    font-weight: 600;
 }
 
-.product-page__info-buttons > button:first-child:disabled {
-   background-color: #787878a2;
+button:disabled, .product-page__info-buttons > button:first-child:disabled {
+   background-color: #787878a2 !important;
+   cursor: not-allowed !important;
 }
 
 .bid__input {

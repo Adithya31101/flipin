@@ -19,6 +19,7 @@ import Product from "./private-pages/Product/Product";
 import Inbox from "./private-pages/Inbox/Inbox";
 import OrderDetails from "./private-pages/Orders/OrderDetails";
 import Invoice from "./private-pages/Invoice/Invoice";
+import PremiumPage from "./public-pages/PremiumPage";
 
 const Routing = () => {
   // eslint-disable-next-line
@@ -38,7 +39,13 @@ const Routing = () => {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/shop">
+      <Route exact path="/shop">
+        <Shop />
+      </Route>
+      <Route exact path="/get-premium">
+        <PremiumPage />
+      </Route>
+      <Route path="/shop/:category">
         <Shop />
       </Route>
       <Route path="/about">

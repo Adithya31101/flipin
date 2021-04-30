@@ -45,7 +45,7 @@ const Login = () => {
         ));
         if(error.email === undefined && error.password === undefined){
             setLoading(true);
-            axios.post('https://flipin-store-api.herokuapp.com/login.php', {
+            axios.post('https://flipin-store.herokuapp.com/login.php', {
               email,
               password,
             })

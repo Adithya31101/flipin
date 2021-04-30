@@ -47,7 +47,7 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(validations.noError(error)){
-            axios.post('https://flipin-store-api.herokuapp.com/signup.php',{
+            axios.post('https://flipin-store.herokuapp.com/signup.php',{
                 isSeller,
                 name, 
                 email, 

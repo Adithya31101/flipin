@@ -1,15 +1,33 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { getAvatar } from "../../../helperFunctions/misc";
 import { ReactComponent as Arrow } from "../../../images/arrow.svg";
 import { ReactComponent as ChatIcon } from "../../../images/chat.svg";
 import { ReactComponent as BoxIcon } from "../../../images/ebox.svg";
 import { useHistory } from "react-router";
+import { UserContext } from "../../Interface";
 
 const Bid = (props) => {
+  const {state} = useContext(UserContext);
   const [expanded, setExpanded] = useState(false);
+  
    const history = useHistory();
    const handleChatWithSeller = () => {
-      history.push("/inbox");
+      history.push({
+        pathname: "/inbox",
+        state: {
+          customer: state.id,
+          customerName: state.name,
+          seller: props.sellerId,
+          sellerName: props.name,
+          sellerLogo: props.logo,
+        },
+      });
+   }
+   const handlePlaceOrder = () => {
+     props.setAcceptBidOpen({
+       open: true,
+       sellerId: props.sellerId,
+     });
    }
   
   return (
@@ -40,7 +58,7 @@ const Bid = (props) => {
               />
               CHAT WITH SELLER
             </button>
-            <button onClick={handleChatWithSeller}>
+            <button disabled={!props.active} onClick={handlePlaceOrder}>
               <BoxIcon
                 style={{ fill: "#fff", width: "20px", marginRight: "10px" }}
               />

@@ -48,7 +48,7 @@ const BidInput = (props) => {
    const handleSubmit = (e) => {
       e.preventDefault();
       if(validation.noError(error)){
-         axios.post("https://flipin-store-api.herokuapp.com/bid.php", {
+         axios.post("https://flipin-store.herokuapp.com/bid.php", {
             pid: props.pid,   
             price,
             desc

@@ -2,6 +2,25 @@
    margin: 0 1.5em;
 }
 
+.rating .MuiSvgIcon-root,.MuiRating-icon,.MuiRating-root {
+   font-size: 3rem !important;
+} 
+
+.rating {
+   display: flex;
+   flex-direction: column;
+   justify-content: left;
+   margin: 0 2rem;
+}
+
+.rating textarea {
+   resize: none;
+   display: block;
+   font-family: Raleway;
+   font-size: 1rem;
+   padding: 10px;
+}
+
 .product-page__information {
    width: 100%;
    display: flex;
@@ -54,12 +73,31 @@
    font-weight: 500;
 }
 
-.information-text-container > h1 {
-   margin-bottom: 20px;
+
+.information-text-container div h1 > a {
+   display: inline-flex;
+   align-items: center;
+   font-weight: 600;
+   text-transform: uppercase;
+   font-family: Ubuntu;
+   background-color: #ffb102;
+   color: #fff;
+   border-radius: 20px;
+   padding: 5px 20px;
+   font-size: 1rem;
+   height: 40px;
+}
+
+.information-text-container div h1 > a .MuiSvgIcon-root {
+   width: 20px;
+   height: 20px;
 }
 
 .information-text-container div h1 {
    font-size: 2.5rem;
+   margin-bottom: 20px;
+   display: flex;
+   justify-content: space-between;
 }
 
 .information-location {
@@ -95,7 +133,7 @@
    margin-bottom: 10px;
 }
 
-.information-lb > button{
+.information-lb > button, .feedback_button, .rating button, .update_order .submit {
    padding: 12px 25px;
    font-size: 1rem;
    border-radius: 20px;
@@ -135,4 +173,26 @@
    font-size: 17px;
    width: 80%;
    text-align: justify;
+}
+
+.update_order input, .update_order select {
+   width: 60%;
+}
+
+.update_order input[type=date]{
+   padding: 5px;
+   font-family: Ubuntu;
+   font-size: 1rem;
+}
+
+.update_order input[type=date]:focus {
+   outline: .5px #787878 solid;
+}
+
+.update_order .submit, .feedback_button {
+   margin-top: 2rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 7.5px 25px;
 }

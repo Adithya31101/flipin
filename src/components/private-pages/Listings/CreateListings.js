@@ -24,6 +24,7 @@ const CreateListings = (props) => {
    const [Toast, setToast] = useState({
      open: false, severity: "", text: "" 
    });
+   const [cloudUrl, setCloudUrl] = useState("");
    const [src, setSrc] = useState('');
    const [image, setImage] = useState('');
    const [name, setName] = useState('');
@@ -43,6 +44,7 @@ const CreateListings = (props) => {
         desc.current.value = stateFromPush.desc;
         setSrc(stateFromPush.src);
         setCat(stateFromPush.category);
+        setCloudUrl(stateFromPush.src);
       }
    }, []);
 
@@ -82,12 +84,17 @@ const CreateListings = (props) => {
 
    const handleSendRequest = (e) => {
      e.preventDefault();
-     axios
-       .post("http://localhost:5000/classify", {
-         Link:
-           "https://www.byrdie.com/thmb/E6bUS3-TU2v8wmY_Ps2tbZiWVLU=/fit-in/2000x2000/filters:no_upscale():max_bytes(150000):strip_icc()/CharlotteTilbury1-5c2faa98c9e77c0001d727c7.jpg",
+     console.log(cloudUrl);
+     axios.post("http://localhost:5000/classify", { Link: cloudUrl })
+       .then((res) => {
+         if(res.data.responseCode === 200 && res.data.value !== cat){
+           setToast({
+             open: true,
+             severity: "error",
+             text: "The image does not match the category! (Suggested Category: " + res.data.value + ")",
+           })
+         }
        })
-       .then((res) => console.log(res.data))
        .catch((e) => console.error(e));
    }
 
@@ -129,7 +136,7 @@ const CreateListings = (props) => {
           mediaUrl: src,
         };
         console.log(stateFromPush);
-        axios.post("https://flipin-store-api.herokuapp.com/editproduct.php", post, authHeader)
+        axios.post("https://flipin-store.herokuapp.com/editproduct.php", post, authHeader)
           .then((res) => {
             if (res.data.responseCode === 204) {
               setLoading(false);
@@ -157,7 +164,7 @@ const CreateListings = (props) => {
               category: cat,
               mediaUrl: url,
             };
-            axios.post("https://flipin-store-api.herokuapp.com/productpost.php", post, authHeader)
+            axios.post("https://flipin-store.herokuapp.com/productpost.php", post, authHeader)
               .then((res) => {
                 if (res.data.responseCode === 201) {
                   setName("");

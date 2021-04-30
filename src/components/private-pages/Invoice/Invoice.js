@@ -14,7 +14,7 @@ const Invoice = () => {
    const [isLoading, setIsLoading] = useState(true);
 
    useEffect(() => {
-     axios.post("https://flipin-store-api.herokuapp.com/billing.php",{ oid: id },authHeader)
+     axios.post("https://flipin-store.herokuapp.com/billing.php",{ oid: id },authHeader)
        .then((res) => {
          setBill(res.data);
          setIsLoading(false);

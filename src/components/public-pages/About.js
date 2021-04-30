@@ -61,11 +61,7 @@ const About = () => {
             <TeamMember name="Adithya S" regno="1941005" src={adithya} />
             <TeamMember name="Arpit Chandak" regno="1941011" src={arpit} />
             <TeamMember name="Ayush Jain" regno="1941014" src={ayush} />
-            <TeamMember
-              name="Yashika Lakhamani"
-              regno="1941067"
-              src={yashika}
-            />
+            <TeamMember name="Yashika Lakhmani" regno="1941067" src={yashika} />
           </div>
         </div>
       </div>

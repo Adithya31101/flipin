@@ -79,26 +79,27 @@ body::-webkit-scrollbar-thumb {
     height: 100vh;
     z-index: 1;
     background-color: #474a4d6b;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     left: 0;
     top: 0;
     width: 100vw;
 }
 
+.popup {
+    align-items: center;
+    justify-content: center;
+}
 
 .popup__message {
     position: fixed;
-    left: 40%;
-    top: 27%;
+    top: 50%;
     transition: transform ease-in-out 300ms;
     background-color: #fff;
     padding: 2em 2em;
     color: #121212;
     border-radius: 10px;
     animation: popup 300ms ease-in-out;
+    transform: translateY(-50%);
     z-index: 2;
 }
 
@@ -129,12 +130,15 @@ input:focus {
 
 @keyframes popup {
     0% {
-        transform: scale(0)
+        transform: scale(0) translateY(0%);
+        opacity: 0.1;
     }
     80% {
-        transform: scale(1.1);
+        transform: scale(1.1) translateY(-35%);
+        opacity: 0.8;
     }
     100% {
-        transform: scale(1);
+        transform: scale(1) translateY(-50%);
+        opacity: 1;
     }
 }

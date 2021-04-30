@@ -9,11 +9,11 @@
    position: sticky;
 }
 
-.shop__menu > span {
+.shop__menu > a {
    margin-left: 30px;
 }
 
-.shop__menu > span, .shop__menu-category > span {
+.shop__menu > a, .shop__menu-category > span {
    font-size: 12px;
    font-weight: 800;
    letter-spacing: 0.48px;

@@ -14,7 +14,7 @@ const OrderPage = () => {
    const [data, setData] = useState({});
 
    useEffect(() => {
-      axios.get("https://flipin-store-api.herokuapp.com/order.php", authHeader)
+      axios.get("https://flipin-store.herokuapp.com/order.php", authHeader)
       .then(res => {
          setData(res.data);
          setOrders(res.data.orders.filter(o => o.status !== "COMPLETE"));

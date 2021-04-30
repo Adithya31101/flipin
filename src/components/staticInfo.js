@@ -2,15 +2,15 @@ export const footerInfo = [{
     id: 1,
     header: "Categories",
     list: [{
-        id: 1, name: "Accessories", to: "/shop"
+        id: 1, name: "Accessories", to: "/shop/accessories"
     }, {
-        id: 2, name: "Jewellery", to: "/shop"
+        id: 2, name: "Jewellery", to: "/shop/jewellery"
     }, {
-        id: 3, name: "Cosmetics", to: "/shop"
+        id: 3, name: "Cosmetics", to: "/shop/cosmetics"
     }, {
-        id: 4, name: "Clothing", to: "/shop"
+        id: 4, name: "Clothing", to: "/shop/clothing"
     }, {
-        id: 5, name: "Furniture", to: "/shop"
+        id: 5, name: "Furniture", to: "/shop/furniture"
     }],
 },{
     id: 2,
@@ -18,7 +18,7 @@ export const footerInfo = [{
     list: [{
         id: 1, name: "About", to: "/about",
     }, {
-        id: 2, name: "Shop", to: "/shop"
+        id: 2, name: "Shop", to: "/shop/all"
     }, {
         id: 3, name: "Log in", to: "/login"
     }, {

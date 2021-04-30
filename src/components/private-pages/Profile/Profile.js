@@ -57,7 +57,7 @@ const Profile = () => {
       if(!state.hasAddress){
          setPopupOpen(true);
       }
-      axios.get("https://flipin-store-api.herokuapp.com/getprofile.php", authHeader)
+      axios.get("https://flipin-store.herokuapp.com/getprofile.php", authHeader)
         .then(({ data: {user},data }) => {
           if (data.responseCode === 200) {
             setUser(data.user);
@@ -132,7 +132,7 @@ const Profile = () => {
      if (validations.noError(error)) {
        setLoading("submit");
         if (!state.isSeller) {
-          axios.post("https://flipin-store-api.herokuapp.com/setprofile.php", {
+          axios.post("https://flipin-store.herokuapp.com/setprofile.php", {
               phoneNumber: phone,
               firstLineAddress: addressLineOne,
               secondLineAddress: addressLineTwo,
@@ -143,7 +143,6 @@ const Profile = () => {
           }, authHeader)
             .then((res) => {
               if (res.data.responseCode === 204) {
-                console.log(res.data);
                 dispatch({ type: "ADDRESS", payload: {...state, hasAddress: true}});
                 localStorage.setItem(
                   "user",
@@ -172,7 +171,7 @@ const Profile = () => {
        };
        console.log(user);
        if(user.logo === src){
-         axios.post("https://flipin-store-api.herokuapp.com/setprofile.php", userFromInput, authHeader)
+         axios.post("https://flipin-store.herokuapp.com/setprofile.php", userFromInput, authHeader)
          .then((res) => {
            if (res.data.responseCode === 204) {
              console.log(res.data);
@@ -192,7 +191,7 @@ const Profile = () => {
          axios.post("https://api.cloudinary.com/v1_1/flipin/image/upload", data)
         .then(({ data: {secure_url: url} }) => {
           userFromInput.logo = url;
-          axios.post("https://flipin-store-api.herokuapp.com/setprofile.php", userFromInput, authHeader)
+          axios.post("https://flipin-store.herokuapp.com/setprofile.php", userFromInput, authHeader)
           .then((res) => {
             if (res.data.responseCode === 204) {
               console.log(res.data);

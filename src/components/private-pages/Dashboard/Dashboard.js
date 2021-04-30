@@ -22,26 +22,26 @@ const Dashboard = () => {
       if(stateFromPush && stateFromPush.needsRefresh){
         window.location.reload();
       }
-      axios.get("https://flipin-store-api.herokuapp.com/dashboard.php", authHeader)
+      axios.get("https://flipin-store.herokuapp.com/dashboard.php", authHeader)
       .then((res) => {
-         if (res.data.responseCode === 200) {
-           setData(res.data);
-           setLoading("inbox");
-           let user = state.isSeller ? "seller" : "customer";
-           db.collection("chatroom")
-              .where(user, "==", state.id)
-              .onSnapshot(({ docs }) => {
-                const a = docs.map((doc) => {
-                  const data = doc.data();
-                  return ({
-                    name: state.isSeller? data.customerName : data.sellerName,
-                    id: doc.id,
-                    logo: state.isSeller? null : data.sellerLogo,
-                  });
+        if (res.data.responseCode === 200) {
+          setData(res.data);
+          setLoading("inbox");
+          let user = state.isSeller ? "seller" : "customer";
+          db.collection("chatroom")
+            .where(user, "==", state.id)
+            .onSnapshot(({ docs }) => {
+              const a = docs.map((doc) => {
+                const data = doc.data();
+                return ({
+                  name: state.isSeller? data.customerName : data.sellerName,
+                  id: doc.id,
+                  logo: state.isSeller? null : data.sellerLogo,
                 });
-                setChats(a);
-                setLoading(false);
               });
+              setChats(a);
+              setLoading(false);
+            });
         }
     })
       .catch(e => console.log(e));

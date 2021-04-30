@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 //Relative imports
 import { ReactComponent as Arrow } from '../../images/arrow.svg';
 import Post from './Post';
@@ -8,8 +7,12 @@ import { filterAndSort } from '../../helperFunctions/filter';
 import { categories, sortType } from '../staticInfo';
 import axios from 'axios';
 import { CircularProgress } from '@material-ui/core';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
+  const { category: categoryFromUrl } = useParams();
+  console.log(categoryFromUrl);
     const [isLoading, setisLoading] = useState(true);
     const [categoryOpen, setCategoryOpen] = useState(false);
     const [itemsArray, setItemsArray] = useState([]);
@@ -21,7 +24,8 @@ const Shop = () => {
     });
 
     useEffect(() => {
-        axios.get("https://flipin-store-api.herokuapp.com/shop.php")
+      //Post method with a json which sends the categoryFromUrl
+        axios.get("https://flipin-store.herokuapp.com/shop.php")
         .then(({data}) => {
             setItemsArray(data);
             setDisplayArray(data);
@@ -68,9 +72,9 @@ const Shop = () => {
               ))}
             </ul>
           </div>
-          <span>Furniture</span>
-          <span>Clothing</span>
-          <span>Jewellery</span>
+          <Link to="/shop/furniture">Furniture</Link >
+          <Link to="/shop/clothing">Clothing</Link >
+          <Link to="/shop/jewellery">Jewellery</Link >
         </div>
         <div className="main">
           <h2>Shop</h2>

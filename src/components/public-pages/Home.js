@@ -116,7 +116,7 @@ const Home = () => {
             <Category src={accessories} title="Accessories" />
           </div>
         </div>
-        <div class="marketing__container">
+        <div className="marketing__container">
           <div className="marketing">
             <h2 className="marketing__header">What is different about us?</h2>
             <Difference title="Customer-Centric">
