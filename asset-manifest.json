@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/flipin/static/css/main.517c85e4.chunk.css",
-    "main.js": "/flipin/static/js/main.73f9c1c8.chunk.js",
-    "main.js.map": "/flipin/static/js/main.73f9c1c8.chunk.js.map",
+    "main.css": "/flipin/static/css/main.ee14d274.chunk.css",
+    "main.js": "/flipin/static/js/main.3fde83f7.chunk.js",
+    "main.js.map": "/flipin/static/js/main.3fde83f7.chunk.js.map",
     "runtime-main.js": "/flipin/static/js/runtime-main.56466d14.js",
     "runtime-main.js.map": "/flipin/static/js/runtime-main.56466d14.js.map",
-    "static/js/2.5793271c.chunk.js": "/flipin/static/js/2.5793271c.chunk.js",
-    "static/js/2.5793271c.chunk.js.map": "/flipin/static/js/2.5793271c.chunk.js.map",
+    "static/js/2.4c0965ff.chunk.js": "/flipin/static/js/2.4c0965ff.chunk.js",
+    "static/js/2.4c0965ff.chunk.js.map": "/flipin/static/js/2.4c0965ff.chunk.js.map",
     "index.html": "/flipin/index.html",
-    "static/css/main.517c85e4.chunk.css.map": "/flipin/static/css/main.517c85e4.chunk.css.map",
-    "static/js/2.5793271c.chunk.js.LICENSE.txt": "/flipin/static/js/2.5793271c.chunk.js.LICENSE.txt",
+    "static/css/main.ee14d274.chunk.css.map": "/flipin/static/css/main.ee14d274.chunk.css.map",
+    "static/js/2.4c0965ff.chunk.js.LICENSE.txt": "/flipin/static/js/2.4c0965ff.chunk.js.LICENSE.txt",
     "static/media/accessories.5f320723.png": "/flipin/static/media/accessories.5f320723.png",
     "static/media/adithya.7fcfd92a.png": "/flipin/static/media/adithya.7fcfd92a.png",
     "static/media/arpit.1b4fc98b.png": "/flipin/static/media/arpit.1b4fc98b.png",
@@ -37,14 +37,15 @@
     "static/media/pin.15be0fed.svg": "/flipin/static/media/pin.15be0fed.svg",
     "static/media/rupee.9d0b92dc.svg": "/flipin/static/media/rupee.9d0b92dc.svg",
     "static/media/search.0666018a.svg": "/flipin/static/media/search.0666018a.svg",
+    "static/media/shape.20ffe0ac.svg": "/flipin/static/media/shape.20ffe0ac.svg",
     "static/media/tick.caae2f5b.svg": "/flipin/static/media/tick.caae2f5b.svg",
     "static/media/twitter.da0017b6.svg": "/flipin/static/media/twitter.da0017b6.svg",
     "static/media/yashika.a804e0ef.png": "/flipin/static/media/yashika.a804e0ef.png"
   },
   "entrypoints": [
     "static/js/runtime-main.56466d14.js",
-    "static/js/2.5793271c.chunk.js",
-    "static/css/main.517c85e4.chunk.css",
-    "static/js/main.73f9c1c8.chunk.js"
+    "static/js/2.4c0965ff.chunk.js",
+    "static/css/main.ee14d274.chunk.css",
+    "static/js/main.3fde83f7.chunk.js"
   ]
 }
