@@ -86,7 +86,7 @@ const Product = () => {
          let updatedBids = productInfo.bids;
          updatedBids.push({
             sellerId: state.id,
-            logo: "",
+            logo: state.url, 
             sellerName: state.name,
             amount: update.price,
             description: update.desc

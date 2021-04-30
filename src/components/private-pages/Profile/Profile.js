@@ -314,9 +314,15 @@ const Profile = () => {
                {state.isSeller && (
                  <div>
                    <h2 className="seller__membership">Membership</h2>
-                   <span onClick={()=>history.push('/get-premium')}
-                     className={user.premiumMember? "seller__premium": "seller__regular"}>
-                     {user.premiumMember ? "Premium" : "Regular"}
+                   <span
+                     onClick={() => history.push("/get-premium")}
+                     className={
+                       user.premiumMember === "YES"
+                         ? "seller__premium"
+                         : "seller__regular"
+                     }
+                   >
+                     {user.premiumMember === "YES" ? "Premium" : "Regular"}
                    </span>
                    <p></p>
                  </div>
@@ -350,7 +356,13 @@ const Profile = () => {
                          <span className="upload">Upload Picture</span>
                        </div>
                      </label>
-                     <input type="file" id="file-upload" hidden />
+                     <input
+                       type="file"
+                       id="file-upload"
+                       hidden
+                       accept="image/*"
+                       onChange={handelImageChange}
+                     />
                    </>
                  ))}
 
@@ -509,14 +521,13 @@ const Profile = () => {
                  </div>
 
                  <div className="seller__submit-container">
-                     <button
-                       disabled={loading === "submit"}
-                       onClick={handleSubmit}
-                       className="seller__button-submit"
-                     >
-                       SUBMIT
-                     </button>
-                   
+                   <button
+                     disabled={loading === "submit"}
+                     onClick={handleSubmit}
+                     className="seller__button-submit"
+                   >
+                     SUBMIT
+                   </button>
                  </div>
                </form>
              </div>

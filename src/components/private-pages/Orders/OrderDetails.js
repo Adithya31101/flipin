@@ -189,7 +189,8 @@ const OrderDetails = () => {
               </div>
               {state.isSeller ? (
                 <div className="information-lb">
-                  <button disabled={orderInfo.status === "OUT FOR DELIVERY"} onClick={() => setOpenEditOrder(true)}>
+                  <button disabled={orderInfo.status === "DELIVERED" || orderInfo.status === "COMPLETE"} 
+                  onClick={() => setOpenEditOrder(true)}>
                     <BoxIcon />
                     UPDATE ORDER STATUS
                   </button>
@@ -201,7 +202,7 @@ const OrderDetails = () => {
                 </div>
               ) : (
                 <div className="information-lb">
-                  <button disabled={orderInfo.status === "COMPLETE"} onClick={() => setOpenConfirmation(true)}>
+                  <button disabled={orderInfo.status === "COMPLETE" } onClick={() => setOpenConfirmation(true)}>
                     <TickIcon />
                     MARK THE ORDER COMPLETE
                   </button>

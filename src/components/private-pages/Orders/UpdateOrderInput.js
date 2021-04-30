@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import "../../../styles/OrderDetails.css";
 import { authHeader } from "../../staticInfo";
+import {ReactComponent as Arrow} from '../../../images/arrow.svg';
 
 const UpdateOrderInput = (props) => {
    const statusOptions = [
@@ -10,6 +11,7 @@ const UpdateOrderInput = (props) => {
    "PACKED",
    "SHIPPED",
    "OUT FOR DELIVERY",
+   "DELIVERED",
    ];
    //new Date().toISOString().substring(0,10)
    const currentStatus = statusOptions.indexOf(props.status);
@@ -44,6 +46,7 @@ const UpdateOrderInput = (props) => {
      <div className="update_order">
        <h1>Update Order Status</h1>
        <h4>Order Status: </h4>
+       <div className="dropdown">
        <select value={status} onChange={handleStatusChange}>
          {
             statusOptions.map((item, i) => (
@@ -51,6 +54,8 @@ const UpdateOrderInput = (props) => {
             ))
          }
        </select>
+       <Arrow />
+       </div>
        <h4>Delivery Date: </h4>
        <input type="date" value={date} onChange={handleDateChange} />
        <br/>

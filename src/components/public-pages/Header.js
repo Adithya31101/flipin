@@ -53,7 +53,7 @@ const Header = () => {
             return (
                 <>
                 <NavItem to="/" text="HOME" />
-                <NavItem to="/shop/all" text="SHOP" />
+                <NavItem to="/shop/All" text="SHOP" />
                 <NavItem to="/about" text="ABOUT US" />
                 <NavItem to="/contact" text="CONTACT US" />
                 <NavItem to="/login" text="LOG IN" className="bold" />

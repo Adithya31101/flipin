@@ -25,14 +25,17 @@ const Shop = () => {
 
     useEffect(() => {
       //Post method with a json which sends the categoryFromUrl
-        axios.get("https://flipin-store.herokuapp.com/shop.php")
+      setisLoading(true);
+        axios.post("https://flipin-store.herokuapp.com/product.php", {category: categoryFromUrl})
         .then(({data}) => {
-            setItemsArray(data);
-            setDisplayArray(data);
-            setisLoading(false);
+            if (data.responseCode === 200) {
+              setItemsArray(data.productItems);
+              setDisplayArray(data.productItems);
+              setisLoading(false);
+            }
         })
         .catch(e => console.log(e));
-    }, []);
+    }, [categoryFromUrl]);
 
     const handleCategoryChange = (type) => {
         setFilterVar(prev => ({...prev, categories: type}));
@@ -72,21 +75,19 @@ const Shop = () => {
               ))}
             </ul>
           </div>
-          <Link to="/shop/furniture">Furniture</Link >
-          <Link to="/shop/clothing">Clothing</Link >
-          <Link to="/shop/jewellery">Jewellery</Link >
+          <Link to="/shop/Furniture">Furniture</Link >
+          <Link to="/shop/Clothing">Clothing</Link >
+          <Link to="/shop/Jewellery">Jewellery</Link >
         </div>
         <div className="main">
           <h2>Shop</h2>
           <div className="main__details">
-            <span>{`${20} new products`}</span>
+            <span>{`${displayArray.length} new products`}</span>
             <div className="main__details-sort">
               <span>SORT BY: </span>
               <span>{filterVar.sort}</span>
               <Arrow onClick={() => setSortOpen((prev) => !prev)} />
-              <div
-                className={sortOpen ? "sort__dropdown open" : "sort__dropdown"}
-              >
+              <div className={sortOpen ? "sort__dropdown open" : "sort__dropdown"}>
                 <ul>
                   {sortType.map((item) => (
                     <li

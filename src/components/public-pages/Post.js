@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import { ReactComponent as Pin } from '../../images/pin.svg';
-
+import { ReactComponent as BidIcon } from "../../images/auction.svg";
 
 const Post = (props) => {
    return (
@@ -13,6 +13,7 @@ const Post = (props) => {
          <div style={{ marginTop: "10px" }}>
            <span>Lowest Bid </span>
            <span className="product__lowbid">{`₹ ${props.bid}`}</span>
+           {props.showBidPlaced && <BidIcon className="bid-icon"/>}
          </div>
          <div className="product__location">
            <Pin />

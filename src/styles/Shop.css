@@ -133,6 +133,7 @@
 }
 
 .product {
+   position: relative;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -175,6 +176,14 @@
 .product__location {
    margin-top: 15px;
    font-size: 15px;
+}
+
+.product .bid-icon {
+   position: absolute;
+   width: 30px;
+height: 30px;
+fill: #ffb102;
+right: 3rem;
 }
 
 @media only screen and (max-width: 800px) {
