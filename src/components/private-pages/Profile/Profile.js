@@ -10,13 +10,14 @@ import validations from "../../../helperFunctions/validation";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import MuiAlert from "@material-ui/lab/Alert";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 
 const Profile = () => {
    //Init Variables
    const {state, dispatch} = useContext(UserContext);
    const { state: stateFromPush } = useLocation();
+   const history = useHistory();
    
    //State
    const [user, setUser] = useState({});
@@ -34,6 +35,11 @@ const Profile = () => {
    const [pincode, setPincode] = useState("");
    const [image, setImage] = useState("");
    const [src, setSrc] = useState("");
+   const [Toast, setToast] = useState({
+     open: false,
+     severity: "",
+     text: "",
+   });
    const [editable, setEditable] = useState("");
    const [error, setError] = useState({
       MobileNo: "",
@@ -47,7 +53,10 @@ const Profile = () => {
       image: "",
    });
 
-
+    //Components
+    const Alert = (props) => {
+      return <MuiAlert elevation={6} variant="filled" {...props} />;
+    };
 
    //Use Effects
    useEffect(()=>{
@@ -80,6 +89,14 @@ const Profile = () => {
 
 
    //Handler Functions
+
+   const handleToastClose = (event, reason) => {
+     if (reason === "clickaway") {
+       return;
+     }
+     setToast(prev => ({...prev, open: false}));
+   };
+
    const handleClose = () => setPopupOpen(false);
 
    const handlePhone = (e) => {
@@ -148,6 +165,18 @@ const Profile = () => {
                   "user",
                   JSON.stringify({ ...state, hasAddress: true })
                 );
+                setToast({
+                  open: true,
+                  severity: "success",
+                  text: "Profile Updated Successfully"
+                });
+                setLoading(false);
+              } else {
+                setToast({
+                  open: true,
+                  severity: "error",
+                  text: res.data.error,
+                });
                 setLoading(false);
               }
             })
@@ -169,7 +198,6 @@ const Profile = () => {
          country,
          pincode,
        };
-       console.log(user);
        if(user.logo === src){
          axios.post("https://flipin-store.herokuapp.com/setprofile.php", userFromInput, authHeader)
          .then((res) => {
@@ -183,7 +211,19 @@ const Profile = () => {
                "user",
                JSON.stringify({ ...state, hasAddress: true })
              );
+             setToast({
+                  open: true,
+                  severity: "success",
+                  text: "Profile Updated Successfully"
+             });
              setLoading(false);
+           } else {
+             setToast({
+                  open: true,
+                  severity: "error",
+                  text: res.data.error,
+                });
+                setLoading(false);
            }
          })
          .catch((e) => console.log(e));
@@ -204,6 +244,20 @@ const Profile = () => {
                 "user",
                 JSON.stringify({ ...state, hasAddress: true })
               );
+              setToast({
+                  open: true,
+                  severity: "success",
+                  text: "Profile Updated Successfully"
+             });
+             setLoading(false);
+
+            } else {
+              setToast({
+                  open: true,
+                  severity: "error",
+                  text: res.data.error,
+                });
+                setLoading(false);
             }
           })
           .catch((e) => console.log(e));
@@ -225,8 +279,18 @@ const Profile = () => {
            Please add your address before you can start using this application!
          </h3>
        </Popup>
-       {loading==="init"? (
-         <div className="loader" style={{height: "80vh"}}>
+       <Snackbar
+         open={Toast.open}
+         autoHideDuration={5000}
+         onClose={handleToastClose}
+         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+       >
+         <Alert onClose={handleToastClose} severity={Toast.severity}>
+           {Toast.text}
+         </Alert>
+       </Snackbar>
+       {loading === "init" ? (
+         <div className="loader" style={{ height: "80vh" }}>
            <CircularProgress />
          </div>
        ) : (
@@ -250,7 +314,8 @@ const Profile = () => {
                {state.isSeller && (
                  <div>
                    <h2 className="seller__membership">Membership</h2>
-                   <span className={user.premiumMember? "seller__premium" : "seller__regular"}>
+                   <span onClick={()=>history.push('/get-premium')}
+                     className={user.premiumMember? "seller__premium": "seller__regular"}>
                      {user.premiumMember ? "Premium" : "Regular"}
                    </span>
                    <p></p>
@@ -259,35 +324,35 @@ const Profile = () => {
              </section>
              <div className="seller">
                <h2 className="seller__head">Personal Profile</h2>
-               {state.isSeller && 
-               (src ? (
-                 <div className="seller__logo">
-                   <img src={src} alt={state.name} />
-                   <label
-                     className={editable ? "logo__edit-icon" : "hide"}
-                     htmlFor="file-upload"
-                   >
-                     <EditRoundedIcon />
-                   </label>
-                   <input
-                     type="file"
-                     id="file-upload"
-                     hidden
-                     accept="image/*"
-                     onChange={handelImageChange}
-                   />
-                 </div>
-               ) : (
-                 <>
-                   <label htmlFor="file-upload">
-                     <div className="image-input" id="image-upload-button">
-                       <img src={camera} alt="camera icon" />
-                       <span className="upload">Upload Picture</span>
-                     </div>
-                   </label>
-                   <input type="file" id="file-upload" hidden />
-                 </>
-               ))}
+               {state.isSeller &&
+                 (src ? (
+                   <div className="seller__logo">
+                     <img src={src} alt={state.name} />
+                     <label
+                       className={editable ? "logo__edit-icon" : "hide"}
+                       htmlFor="file-upload"
+                     >
+                       <EditRoundedIcon />
+                     </label>
+                     <input
+                       type="file"
+                       id="file-upload"
+                       hidden
+                       accept="image/*"
+                       onChange={handelImageChange}
+                     />
+                   </div>
+                 ) : (
+                   <>
+                     <label htmlFor="file-upload">
+                       <div className="image-input" id="image-upload-button">
+                         <img src={camera} alt="camera icon" />
+                         <span className="upload">Upload Picture</span>
+                       </div>
+                     </label>
+                     <input type="file" id="file-upload" hidden />
+                   </>
+                 ))}
 
                <form className="profile-grid" onSubmit={handleSubmit}>
                  <div className="form-input-container">
@@ -444,13 +509,14 @@ const Profile = () => {
                  </div>
 
                  <div className="seller__submit-container">
-                   <button
-                    disabled={loading==="submit"}
-                     onClick={handleSubmit}
-                     className="seller__button-submit"
-                   >
-                     Submit
-                   </button>
+                     <button
+                       disabled={loading === "submit"}
+                       onClick={handleSubmit}
+                       className="seller__button-submit"
+                     >
+                       SUBMIT
+                     </button>
+                   
                  </div>
                </form>
              </div>
