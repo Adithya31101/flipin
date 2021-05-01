@@ -129,14 +129,23 @@ const Product = () => {
    }
 
    const handleDeleteBid = () => {
-     console.log({pid: id});
-     let updatedBids = productInfo.bids;
-     updatedBids.splice(bidPlaced, 1);
-     setProductInfo(prev => ({
-       ...prev,
-       bids: updatedBids
-     }));
-     setOpenDeleteBidPopup(false);
+     axios.post("https://flipin-store.herokuapp.com/closebid.php", { pid: id }, authHeader)
+     .then(res => {
+       if(res.data.responseCode === 204){
+         let updatedBids = productInfo.bids;
+         updatedBids.splice(bidPlaced, 1);
+         setProductInfo((prev) => ({
+           ...prev,
+           bids: updatedBids,
+         }));
+         setOpenDeleteBidPopup(false);
+         setBidPlaced(-1);
+       } else {
+         alert("Something Went Wrong!");
+       }
+     })
+     .catch(e => console.error(e));
+     
    }
    const handleChatWithCustomer = () => {
       history.push({
