@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/flipin/static/css/main.19406f1e.chunk.css",
-    "main.js": "/flipin/static/js/main.3e99e161.chunk.js",
-    "main.js.map": "/flipin/static/js/main.3e99e161.chunk.js.map",
+    "main.js": "/flipin/static/js/main.a9ee50eb.chunk.js",
+    "main.js.map": "/flipin/static/js/main.a9ee50eb.chunk.js.map",
     "runtime-main.js": "/flipin/static/js/runtime-main.56466d14.js",
     "runtime-main.js.map": "/flipin/static/js/runtime-main.56466d14.js.map",
     "static/js/2.4995174d.chunk.js": "/flipin/static/js/2.4995174d.chunk.js",
@@ -47,6 +47,6 @@
     "static/js/runtime-main.56466d14.js",
     "static/js/2.4995174d.chunk.js",
     "static/css/main.19406f1e.chunk.css",
-    "static/js/main.3e99e161.chunk.js"
+    "static/js/main.a9ee50eb.chunk.js"
   ]
 }
