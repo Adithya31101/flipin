@@ -9,6 +9,10 @@
     --animation-speed: 500ms;
 }
 
+.disabled {
+    cursor: not-allowed !important;
+}
+
 input:focus {
     outline: none;
     border: none;

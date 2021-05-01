@@ -59,8 +59,8 @@ const Profile = () => {
     };
 
    //Use Effects
-   useEffect(()=>{
-      if (stateFromPush && stateFromPush.needsRefresh) {
+   useEffect(() => {
+      if ((stateFromPush && stateFromPush.needsRefresh)) {
         window.location.reload();
       }
       if(!state.hasAddress){
@@ -351,12 +351,16 @@ const Profile = () => {
                  ) : (
                    <>
                      <label htmlFor="file-upload">
-                       <div className="image-input" id="image-upload-button">
+                       <div
+                         className={`image-input ${!editable? 'disabled' : ''}`}
+                         id="image-upload-button"
+                       >
                          <img src={camera} alt="camera icon" />
                          <span className="upload">Upload Picture</span>
                        </div>
                      </label>
                      <input
+                       disabled={!editable}
                        type="file"
                        id="file-upload"
                        hidden

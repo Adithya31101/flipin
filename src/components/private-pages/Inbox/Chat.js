@@ -1,11 +1,14 @@
 //Props: name, src
 
+import { useContext } from "react";
 import { getAvatar } from "../../../helperFunctions/misc";
+import { UserContext } from "../../Interface";
 
 const Chat = (props) => {
-   return (
+  const {state} = useContext(UserContext);
+  return (
      <>
-       {props.src?
+       {(props.src && !state.isSeller)?
        <img className="avatar img" src={props.src} alt={props.name} />
        :
        <div className="avatar">{getAvatar(props.name)}</div>

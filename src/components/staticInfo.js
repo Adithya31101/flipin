@@ -11,7 +11,10 @@ export const footerInfo = [{
         id: 4, name: "Clothing", to: "/shop/Clothing"
     }, {
         id: 5, name: "Furniture", to: "/shop/Furniture"
-    }],
+    }, {
+        id: 6, name: "Footwear", to: "/shop/Footwear"
+    }
+    ],
 },{
     id: 2,
     header: "Pages",

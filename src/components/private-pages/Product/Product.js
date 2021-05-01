@@ -23,6 +23,7 @@ const Product = () => {
    //State
    const [isLoading, setIsLoading] = useState(true);
    const [bidPlaced, setBidPlaced] = useState(null);
+   const [openDeleteBidPopup, setOpenDeleteBidPopup] = useState(false);
    const [acceptBidOpen, setAcceptBidOpen] = useState({
       open: false,
       sellerId: undefined,
@@ -127,6 +128,16 @@ const Product = () => {
       });
    }
 
+   const handleDeleteBid = () => {
+     console.log({pid: id});
+     let updatedBids = productInfo.bids;
+     updatedBids.splice(bidPlaced, 1);
+     setProductInfo(prev => ({
+       ...prev,
+       bids: updatedBids
+     }));
+     setOpenDeleteBidPopup(false);
+   }
    const handleChatWithCustomer = () => {
       history.push({
         pathname: "/inbox",
@@ -178,17 +189,31 @@ const Product = () => {
            handleClose={handleClose}
          />
        </Popup>
+       <Popup open={openDeleteBidPopup} handleClose={() => setOpenDeleteBidPopup(false)}>
+         <h1>Delete Bid?</h1>
+         <p>Are you sure you want to delete this bid?</p>
+         <div className="product-page__info-buttons">
+           <button onClick={handleDeleteBid}>
+             <CheckRounded />
+             &nbsp; Yes
+           </button>
+           <button onClick={() => setOpenDeleteBidPopup(false)}>
+             <CloseRounded />
+             &nbsp; No
+           </button>
+         </div>
+       </Popup>
        <Popup open={acceptBidOpen.open} handleClose={handleAcceptBidCancel}>
          <h1>Accept Bid and Place Order?</h1>
          <p>Are you sure you want to accept this bid?</p>
          <div className="product-page__info-buttons">
            <button onClick={handleAcceptOrder}>
-            <CheckRounded />&nbsp;
-            Yes
+             <CheckRounded />
+             &nbsp; Yes
            </button>
            <button onClick={handleAcceptBidCancel}>
-            <CloseRounded />&nbsp;
-            No
+             <CloseRounded />
+             &nbsp; No
            </button>
          </div>
        </Popup>
@@ -298,6 +323,7 @@ const Product = () => {
                        name={bid.sellerName}
                        desc={bid.description}
                        amount={bid.amount}
+                       setOpenDeleteBidPopup={setOpenDeleteBidPopup}
                      />
                    ) : (
                      <Bid_customer

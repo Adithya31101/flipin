@@ -18,7 +18,7 @@ const validation = {
     }
     ,
     validateName: (name) => {
-        const nameRegex = /^[A-Za-z]+$/;
+        const nameRegex = /^[A-Za-z\s]+$/;
         if (name === "") {
           return "Name cannot be empty!";
         } else if (!nameRegex.test(name)) {
@@ -48,7 +48,7 @@ const validation = {
     }
     ,
     validatePassword: (password) => {
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d$@$!^%*#?()&{}_]{6,}$/;
         if(password === ''){
             return 'Password cannot be empty!';
         }  else if (password.length < 6){

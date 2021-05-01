@@ -259,11 +259,17 @@ button:disabled, .product-page__info-buttons > button:first-child:disabled {
 
 .bid__item.per_seller > h2 {
    width: 10%;
+   margin-right: 5rem;
 }
 
 .bid__item.per_seller > .edit {
    position: absolute;
-   right: 50px;
+   right: 7rem;
+}
+
+.bid__item.per_seller > .delete {
+   position: absolute;
+   right: 4rem;
 }
 
 .bid__dropdown {

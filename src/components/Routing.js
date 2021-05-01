@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import { UserContext } from "./Interface";
 
 // Import the different components
@@ -58,8 +58,7 @@ const Routing = () => {
         //Private Pages
         <>
           {!state.hasAddress ? (
-            <Route>
-              {history.push("/profile")}
+            <Route >
               <Profile />
             </Route>
           ) : (

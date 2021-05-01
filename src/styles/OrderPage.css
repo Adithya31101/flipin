@@ -176,7 +176,7 @@
    background-color: #09ba3f;
 }
 
-.closed {
+.bid__status.closed {
    background-color: #f82a2a;
 }
 

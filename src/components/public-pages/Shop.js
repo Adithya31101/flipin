@@ -12,16 +12,15 @@ import { Link } from 'react-router-dom';
 
 const Shop = () => {
   const { category: categoryFromUrl } = useParams();
-  console.log(categoryFromUrl);
-    const [isLoading, setisLoading] = useState(true);
-    const [categoryOpen, setCategoryOpen] = useState(false);
-    const [itemsArray, setItemsArray] = useState([]);
-    const [displayArray, setDisplayArray] = useState([]);
-    const [sortOpen, setSortOpen] = useState(false);
-    const [filterVar, setFilterVar] = useState({
-        sort: "Newest First",
-        categories: "All",
-    });
+  const [isLoading, setisLoading] = useState(true);
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const [itemsArray, setItemsArray] = useState([]);
+  const [displayArray, setDisplayArray] = useState([]);
+  const [sortOpen, setSortOpen] = useState(false);
+  const [filterVar, setFilterVar] = useState({
+      sort: "Newest First",
+      categories: "All",
+  });
 
     useEffect(() => {
       //Post method with a json which sends the categoryFromUrl
@@ -103,7 +102,7 @@ const Shop = () => {
           </div>
         </div>
           {isLoading ? (
-            <div className="loader">
+            <div className="loader" style={{height: "60vh"}}>
               <CircularProgress />
             </div>
           ) : (

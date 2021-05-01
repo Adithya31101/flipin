@@ -1,10 +1,14 @@
-import { EditRounded } from '@material-ui/icons';
+import { DeleteRounded, EditRounded } from '@material-ui/icons';
 import React, { useContext } from 'react';
 import { getAvatar } from '../../../helperFunctions/misc';
 import { UserContext } from '../../Interface';
 
 const Bid = (props) => {
   const {state} = useContext(UserContext);
+
+  const handleDeleteBid = () => {
+      props.setOpenDeleteBidPopup(true);
+  }
    return (
      <>
        {props.logo ? (
@@ -16,6 +20,7 @@ const Bid = (props) => {
        <p>{props.desc}</p>
        <h2 className="amount">{`₹ ${props.amount}`}</h2>
        {props.sellerId === state.id && (
+         <>
          <div className="edit" onClick={() =>
              props.setBidInput({
                open: true,
@@ -29,6 +34,11 @@ const Bid = (props) => {
          >
            <EditRounded />
          </div>
+         <div className="delete" onClick={handleDeleteBid}
+         >
+           <DeleteRounded />
+         </div>
+         </>
        )}
      </>
    );
