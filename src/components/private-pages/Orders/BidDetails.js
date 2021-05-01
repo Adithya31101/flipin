@@ -8,11 +8,11 @@ const BidDetails = (props) => {
       <div className="bid__head">
         <span className="bid__head-label">{props.label}</span>
         {props.isStatus ? (
-          props.amount ? (
-            <span className=" bid__status open">{props.amount}</span>
-          ) : (
-            <span className=" bid__status closed">{props.amount}</span>
-          )
+          // props.amount ? (
+            <span className={`bid__status ${props.amount.split(" ")[0].toLowerCase()}`}>{props.amount}</span>
+          // ) : (
+            // <span className=" bid__status closed">{props.amount}</span>
+          // )
         ) : (
           <span className="bid__head-amount number">{props.amount}</span>
         )}

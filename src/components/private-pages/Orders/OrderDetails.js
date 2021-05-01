@@ -45,22 +45,20 @@ const OrderDetails = () => {
       pathname: "/inbox",
       state: state.isSeller
         ? {
-            customer: orderInfo.customerId,
-            customerName: orderInfo.customerName,
-            seller: state.id,
-            sellerName: state.name,
-            sellerLogo: state.logo ? state.logo : null,
-          }
-        : {
-            customer: state.id,
-            customerName: state.name,
-            seller: orderInfo.customerId,
-            sellerName: orderInfo.customerName,
-            sellerLogo: state.logo ? state.logo : null,
-          },
+              customer: orderInfo.id,
+              customerName: orderInfo.personName,
+              seller: state.id,
+              sellerName: state.name,
+              sellerLogo: state.url ? state.url : null,
+            }
+          : {
+              customer: state.id,
+              customerName: state.name,
+              seller: orderInfo.id,
+              sellerName: orderInfo.personName,
+              sellerLogo: state.logo ? state.logo : null,
+            }
     });
-
-
   }
 
   const handleUpdateOrderStatusClose = (updateHappen = false, status, dd) => {

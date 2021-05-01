@@ -152,13 +152,35 @@
    width: min-content
 }
 
-.bid__status.open {
+.started {
+   background-color: hsl(262, 47%, 46%);
+}
+
+.packed {
+   background-color: hsl(241, 47%, 50%);
+}
+
+.shipped {
+   background-color: hsl(221, 100%, 38%);
+}
+
+.out {
+   background-color: hsl(214, 100%, 38%);
+}
+
+.delivered {
+   background-color: hsla(150, 100%, 38%, 0.747);
+}
+
+.complete {
    background-color: #09ba3f;
 }
 
-.bid__status.closed {
+.closed {
    background-color: #f82a2a;
 }
+
+
 
 .bid__viewlink, .bid__viewlink:visited, .bid__viewlink:active {
    color: #ffb102;
