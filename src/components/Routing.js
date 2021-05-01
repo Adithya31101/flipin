@@ -58,7 +58,8 @@ const Routing = () => {
         //Private Pages
         <>
           {!state.hasAddress ? (
-            <Route >
+            <Route>
+              {history.push("/profile")}
               <Profile />
             </Route>
           ) : (

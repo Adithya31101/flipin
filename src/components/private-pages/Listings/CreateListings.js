@@ -82,21 +82,21 @@ const CreateListings = (props) => {
      }
    }
 
-   const handleSendRequest = (e) => {
-     e.preventDefault();
-     console.log(cloudUrl);
-     axios.post("http://localhost:5000/classify", { Link: cloudUrl })
-       .then((res) => {
-         if(res.data.responseCode === 200 && res.data.value !== cat){
-           setToast({
-             open: true,
-             severity: "error",
-             text: "The image does not match the category! (Suggested Category: " + res.data.value + ")",
-           })
-         }
-       })
-       .catch((e) => console.error(e));
-   }
+  //  const handleSendRequest = (e) => {
+  //    e.preventDefault();
+  //    console.log(cloudUrl);
+  //    axios.post("http://localhost:5000/classify", { Link: cloudUrl })
+  //      .then((res) => {
+  //        if(res.data.responseCode === 200 && res.data.value !== cat){
+  //          setToast({
+  //            open: true,
+  //            severity: "error",
+  //            text: "The image does not match the category! (Suggested Category: " + res.data.value + ")",
+  //          })
+  //        }
+  //      })
+  //      .catch((e) => console.error(e));
+  //  }
 
    const handleName = (e) => {
       setName(e.target.value);
@@ -279,7 +279,7 @@ const CreateListings = (props) => {
                </label>
              </div>
            </div>
-           <button onClick={handleSendRequest}>Send Request</button>
+           {/* <button onClick={handleSendRequest}>Send Request</button> */}
            <Snackbar
              open={Toast.open}
              autoHideDuration={5000}

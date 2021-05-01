@@ -60,15 +60,15 @@ const Profile = () => {
 
    //Use Effects
    useEffect(() => {
-      if ((stateFromPush && stateFromPush.needsRefresh)) {
-        window.location.reload();
-      }
-      if(!state.hasAddress){
-         setPopupOpen(true);
-      }
       axios.get("https://flipin-store.herokuapp.com/getprofile.php", authHeader)
         .then(({ data: {user},data }) => {
           if (data.responseCode === 200) {
+            if (!state.hasAddress) {
+              setPopupOpen(true);
+            }
+            if(user.name !== state.name){
+              window.location.reload();
+            }
             setUser(data.user);
             setName(user.name);
             setEmail(user.email);
