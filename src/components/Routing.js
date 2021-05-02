@@ -59,7 +59,6 @@ const Routing = () => {
         <>
           {!state.hasAddress ? (
             <Route>
-              {history.push("/profile")}
               <Profile />
             </Route>
           ) : (

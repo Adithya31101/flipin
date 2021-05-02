@@ -63,11 +63,12 @@ const Profile = () => {
       axios.get("https://flipin-store.herokuapp.com/getprofile.php", authHeader)
         .then(({ data: {user},data }) => {
           if (data.responseCode === 200) {
-            if (!state.hasAddress) {
-              setPopupOpen(true);
-            }
             if(user.name !== state.name){
               window.location.reload();
+              return;
+            }
+            else if (!state.hasAddress) {
+              setPopupOpen(true);
             }
             setUser(data.user);
             setName(user.name);
