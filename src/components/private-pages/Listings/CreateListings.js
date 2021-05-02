@@ -22,7 +22,7 @@ const CreateListings = (props) => {
    //State
    const [percentage, setPercentage] = useState(0);
    const [Toast, setToast] = useState({
-     open: false, severity: "", text: "" 
+     open: false, severity: "", text: "" , redirect: "false"
    });
    const [cloudUrl, setCloudUrl] = useState("");
    const [src, setSrc] = useState('');
@@ -58,12 +58,15 @@ const CreateListings = (props) => {
       setCat(e.target.value);
    }
 
-   const handleToastClose = (event, reason) => {
+   const handleToastClose = (event, reason, redirect = false) => {
      if (reason === "clickaway") {
        return;
      }
      setToast(prev => ({...prev, open: false}));
-     history.push("/dashboard");
+     if(redirect) {
+       history.push("/dashboard");
+     }
+     setLoading(false);
    };
 
    
@@ -82,21 +85,24 @@ const CreateListings = (props) => {
      }
    }
 
-  //  const handleSendRequest = (e) => {
-  //    e.preventDefault();
-  //    console.log(cloudUrl);
-  //    axios.post("http://localhost:5000/classify", { Link: cloudUrl })
-  //      .then((res) => {
-  //        if(res.data.responseCode === 200 && res.data.value !== cat){
-  //          setToast({
-  //            open: true,
-  //            severity: "error",
-  //            text: "The image does not match the category! (Suggested Category: " + res.data.value + ")",
-  //          })
-  //        }
-  //      })
-  //      .catch((e) => console.error(e));
-  //  }
+   const handleSendRequest = (e) => {
+     e.preventDefault();
+     console.log(cloudUrl);
+     axios.post("http://localhost:5000/classify", { Link: cloudUrl })
+       .then((res) => {
+         if(res.data.responseCode === 200 && res.data.value !== cat){
+           setToast({
+             open: true,
+             severity: "error",
+             redirect: false,
+             text: "The image does not match the category! (Suggested Category: " + res.data.value + ")",
+           })
+         } else {
+
+         }
+       })
+       .catch((e) => console.error(e));
+   }
 
    const handleName = (e) => {
       setName(e.target.value);
@@ -135,25 +141,49 @@ const CreateListings = (props) => {
           category: cat,
           mediaUrl: src,
         };
-        console.log(stateFromPush);
-        axios.post("https://flipin-store.herokuapp.com/editproduct.php", post, authHeader)
+        axios
+          .post("http://localhost:5000/classify", { Link: cloudUrl })
           .then((res) => {
-            if (res.data.responseCode === 204) {
-              setLoading(false);
-              setToast({
-                open: true,
-                severity: "success",
-                text: "Post Edited successfully!",
-              });
-            } else {
+            if (res.data.responseCode === 200 && res.data.value !== cat) {
               setToast({
                 open: true,
                 severity: "error",
-                text: "Error occured! Please try again.",
+                redirect: false,
+                text:
+                  "The image does not match the category! (Suggested Category: " +
+                  res.data.value +
+                  ")",
               });
+            } else {
+              axios
+                .post(
+                  "https://flipin-store.herokuapp.com/editproduct.php",
+                  post,
+                  authHeader
+                )
+                .then((res) => {
+                  if (res.data.responseCode === 204) {
+                    setLoading(false);
+                    setToast({
+                      open: true,
+                      severity: "success",
+                      text: "Post Edited successfully!",
+                      redirect: true,
+                    });
+                  } else {
+                    setToast({
+                      open: true,
+                      severity: "error",
+                      redirect: true,
+                      text: "Error occured! Please try again.",
+                    });
+                  }
+                })
+                .catch((e) => console.log(e));
             }
           })
-          .catch(e => console.log(e));
+          .catch((e) => console.error(e));
+          
         
       } else {
           axios.post("https://api.cloudinary.com/v1_1/flipin/image/upload", data, options)
@@ -164,27 +194,52 @@ const CreateListings = (props) => {
               category: cat,
               mediaUrl: url,
             };
-            axios.post("https://flipin-store.herokuapp.com/productpost.php", post, authHeader)
+            axios
+              .post("http://localhost:5000/classify", { Link: url })
               .then((res) => {
-                if (res.data.responseCode === 201) {
-                  setName("");
-                  desc.current.value = "";
-                  setImage("");
-                  setLoading(false);
-                  
+                if (res.data.responseCode === 200 && res.data.value !== cat) {
                   setToast({
                     open: true,
-                    severity: "success",
-                    text: "Post created successfully!",
+                    redirect: false,
+                    severity: "error",
+                    text:
+                      "The image does not match the category! (Suggested Category: " +
+                      res.data.value +
+                      ")",
                   });
                 } else {
-                  setToast({
-                    open: true,
-                    severity: "error",
-                    text: "Error occured! Please try again.",
-                  });
+                  axios
+                    .post(
+                      "https://flipin-store.herokuapp.com/productpost.php",
+                      post,
+                      authHeader
+                    )
+                    .then((res) => {
+                      if (res.data.responseCode === 201) {
+                        setName("");
+                        desc.current.value = "";
+                        setImage("");
+                        setLoading(false);
+
+                        setToast({
+                          open: true,
+                          redirect: true,
+                          severity: "success",
+                          text: "Post created successfully!",
+                        });
+                      } else {
+                        setToast({
+                          open: true,
+                          redirect: false,
+                          severity: "error",
+                          text: "Error occured! Please try again.",
+                        });
+                      }
+                    })
+                    .catch((e) => console.error(e));
                 }
-              });
+              })
+              .catch((e) => console.error(e));
         })
         .catch((e) => console.log(e));
       }
@@ -286,7 +341,7 @@ const CreateListings = (props) => {
              onClose={handleToastClose}
              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
            >
-             <Alert onClose={handleToastClose} severity={Toast.severity}>
+             <Alert onClose={(e, reason) => handleToastClose(e, reason, Toast.redirect)} severity={Toast.severity}>
                {Toast.text}
              </Alert>
            </Snackbar>
