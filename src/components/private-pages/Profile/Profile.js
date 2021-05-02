@@ -172,6 +172,7 @@ const Profile = () => {
                   text: "Profile Updated Successfully"
                 });
                 setLoading(false);
+                history.push("/dashboard");
               } else {
                 setToast({
                   open: true,
@@ -218,6 +219,7 @@ const Profile = () => {
                   text: "Profile Updated Successfully"
              });
              setLoading(false);
+             history.push("/dashboard");
            } else {
              setToast({
                   open: true,
@@ -250,6 +252,7 @@ const Profile = () => {
                   severity: "success",
                   text: "Profile Updated Successfully"
              });
+             history.push("/dashboard");
              setLoading(false);
 
             } else {
