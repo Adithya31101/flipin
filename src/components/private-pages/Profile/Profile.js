@@ -63,7 +63,7 @@ const Profile = () => {
       axios.get("https://flipin-store.herokuapp.com/getprofile.php", authHeader)
         .then(({ data: {user},data }) => {
           if (data.responseCode === 200) {
-            if(user.name !== state.name){
+            if(user.email !== state.email){
               window.location.reload();
               return;
             }
